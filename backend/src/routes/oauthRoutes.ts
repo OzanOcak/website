@@ -2,18 +2,15 @@ import { RequestHandler, Router } from "express";
 import { getGoogleOAuthUrl } from "../controllers/oauth-controllers/oauth-url";
 import { oauthCallback } from "../controllers/oauth-controllers/oauth-callback";
 import { loginOauth } from "../controllers/oauth-controllers/oauth-login";
-import {
-  oauthLoginRateLimiter,
-  oauthUrlRateLimiter,
-} from "../middleware/rate-limitter";
+import { ipRateLimiter } from "../middleware/ip-rate-limiter";
 
 const router = Router();
 
-router.get("/oauth/url", oauthUrlRateLimiter, getGoogleOAuthUrl); // by clicking  button get all oauth codes
+router.get("/oauth/url", ipRateLimiter, getGoogleOAuthUrl); // by clicking  button get all oauth codes
 
 router.get("/oauth/callback", oauthCallback as RequestHandler); // google will make this req
 
-router.post("/oauth/ologin", oauthLoginRateLimiter, loginOauth); // client will consent and authorize the app
+router.post("/oauth/ologin", ipRateLimiter, loginOauth); // client will consent and authorize the app
 
 export default router;
 

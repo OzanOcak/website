@@ -3,7 +3,6 @@ import { Router } from "express";
 import { authenticate } from "../middleware/authenticate-user";
 import { checkPermissionsToAuthorize } from "../middleware/authorize-user";
 import { user } from "../controllers/role-controllers/user-controller";
-import { editor } from "../controllers/role-controllers/editor-controller";
 import { admin } from "../controllers/role-controllers/admin-controller";
 import { deleteUserProfile } from "../controllers/feature-controllers/delete-user-profile";
 import { updateUserRole } from "../controllers/feature-controllers/update-user-role";
@@ -11,6 +10,7 @@ import { updatePassword } from "../controllers/forgot-password-controllers/otp/u
 import { adminEdit } from "../controllers/role-controllers/admin-edit-controller";
 import { updateUserSelfName } from "../controllers/feature-controllers/update-user-self-name";
 import { deleteSelfUserProfile } from "../controllers/feature-controllers/delete-self-user-profile";
+import { emailRateLimiter } from "../middleware/rate-limitter";
 
 const router = Router();
 
@@ -20,14 +20,6 @@ router.get(
   authenticate,
   checkPermissionsToAuthorize("view_profile"),
   user
-);
-
-// editor routes
-router.get(
-  "/editor",
-  authenticate,
-  checkPermissionsToAuthorize("view_profile", "view_users"),
-  editor
 );
 
 // admin routes
@@ -72,6 +64,7 @@ router.patch(
 
 router.patch(
   "/profile/:userId/name",
+  emailRateLimiter,
   authenticate,
   checkPermissionsToAuthorize("edit_self_user_name"),
   updateUserSelfName
