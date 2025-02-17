@@ -21,7 +21,7 @@ frontend/package-lock.json
 frontend/yarn.lock
 
 # Docker
-.env                # Exclude the .env file in the root directory
+/.env                # Exclude the .env file in the root directory
 docker-compose.yml  # Exclude the main docker-compose file
 docker-compose.override.yml
 Dockerfile
