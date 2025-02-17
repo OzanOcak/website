@@ -8,6 +8,13 @@
       "when": 1739303993926,
       "tag": "0000_mute_paladin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1739818973254,
+      "tag": "0001_dark_toro",
+      "breakpoints": true
     }
   ]
 }

@@ -10,29 +10,26 @@ import { verifyEmail } from "../controllers/auth-controllers/verify-email";
 import { forgotPassword } from "../controllers/forgot-password-controllers/otp/forgot-password";
 import { verifyOtpPassword } from "../controllers/forgot-password-controllers/otp/verify-password";
 import { updatePassword } from "../controllers/forgot-password-controllers/otp/update-password";
-import {
-  signinRateLimiter,
-  signupRateLimiter,
-} from "../middleware/rate-limitter";
+import { ipRateLimiter } from "../middleware/ip-rate-limiter";
 //import { forgotPassword } from "../controllers/forgot-password-controllers/e-link/forgot-password";
 //import { updatePassword } from "../controllers/forgot-password-controllers/e-link/update-password";
 //import { verifyPasswordResetCode } from "../controllers/forgot-password-controllers/e-link/verify-password-reset-code";
 
 const router = Router();
 
-router.post("/signup", signupRateLimiter, validateUser, register); //  public with  middleware
-router.post("/login", signinRateLimiter, validateUser, login); // public with middleware
+router.post("/signup", ipRateLimiter, validateUser, register); //  public with  middleware
+router.post("/login", ipRateLimiter, validateUser, login); // public with middleware
 router.post("/refresh", getAccessToken); // refresh token will be extraxted ro get all the data, no need authenticate
 router.post("/logout", authenticate, logout); // use middleware to verify if access token valid
 
-router.post("/verify-email", authenticate, verifyEmail);
+router.post("/verify-email", ipRateLimiter, authenticate, verifyEmail);
 
 //router.post("/forgot-password", forgotPassword);
 //router.post("/update-password", updatePassword); // Route to update password
 //router.get("/verify-reset-code", verifyPasswordResetCode);
 
-router.post("/forgot-password", forgotPassword);
-router.post("/update-password", authenticate, updatePassword);
+router.post("/forgot-password", ipRateLimiter, forgotPassword);
+router.post("/update-password", ipRateLimiter, authenticate, updatePassword);
 router.post("/verify-otp", authenticate, verifyOtpPassword);
 
 export default router;
