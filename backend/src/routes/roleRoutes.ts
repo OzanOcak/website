@@ -11,6 +11,11 @@ import { adminEdit } from "../controllers/role-controllers/admin-edit-controller
 import { updateUserSelfName } from "../controllers/feature-controllers/update-user-self-name";
 import { deleteSelfUserProfile } from "../controllers/feature-controllers/delete-self-user-profile";
 import { emailRateLimiter } from "../middleware/rate-limitter";
+import {
+  dislikeBlog,
+  getLikeBlog,
+  likeBlog,
+} from "../controllers/feature-controllers/likes-controller";
 
 const router = Router();
 
@@ -78,5 +83,12 @@ router.delete(
 );
 
 router.patch("/users/:userId/password", updatePassword);
+
+// Get likes for blog
+router.get("/blogpost/:postId/like", getLikeBlog);
+// Like a post
+router.post("/blogpost/:postId/like", likeBlog);
+// Disike a post
+router.post("/blogpost/:postId/dislike", dislikeBlog);
 
 export default router;
