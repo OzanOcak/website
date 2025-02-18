@@ -37,7 +37,7 @@ export const loginOauth = async (
 
     // Fetch the profile data from memory (or database)
     const profile = memory[decoded.id];
-    //console.log("Profile from callback:", profile);
+    console.log("Profile from callback:", profile);
 
     if (!profile || !profile.id) {
       res.status(400).json({ success: false, message: "Invalid profile data" });

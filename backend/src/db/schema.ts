@@ -9,6 +9,12 @@ export const users = pgTable("users", {
   role: varchar("role", { length: 10 }).default("user").notNull(),
 });
 
+export const likes = pgTable("likes", {
+  id: serial("id").primaryKey(),
+  slug: varchar("slug", { length: 255 }).notNull(), // Slug of the post being liked
+  likes_count: integer("likes_count").default(0).notNull(),
+});
+
 export const oauth_identities = pgTable("oauth_identities", {
   id: serial("id").primaryKey(),
   provider: varchar("provider", { length: 50 }).notNull(), // e.g., 'google', 'github'
@@ -30,6 +36,7 @@ export const tokens = pgTable("tokens", {
 export const usersRelations = relations(users, ({ many }) => ({
   tokens: many(tokens),
   oauthIdentities: many(oauth_identities),
+  likes: many(likes),
 }));
 
 // While cascading deletes do not reduce the number of queries, they can improve performance in some cases:

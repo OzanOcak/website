@@ -15,6 +15,27 @@
       "when": 1739818973254,
       "tag": "0001_dark_toro",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1739850836958,
+      "tag": "0002_loud_nextwave",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1739897831261,
+      "tag": "0003_faulty_gwen_stacy",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1739912146716,
+      "tag": "0004_curved_mongu",
+      "breakpoints": true
     }
   ]
 }
