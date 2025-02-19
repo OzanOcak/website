@@ -67,7 +67,7 @@ const BlogList = () => {
 };
 
 export const metadata: Metadata = {
-  title: "Blogs - ProgrammingWithHarry",
+  title: "Blogs - Programming",
   description:
     "A comprehensive blog for coders of all levels, from beginners to advanced. Explore tutorials, tips, and insights on a wide range of programming languages and technologies. Stay up-to-date with the latest trends in software development, learn best practices, and enhance your coding skills with in-depth articles and guides.",
 };
