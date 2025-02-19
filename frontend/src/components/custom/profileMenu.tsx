@@ -21,7 +21,7 @@ export const ProfileMenu = () => {
   const AvatarComponent = useCallback(
     () => (
       <div
-        className="flex flex-col items-center cursor-pointer w-24"
+        className="flex flex-col items-center cursor-pointer w-10"
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <Avatar className="w-10 h-10">

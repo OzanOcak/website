@@ -7,11 +7,11 @@ import { redirect } from "next/navigation";
 import { Metadata } from "next";
 import { LinkType, SideBar } from "@/components/SideBar";
 import { CustomTags } from "@/components/Tags";
-import { MessageSquareText } from "lucide-react";
 import Comment from "@/components/Comment";
 import { cn } from "@/lib/utils";
 import { ContentTable } from "@/components/ContentTable";
 import LikeDislikeButtons from "@/components/LikesComponent";
+import { SheetSide } from "@/components/SheetSide";
 
 async function fetchBlogPost(slug: string) {
   const filePath = path.join(process.cwd(), "src/content", `${slug}.md`);
@@ -88,8 +88,8 @@ export default async function BlogPostPage({
           <div className="flex  space-x-2 mr-2">
             <LikeDislikeButtons postId={slug} />
 
-            <div className="font-extrabold text-lg -mt-1 mx-1"> -</div>
-            <MessageSquareText />
+            <div className="font-extrabold text-lg -mt-1 mx-1"> </div>
+            <SheetSide />
           </div>
         </div>
         <hr />
