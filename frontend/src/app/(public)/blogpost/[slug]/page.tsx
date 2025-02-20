@@ -8,7 +8,7 @@ import { Metadata } from "next";
 import { LinkType, SideBar } from "@/components/custom/blogpost/SideBar";
 import { CustomTags } from "@/components/custom/blogpost/Tags";
 import { cn } from "@/lib/utils";
-import { SheetSide } from "@/components/custom/sidesheet/commentsheet";
+import { SheetSide } from "@/components/custom/sidesheet/mainsheet";
 import LikeDislikeButtons from "@/components/custom/blogpost/likepost";
 import { ContentTable } from "@/components/custom/blogpost/ContentTable";
 
