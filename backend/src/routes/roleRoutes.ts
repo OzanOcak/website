@@ -17,6 +17,7 @@ import { dislikeBlog } from "../controllers/feature-controllers/blog-likes/unlik
 import { updateUserRole } from "../controllers/feature-controllers/admin/update-user-role";
 import { updateUserSelfName } from "../controllers/feature-controllers/user/update-user-self-name";
 import { deleteSelfUserProfile } from "../controllers/feature-controllers/user/delete-self-user-profile";
+import { deleteCommentById } from "../controllers/feature-controllers/comments/delete-comment-controller";
 
 const router = Router();
 
@@ -95,5 +96,6 @@ router.post("/posts/:postId/comments", createComment);
 router.get("/posts/:postId/comments", getCommentsByBlogId);
 router.post("/comments/:commentId/like", likeComment);
 router.post("/comments/:commentId/reply", createComment);
+router.delete("/comments/:commentId", deleteCommentById);
 
 export default router;
