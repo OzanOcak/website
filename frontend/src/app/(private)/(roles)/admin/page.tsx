@@ -1,5 +1,5 @@
 "use client";
-import { useAdmin } from "@/hooks/roles/useAdmin";
+import { useAdmin } from "@/hooks/roles/admin/useAdmin";
 import Layout from "@/components/custom/layout";
 import { Pending } from "@/components/custom/isPending";
 import { Erroring } from "@/components/custom/isError";

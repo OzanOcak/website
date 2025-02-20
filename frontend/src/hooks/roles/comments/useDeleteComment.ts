@@ -1,22 +1,13 @@
 import axiosInstance from "@/utils/AxiosInterceptor";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 const deleteComment = async (commentId: number) => {
   const response = await axiosInstance.delete(`/comments/${commentId}`);
-  return response.data; // Assuming the response contains a message or relevant data
+  return response.data;
 };
 
-export const useDeleteComment = (commentId: number) => {
-  const queryClient = useQueryClient();
-
+export const useDeleteComment = () => {
   return useMutation({
     mutationFn: (commentId: number) => deleteComment(commentId),
-    onSuccess: () => {
-      // Refresh comments after deletion
-      queryClient.invalidateQueries({ queryKey: ["comments", commentId] });
-    },
-    onError: (error) => {
-      console.error("Error deleting comment:", error);
-    },
   });
 };
