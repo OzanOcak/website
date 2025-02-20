@@ -1,8 +1,8 @@
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { LinkItem } from "./LinkItem";
 //import { CustomTags } from "./Tags";
 //import { MessageSquareText, ThumbsDown, ThumbsUp } from "lucide-react";
-import { ScrollArea } from "./ui/scroll-area";
 //import { CustomTags } from "./Tags";
 
 export type LinkType = {

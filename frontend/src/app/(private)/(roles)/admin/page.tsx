@@ -3,10 +3,10 @@ import { useAdmin } from "@/hooks/roles/useAdmin";
 import Layout from "@/components/custom/layout";
 import { Pending } from "@/components/custom/isPending";
 import { Erroring } from "@/components/custom/isError";
-import UserTable from "@/components/custom/userTable";
+import UserTable from "@/components/custom/admin/userTable";
 import { useEffect, useState } from "react";
 import { useStore } from "@/stores/useAuthStore";
-import SearchBox from "@/components/custom/searchBox";
+import SearchBox from "@/components/custom/admin/searchBox";
 
 export default function AdminPage() {
   const { userDeleted, setUserDeleted } = useStore();

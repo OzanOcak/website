@@ -14,7 +14,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { MessageSquareText } from "lucide-react";
-import { CommentSection } from "./Comment";
+import { CommentSection } from "./comment";
 
 export function SheetSide({ slug }: { slug: string }) {
   const [isOpen, setIsOpen] = useState(false);

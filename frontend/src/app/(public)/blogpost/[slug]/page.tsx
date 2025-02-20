@@ -5,12 +5,12 @@ import { marked } from "marked";
 //import { highlight } from "sugar-high"; // Import the highlight function
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
-import { LinkType, SideBar } from "@/components/SideBar";
-import { CustomTags } from "@/components/Tags";
+import { LinkType, SideBar } from "@/components/custom/blogpost/SideBar";
+import { CustomTags } from "@/components/custom/blogpost/Tags";
 import { cn } from "@/lib/utils";
-import { ContentTable } from "@/components/ContentTable";
-import LikeDislikeButtons from "@/components/LikesComponent";
-import { SheetSide } from "@/components/SheetSide";
+import { SheetSide } from "@/components/custom/sidesheet/commentsheet";
+import LikeDislikeButtons from "@/components/custom/blogpost/likepost";
+import { ContentTable } from "@/components/custom/blogpost/ContentTable";
 
 async function fetchBlogPost(slug: string) {
   const filePath = path.join(process.cwd(), "src/content", `${slug}.md`);

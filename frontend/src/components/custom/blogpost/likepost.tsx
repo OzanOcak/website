@@ -3,9 +3,9 @@ import { useDislike } from "@/hooks/roles/likes/useDislike";
 import { useGetLikes } from "@/hooks/roles/likes/useGetLikes";
 import { useLike } from "@/hooks/roles/likes/useLike";
 import React from "react";
-import { ThumbsUpIcon } from "./icons/ThumbsUpIcon";
 import { useQueryClient } from "@tanstack/react-query";
 import { useStore } from "@/stores/useAuthStore";
+import { ThumbsUpIcon } from "@/components/icons/ThumbsUpIcon";
 
 interface LikeDislikeButtonsProps {
   postId: string;

@@ -7,6 +7,7 @@ interface SheetProps {
   onClose?: () => void; // Optional callback when the sheet is closed
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Sheet: React.FC<SheetProps> = ({ trigger, title, children, onClose }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,4 +54,4 @@ const Sheet: React.FC<SheetProps> = ({ trigger, title, children, onClose }) => {
   );
 };
 
-export default Sheet;
+//export default Sheet;
