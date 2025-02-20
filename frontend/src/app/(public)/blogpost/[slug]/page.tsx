@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 import { Metadata } from "next";
 import { LinkType, SideBar } from "@/components/SideBar";
 import { CustomTags } from "@/components/Tags";
-import Comment from "@/components/Comment";
 import { cn } from "@/lib/utils";
 import { ContentTable } from "@/components/ContentTable";
 import LikeDislikeButtons from "@/components/LikesComponent";
@@ -89,7 +88,7 @@ export default async function BlogPostPage({
             <LikeDislikeButtons postId={slug} />
 
             <div className="font-extrabold text-lg -mt-1 mx-1"> </div>
-            <SheetSide />
+            <SheetSide slug={slug} />
           </div>
         </div>
         <hr />
@@ -102,18 +101,6 @@ export default async function BlogPostPage({
         </div>
         <div className="prose lg:prose-xl my-8">
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
-        </div>
-        <div>Comments:</div>
-        <div>
-          <p>hello this is a commet</p>
-          <p>hello this is a commet</p>
-          <p>hello this is a commet</p>
-          <p>hello this is a commet</p>
-          <p>hello this is a commet</p>
-          <p>hello this is a commet</p>
-        </div>
-        <div>
-          <Comment />
         </div>
       </div>
     </div>

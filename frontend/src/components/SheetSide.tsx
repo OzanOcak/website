@@ -16,7 +16,7 @@ import {
 import { MessageSquareText } from "lucide-react";
 import { CommentSection } from "./Comment2";
 
-export function SheetSide() {
+export function SheetSide({ slug }: { slug: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [side, setSide] = useState<"right" | "bottom">("right"); // State for the side
   //const [username, setUsername] = useState("@peduarte");
@@ -53,7 +53,7 @@ export function SheetSide() {
             <SheetDescription></SheetDescription>
           </SheetHeader>
           <div className="grid gap-4 py-4">
-            <CommentSection />
+            <CommentSection postId={slug} />
           </div>
         </SheetContent>
       </Sheet>

@@ -1,34 +1,21 @@
 import { Request, Response } from "express";
-import { updateRole } from "../../services/updateRole";
+import { updateName } from "../../../services/updateName";
 
-export const updateUserRole = async (
+export const updateUserSelfName = async (
   req: Request<{ userId: string }>,
   res: Response
 ): Promise<void> => {
   const { userId } = req.params; // Get the user ID from the request parameters
-  const { newRole } = req.body; // User's new role from the request body
+  const { newName } = req.body; // User's new role from the request body
   //console.log("userId :", userId, " newRole :", newRole);
 
   try {
-    await updateRole(userId, newRole); // Call the service function with userId as a number
+    await updateName(userId, newName); // Call the service function with userId as a number
 
-    res.status(200).json({ message: "User role updated successfully" });
+    res.status(200).json({ message: "User name updated successfully" });
   } catch (error) {
-    if (error instanceof Error) {
-      // Check if error is an instance of Error
-      if (error.message === "Invalid role") {
-        res.status(400).json({ message: "Invalid role" });
-      } else if (error.message === "User not found") {
-        res.status(404).json({ message: "User not found" });
-      } else {
-        console.error("Error updating role:", error);
-        res.status(500).json({ message: "Error updating role" });
-      }
-    } else {
-      // Handle unexpected error types
-      console.error("Unexpected error:", error);
-      res.status(500).json({ message: "An unexpected error occurred" });
-    }
+    console.error("Error updating role:", error);
+    res.status(500).json({ message: "Error updating role" });
   }
 };
 
