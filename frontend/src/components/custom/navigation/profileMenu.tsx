@@ -1,6 +1,6 @@
 "use client";
 import { useLogout } from "@/hooks/auth/useLogout";
-import { useUserName } from "@/hooks/roles/useProfile";
+import { useUserName } from "@/hooks/roles/user/useProfile";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { FaUser } from "react-icons/fa";

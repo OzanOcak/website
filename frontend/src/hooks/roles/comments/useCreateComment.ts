@@ -22,8 +22,8 @@ export const useCreateComment = (postId: string) => {
   return useMutation({
     mutationFn: (data: { content: string; userId: number }) =>
       createComment({ postId, ...data }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["comments", postId] }); // Refresh comments after creation
+    onSuccess: (newComment) => {
+      queryClient.invalidateQueries({ queryKey: ["comments", newComment.id] }); // Refresh comments after creation
     },
     onError: (error) => {
       console.error("Error creating comment:", error);

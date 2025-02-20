@@ -2,9 +2,9 @@
 import { Erroring } from "@/components/custom/isError";
 import { Pending } from "@/components/custom/isPending";
 import Layout from "@/components/custom/layout";
-import { useAdminUserEdit } from "@/hooks/roles/useAdminUserEdit";
-import { useDeleteUser } from "@/hooks/roles/useDeleteUser";
-import { useUpdateUserRole } from "@/hooks/roles/useUpdateRole";
+import { useAdminUserEdit } from "@/hooks/roles/admin/useAdminUserEdit";
+import { useDeleteUser } from "@/hooks/roles/admin/useDeleteUser";
+import { useUpdateUserRole } from "@/hooks/roles/admin/useUpdateRole";
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";

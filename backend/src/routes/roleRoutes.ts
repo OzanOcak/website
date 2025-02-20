@@ -18,6 +18,7 @@ import { updateUserRole } from "../controllers/feature-controllers/admin/update-
 import { updateUserSelfName } from "../controllers/feature-controllers/user/update-user-self-name";
 import { deleteSelfUserProfile } from "../controllers/feature-controllers/user/delete-self-user-profile";
 import { deleteCommentById } from "../controllers/feature-controllers/comments/delete-comment-controller";
+import { editComment } from "../controllers/feature-controllers/comments/edit-comment-controller";
 
 const router = Router();
 
@@ -97,5 +98,6 @@ router.get("/posts/:postId/comments", getCommentsByBlogId);
 router.post("/comments/:commentId/like", likeComment);
 router.post("/comments/:commentId/reply", createComment);
 router.delete("/comments/:commentId", deleteCommentById);
+router.patch("/comments/:commentId", editComment);
 
 export default router;

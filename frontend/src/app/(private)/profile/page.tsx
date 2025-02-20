@@ -1,12 +1,12 @@
 "use client";
-import { useUserName } from "@/hooks/roles/useProfile";
+import { useUserName } from "@/hooks/roles/user/useProfile";
 import Layout from "@/components/custom/layout";
 import { Pending } from "@/components/custom/isPending";
 import { Erroring } from "@/components/custom/isError";
 import { useStore } from "@/stores/useAuthStore";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useSelfDeleteUser } from "@/hooks/roles/useSelfDeleteUser";
-import { useUpdateUserName } from "@/hooks/roles/useUpdateName";
+import { useSelfDeleteUser } from "@/hooks/roles/user/useSelfDeleteUser";
+import { useUpdateUserName } from "@/hooks/roles/user/useUpdateName";
 import { useState, useEffect } from "react";
 import CustomAlertDialog from "@/components/custom/alertBox";
 import { useQueryClient } from "@tanstack/react-query";

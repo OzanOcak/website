@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useStore } from "@/stores/useAuthStore";
 import { SheetClose } from "../../ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { useUserName } from "@/hooks/roles/useProfile";
+import { useUserName } from "@/hooks/roles/user/useProfile";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { Avatar, AvatarImage } from "../../ui/avatar";
 import { SignIn } from "./signinButton";

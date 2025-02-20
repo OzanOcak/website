@@ -1,25 +1,24 @@
 "use client";
-import { useDeleteComment } from "@/hooks/roles/comments/useDeleteComment";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ElipsisVertical } from "../../icons/ElipsisVertical";
 
 interface EditDeleteCommentProps {
-  commentId: number; // Define commentId as a number
+  commentId: number;
+  onDelete: () => void; // Define onDelete as a function
 }
 
 export const EditDeleteComment: React.FC<EditDeleteCommentProps> = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   commentId,
+  onDelete,
 }) => {
-  console.log("commentId: ", commentId);
-
-  const { mutate: deleteMutate } = useDeleteComment(commentId);
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null); // Ref for the dropdown
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const handleDelete = useCallback(() => {
-    deleteMutate(commentId);
-    setIsOpen(false); // Close the dropdown after logout
-  }, [deleteMutate, commentId]);
+    onDelete(); // Call the onDelete function passed from CommentSection
+    setIsOpen(false); // Close the dropdown after deletion
+  }, [onDelete]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -40,7 +39,7 @@ export const EditDeleteComment: React.FC<EditDeleteCommentProps> = ({
 
   return (
     <div
-      className="relative  flex items-center justify-center bg-gray-800/0 dark:bg-gray-900/0"
+      className="relative flex items-center justify-center bg-gray-800/0 dark:bg-gray-900/0"
       id="avatar"
     >
       <div
@@ -66,7 +65,7 @@ export const EditDeleteComment: React.FC<EditDeleteCommentProps> = ({
             <div className="border-t border-gray-600"></div>
             <div
               className="px-4 py-2 text-gray-200 hover:bg-gray-600 cursor-pointer"
-              onClick={handleDelete}
+              onClick={handleDelete} // Call handleDelete on click
             >
               Delete
             </div>
