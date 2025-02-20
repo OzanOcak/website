@@ -1,5 +1,5 @@
 "use client"; // Mark this as a Client Component
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/components/custom/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Create a new instance of QueryClient

@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import Link from "next/link";
 import { useStore } from "@/stores/useAuthStore";
-import { SignIn } from "./custom/signinButton";
-import { SheetClose } from "./ui/sheet";
+import { SheetClose } from "../../ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { useUserName } from "@/hooks/roles/useProfile";
 import { useLogout } from "@/hooks/auth/useLogout";
-import { Avatar, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarImage } from "../../ui/avatar";
+import { SignIn } from "./signinButton";
 
 interface MobileNavProps {
   onClose?: () => void; // Optional callback when the sheet is closed

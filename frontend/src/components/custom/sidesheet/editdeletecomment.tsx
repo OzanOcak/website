@@ -1,7 +1,7 @@
 "use client";
 import { useDeleteComment } from "@/hooks/roles/comments/useDeleteComment";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ElipsisVertical } from "../icons/ElipsisVertical";
+import { ElipsisVertical } from "../../icons/ElipsisVertical";
 
 interface EditDeleteCommentProps {
   commentId: number; // Define commentId as a number

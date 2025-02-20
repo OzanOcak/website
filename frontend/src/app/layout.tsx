@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/custom/navigation/NavBar";
 import SiteConfig from "@/config/site";
 import { QueryClient } from "@tanstack/react-query";
-import { Providers } from "../components/providers";
+import { Providers } from "../components/custom/providers";
 
 const fontSans = FontSans({
   subsets: ["latin"],

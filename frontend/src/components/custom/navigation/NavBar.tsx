@@ -15,10 +15,10 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { MobileNav } from "./MobileNav";
 import { ModeSwitch } from "./ThemeToggle";
-import { ProfileMenu } from "./custom/profileMenu";
-import { SignIn } from "./custom/signinButton";
 import { useStore } from "@/stores/useAuthStore";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
+import { ProfileMenu } from "./profileMenu";
+import { SignIn } from "./signinButton";
 
 const NavBar = () => {
   const [progress, setProgress] = useState(0);

@@ -2,19 +2,25 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
-import { Textarea } from "./ui/textarea";
-import { Button } from "./ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "../../ui/form";
+import { Textarea } from "../../ui/textarea";
+import { Button } from "../../ui/button";
 import Image from "next/image";
 
 import { formatDistanceToNow } from "date-fns"; // Import the date-fns function
-import { ThumbsUpIcon } from "./icons/ThumbsUpIcon";
+import { ThumbsUpIcon } from "../../icons/ThumbsUpIcon";
 import { useStore } from "@/stores/useAuthStore";
 import { useLikeComment } from "@/hooks/roles/comments/usLikeComments";
 import { useCreateComment } from "@/hooks/roles/comments/useCreateComment";
 import { useGetComments } from "@/hooks/roles/comments/useFetchComments";
+import { EditDeleteComment } from "./editdeletecomment";
 //import { ElipsisVertical } from "./icons/ElipsisVertical";
-import { EditDeleteComment } from "./custom/editDeleteComment";
 
 const FormSchema = z.object({
   comment: z
