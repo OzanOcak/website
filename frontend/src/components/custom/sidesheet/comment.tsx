@@ -143,60 +143,66 @@ export function CommentSection({ postId }: { postId: string }) {
 
   return (
     <div className="w-full p-4 border-t border-gray-300">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div className="flex items-start space-x-3">
-            <Image
-              src={pic} // User's profile picture
-              alt="User Avatar"
-              width={40}
-              height={40}
-              className="w-10 h-10 rounded-full"
-            />
-            <div className="flex-1">
-              <span className="font-semibold">{name}</span> {/* User's name */}
-              <FormField
-                control={form.control}
-                name="comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Textarea
-                        placeholder="What are your thoughts?"
-                        className={`resize-none transition-all ${
-                          isExpanded ? "h-32" : "h-10"
-                        }`}
-                        onFocus={() => setIsExpanded(true)}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+      {
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <div className="flex items-start space-x-3">
+              {/* Avatar */}
+              <Image
+                src={pic} // User's profile picture
+                alt="User Avatar"
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded-full"
               />
+              {/* username && form field */}
+              <div className="flex-1">
+                <span className="font-semibold">{name}</span>
+                <FormField
+                  control={form.control}
+                  name="comment"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Textarea
+                          placeholder="What are your thoughts?"
+                          className={`resize-none transition-all ${
+                            isExpanded ? "h-32" : "h-10"
+                          }`}
+                          onFocus={() => setIsExpanded(true)}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
-          </div>
 
-          {isExpanded && (
-            <div className="flex justify-end space-x-2">
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={handleCancel}
-                className="text-gray-600 hover:text-gray-900"
-              >
-                Cancel
-              </Button>
-              <Button type="submit">Submit</Button>
-            </div>
-          )}
-        </form>
-      </Form>
+            {/* Expanded cancel and submit buttons */}
+            {isExpanded && (
+              <div className="flex justify-end space-x-2">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={handleCancel}
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Cancel
+                </Button>
+                <Button type="submit">Submit</Button>
+              </div>
+            )}
+          </form>
+        </Form>
+      }
 
       {/* Comments List */}
       <div className="mt-6 border-t border-gray-200">
         {localComments.map((comment: Comment) => (
           <div key={comment.id} className="p-4">
+            {/* Avatar and username && createdAt && editdelete icon */}
             <div className="flex items-center">
               <Image
                 src={comment.profilePicture || "/default-avatar.png"} // Use the commenter's profile picture
@@ -221,7 +227,9 @@ export function CommentSection({ postId }: { postId: string }) {
                 </div>
               </div>
             </div>
-            <p className="mt-2">{comment.content}</p> {/* Comment content */}
+            {/* Comment content */}
+            <p className="mt-2">{comment.content}</p>
+            {/* Like and Reply buttons */}
             <div className="flex space-x-4 mt-2">
               <Button
                 variant="outline"
