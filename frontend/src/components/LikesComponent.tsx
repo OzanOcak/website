@@ -1,7 +1,7 @@
 "use client";
-import { useDislike } from "@/hooks/roles/useDislike";
-import { useGetLikes } from "@/hooks/roles/useGetLikes";
-import { useLike } from "@/hooks/roles/useLike";
+import { useDislike } from "@/hooks/roles/likes/useDislike";
+import { useGetLikes } from "@/hooks/roles/likes/useGetLikes";
+import { useLike } from "@/hooks/roles/likes/useLike";
 import React from "react";
 import { ThumbsUpIcon } from "./icons/ThumbsUpIcon";
 import { useQueryClient } from "@tanstack/react-query";

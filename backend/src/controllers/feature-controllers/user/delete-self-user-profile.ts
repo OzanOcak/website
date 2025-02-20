@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { deleteSelfProfile } from "../../services/deleteSelfProfile";
+import { deleteSelfProfile } from "../../../services/deleteSelfProfile";
 
 export const deleteSelfUserProfile = async (
   req: Request,

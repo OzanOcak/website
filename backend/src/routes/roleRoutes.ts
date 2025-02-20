@@ -4,18 +4,19 @@ import { authenticate } from "../middleware/authenticate-user";
 import { checkPermissionsToAuthorize } from "../middleware/authorize-user";
 import { user } from "../controllers/role-controllers/user-controller";
 import { admin } from "../controllers/role-controllers/admin-controller";
-import { deleteUserProfile } from "../controllers/feature-controllers/delete-user-profile";
-import { updateUserRole } from "../controllers/feature-controllers/update-user-role";
+import { deleteUserProfile } from "../controllers/feature-controllers/admin/delete-user-profile";
 import { updatePassword } from "../controllers/forgot-password-controllers/otp/update-password";
 import { adminEdit } from "../controllers/role-controllers/admin-edit-controller";
-import { updateUserSelfName } from "../controllers/feature-controllers/update-user-self-name";
-import { deleteSelfUserProfile } from "../controllers/feature-controllers/delete-self-user-profile";
 import { emailRateLimiter } from "../middleware/rate-limitter";
-import {
-  dislikeBlog,
-  getLikeBlog,
-  likeBlog,
-} from "../controllers/feature-controllers/likes-controller";
+import { createComment } from "../controllers/feature-controllers/comments/create-comment-controller";
+import { getCommentsByBlogId } from "../controllers/feature-controllers/comments/fetch-comments-controller";
+import { likeComment } from "../controllers/feature-controllers/comments/like-comment-controller";
+import { getLikeBlog } from "../controllers/feature-controllers/blog-likes/get-likes-controller";
+import { likeBlog } from "../controllers/feature-controllers/blog-likes/like-controller";
+import { dislikeBlog } from "../controllers/feature-controllers/blog-likes/unlike-controller";
+import { updateUserRole } from "../controllers/feature-controllers/admin/update-user-role";
+import { updateUserSelfName } from "../controllers/feature-controllers/user/update-user-self-name";
+import { deleteSelfUserProfile } from "../controllers/feature-controllers/user/delete-self-user-profile";
 
 const router = Router();
 
@@ -84,11 +85,15 @@ router.delete(
 
 router.patch("/users/:userId/password", updatePassword);
 
-// Get likes for blog
+// Like routes
 router.get("/blogpost/:postId/like", getLikeBlog);
-// Like a post
 router.post("/blogpost/:postId/like", likeBlog);
-// Disike a post
 router.post("/blogpost/:postId/dislike", dislikeBlog);
+
+// Comment routes
+router.post("/posts/:postId/comments", createComment);
+router.get("/posts/:postId/comments", getCommentsByBlogId);
+router.post("/comments/:commentId/like", likeComment);
+router.post("/comments/:commentId/reply", createComment);
 
 export default router;
