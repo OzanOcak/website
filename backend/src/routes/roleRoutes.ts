@@ -88,9 +88,9 @@ router.delete(
 router.patch("/users/:userId/password", updatePassword);
 
 // Like routes
-router.get("/blogpost/:postId/like", getLikeBlog);
-router.post("/blogpost/:postId/like", likeBlog);
-router.post("/blogpost/:postId/dislike", dislikeBlog);
+router.get("/blogpost/:postId/bloglikes", getLikeBlog);
+router.post("/blogpost/:postId/likeblog", likeBlog);
+router.post("/blogpost/:postId/unlikeblog", dislikeBlog);
 
 // Comment routes
 router.post("/posts/:postId/comments", createComment);

@@ -38,11 +38,12 @@ export function SheetSide({ slug }: { slug: string }) {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="">
       <Button
         onClick={() => setIsOpen(true)}
         variant="outline"
-        className="flex items-center gap-2 px-6 py-[1.15rem] text-xl rounded-full text-black dark:text-white bg-gray-100 dark:bg-gray-800"
+        className="flex items-center gap-2 px-6 py-[1.23rem] text-xl rounded-full text-gray-700 hover:text-gray-800
+      dark:text-white bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 hover:dark:bg-gray-800 border-none"
       >
         <MessageSquareText />
       </Button>
@@ -52,7 +53,7 @@ export function SheetSide({ slug }: { slug: string }) {
             <SheetTitle>Responses:</SheetTitle>
             <SheetDescription></SheetDescription>
           </SheetHeader>
-          <div className="grid gap-4 py-4">
+          <div className="">
             <CommentSection postId={slug} />
           </div>
         </SheetContent>
