@@ -1,20 +1,27 @@
 import axiosInstance from "@/utils/AxiosInterceptor";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
-const editComment = async (commentId: string) => {
-  const response = await axiosInstance.post(`/comments/${commentId}/like`);
-  return response.data.comment;
+const editComment = async ({
+  commentId,
+  content,
+}: {
+  commentId: number;
+  content: string;
+}) => {
+  const response = await axiosInstance.patch(`/comments/${commentId}`, {
+    content,
+  });
+  return response.data;
 };
 
-export const useEditComment = (postId: string) => {
-  const queryClient = useQueryClient();
+export const useEditComment = () => {
   return useMutation({
-    mutationFn: editComment,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["comments", postId] }); // Refresh comments after liking
-    },
-    onError: (error) => {
-      console.error("Error liking comment:", error);
-    },
+    mutationFn: ({
+      commentId,
+      content,
+    }: {
+      commentId: number;
+      content: string;
+    }) => editComment({ commentId, content }),
   });
 };

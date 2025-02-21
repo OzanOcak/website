@@ -5,12 +5,14 @@ import { ElipsisVertical } from "../../icons/ElipsisVertical";
 interface EditDeleteCommentProps {
   commentId: number;
   onDelete: () => void; // Define onDelete as a function
+  onEdit: () => void; // Add onEdit prop
 }
 
 export const EditDeleteComment: React.FC<EditDeleteCommentProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   commentId,
   onDelete,
+  onEdit,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -19,6 +21,11 @@ export const EditDeleteComment: React.FC<EditDeleteCommentProps> = ({
     onDelete(); // Call the onDelete function passed from CommentSection
     setIsOpen(false); // Close the dropdown after deletion
   }, [onDelete]);
+
+  const handleEdit = useCallback(() => {
+    onEdit(); // Call the onEdit function
+    setIsOpen(false); // Close the dropdown
+  }, [onEdit]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -57,7 +64,7 @@ export const EditDeleteComment: React.FC<EditDeleteCommentProps> = ({
           <div className="">
             <div
               className="px-4 py-2 text-gray-200 hover:bg-gray-600 cursor-pointer"
-              onClick={() => console.log("edit")}
+              onClick={handleEdit}
             >
               Edit
             </div>
