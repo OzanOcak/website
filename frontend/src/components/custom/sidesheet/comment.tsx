@@ -21,6 +21,7 @@ import { useCreateComment } from "@/hooks/roles/comments/useCreateComment";
 import { useGetComments } from "@/hooks/roles/comments/useFetchComments";
 import { EditDeleteComment } from "./editdeletecomment";
 import { useDeleteComment } from "@/hooks/roles/comments/useDeleteComment";
+import { useEditComment } from "@/hooks/roles/comments/useEditComment";
 //import { ElipsisVertical } from "./icons/ElipsisVertical";
 
 const FormSchema = z.object({
@@ -49,10 +50,13 @@ export function CommentSection({ postId }: { postId: string }) {
   const { data: comments = [], isLoading, isError } = useGetComments(postId);
   const { mutate: createComment } = useCreateComment(postId);
   const { mutate: likeComment } = useLikeComment(postId);
+  const { mutate: editComment } = useEditComment();
   const [localComments, setLocalComments] = useState<Comment[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null); // Track which comment is being edited
+  const [editedContent, setEditedContent] = useState(""); // Track edited content
   const pic = useStore.getState().profilePicture;
   const name = useStore.getState().name;
 
@@ -120,6 +124,37 @@ export function CommentSection({ postId }: { postId: string }) {
     });
   };
 
+  // Handle comment editing
+  const handleEditComment = (commentId: number, content: string) => {
+    setEditingCommentId(commentId); // Set the comment being edited
+    setEditedContent(content); // Set the initial content for editing
+  };
+
+  const handleCancelEdit = () => {
+    setEditingCommentId(null); // Cancel editing
+    setEditedContent(""); // Clear edited content
+  };
+
+  const handleSaveEdit = (commentId: number) => {
+    editComment(
+      { commentId, content: editedContent },
+      {
+        onSuccess: () => {
+          // Update the localComments state with the edited content
+          setLocalComments((prevComments) =>
+            prevComments.map((comment) =>
+              comment.id === commentId
+                ? { ...comment, content: editedContent }
+                : comment
+            )
+          );
+          setEditingCommentId(null); // Stop editing
+          setEditedContent(""); // Clear edited content
+        },
+      }
+    );
+  };
+
   const handleCancel = () => {
     form.reset();
     setIsExpanded(false);
@@ -154,7 +189,7 @@ export function CommentSection({ postId }: { postId: string }) {
   if (isError) return <div>Error fetching comments</div>;
 
   return (
-    <div className="w-full p-4 border-t border-gray-300">
+    <div className="w-ful py-4 border-t border-gray-300">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <div className="flex items-start space-x-3">
@@ -229,26 +264,57 @@ export function CommentSection({ postId }: { postId: string }) {
                   <EditDeleteComment
                     commentId={comment.id}
                     onDelete={() => handleDeleteComment(comment.id)} // Pass delete handler
+                    onEdit={() =>
+                      handleEditComment(comment.id, comment.content)
+                    } // Pass edit handler
                   />
                 </div>
               </div>
             </div>
-            <p className="mt-2">{comment.content}</p>
-            <div className="flex space-x-4 mt-2">
-              <Button
-                variant="outline"
-                onClick={() => handleLike(comment.id)}
-                className="border border-transparent"
-              >
-                <ThumbsUpIcon filled={true} /> ({comment.likeCount})
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => handleReply(comment.username)}
-              >
-                Reply
-              </Button>
-            </div>
+            {/* Comment content or text input for editing */}
+            {editingCommentId === comment.id ? (
+              <div className="mt-2">
+                <Textarea
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                  className="w-full"
+                />
+                <div className="flex space-x-4 mt-2">
+                  <Button
+                    variant="outline"
+                    onClick={handleCancelEdit}
+                    className="border border-transparent"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleSaveEdit(comment.id)}
+                  >
+                    Save
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <p className="mt-2">{comment.content}</p>
+                <div className="flex space-x-4 mt-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => handleLike(comment.id)}
+                    className="border border-transparent"
+                  >
+                    <ThumbsUpIcon filled={true} /> ({comment.likeCount})
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleReply(comment.username)}
+                  >
+                    Reply
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         ))}
       </div>
