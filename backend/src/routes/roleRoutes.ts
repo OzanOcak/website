@@ -11,14 +11,16 @@ import { emailRateLimiter } from "../middleware/rate-limitter";
 import { createComment } from "../controllers/feature-controllers/comments/create-comment-controller";
 import { getCommentsByBlogId } from "../controllers/feature-controllers/comments/fetch-comments-controller";
 import { likeComment } from "../controllers/feature-controllers/comments/like-comment-controller";
-import { getLikeBlog } from "../controllers/feature-controllers/blog-likes/get-likes-controller";
-import { likeBlog } from "../controllers/feature-controllers/blog-likes/like-controller";
-import { dislikeBlog } from "../controllers/feature-controllers/blog-likes/unlike-controller";
+
 import { updateUserRole } from "../controllers/feature-controllers/admin/update-user-role";
 import { updateUserSelfName } from "../controllers/feature-controllers/user/update-user-self-name";
 import { deleteSelfUserProfile } from "../controllers/feature-controllers/user/delete-self-user-profile";
 import { deleteCommentById } from "../controllers/feature-controllers/comments/delete-comment-controller";
 import { editComment } from "../controllers/feature-controllers/comments/edit-comment-controller";
+import { unlikeComment } from "../controllers/feature-controllers/comments/unlike-comment-controller";
+import { getLikeBlog } from "../controllers/feature-controllers/blog-likes/get-likes-controller";
+import { likeBlog } from "../controllers/feature-controllers/blog-likes/like-controller";
+import { dislikeBlog } from "../controllers/feature-controllers/blog-likes/unlike-controller";
 
 const router = Router();
 
@@ -95,7 +97,8 @@ router.post("/blogpost/:postId/unlikeblog", dislikeBlog);
 // Comment routes
 router.post("/posts/:postId/comments", createComment);
 router.get("/posts/:postId/comments", getCommentsByBlogId);
-router.post("/comments/:commentId/like", likeComment);
+router.post("/comments/:commentId/likecomment", likeComment);
+router.post("/comments/:commentId/unlikecomment", unlikeComment);
 router.post("/comments/:commentId/reply", createComment);
 router.delete("/comments/:commentId", deleteCommentById);
 router.patch("/comments/:commentId", editComment);

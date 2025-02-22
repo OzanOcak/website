@@ -19,7 +19,7 @@ export const unlikeComment = async (
 
     res.status(200).json({ comment: updatedComment });
   } catch (error) {
-    console.error("Error liking comment:", error);
-    res.status(500).json({ message: "Error liking comment" });
+    console.error("Error unliking comment:", error);
+    res.status(500).json({ message: "Error unliking comment" });
   }
 };

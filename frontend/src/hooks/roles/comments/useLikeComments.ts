@@ -2,7 +2,9 @@ import axiosInstance from "@/utils/AxiosInterceptor";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const likeComment = async (commentId: string) => {
-  const response = await axiosInstance.post(`/comments/${commentId}/like`);
+  const response = await axiosInstance.post(
+    `/comments/${commentId}/likecomment`
+  );
   return response.data.comment;
 };
 

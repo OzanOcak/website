@@ -1,74 +1,9 @@
 {
-  "id": "32bf0335-e130-4804-8347-331f592191df",
-  "prevId": "eed2112c-f669-4195-8d66-1d5880fb285c",
+  "id": "c4216810-dbf7-40c0-b77f-da94c1b217ee",
+  "prevId": "32bf0335-e130-4804-8347-331f592191df",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.commentlikes": {
-      "name": "commentlikes",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "comment_id": {
-          "name": "comment_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "commentlikes_user_id_users_id_fk": {
-          "name": "commentlikes_user_id_users_id_fk",
-          "tableFrom": "commentlikes",
-          "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "commentlikes_comment_id_comments_id_fk": {
-          "name": "commentlikes_comment_id_comments_id_fk",
-          "tableFrom": "commentlikes",
-          "tableTo": "comments",
-          "columnsFrom": [
-            "comment_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "commentlikes_user_id_comment_id_unique": {
-          "name": "commentlikes_user_id_comment_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "user_id",
-            "comment_id"
-          ]
-        }
-      },
-      "checkConstraints": {}
-    },
     "public.comments": {
       "name": "comments",
       "schema": "",

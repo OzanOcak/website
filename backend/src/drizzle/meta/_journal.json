@@ -50,6 +50,13 @@
       "when": 1740004681790,
       "tag": "0006_conscious_shinobi_shaw",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1740179482015,
+      "tag": "0007_strange_bloodstrike",
+      "breakpoints": true
     }
   ]
 }
