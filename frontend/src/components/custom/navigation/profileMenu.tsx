@@ -93,6 +93,12 @@ export const ProfileMenu = () => {
                 {`${profile.role} page`}{" "}
               </div>
             </Link>
+            <Link
+              href="/articles" // Make the entire area clickable
+              className="block px-4 py-2 text-gray-200 hover:bg-gray-600 transition duration-200"
+            >
+              <div className="w-full text-left capitalize">Articles</div>
+            </Link>
 
             <div className="border-t border-gray-600"></div>
             <div
