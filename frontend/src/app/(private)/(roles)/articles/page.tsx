@@ -12,6 +12,7 @@ export type BlogType = {
   author: string;
   date: string;
   tags: string;
+  published: boolean;
 };
 
 export default function ArticlesPage() {
@@ -19,7 +20,7 @@ export default function ArticlesPage() {
 
   try {
     const dirContent = fs.readdirSync("src/content", "utf-8");
-    console.log(dirContent);
+    //console.log(dirContent);
 
     blogs = dirContent.map((file) => {
       const fileContent = readFileSync(`src/content/${file}`, "utf-8");
@@ -32,6 +33,7 @@ export default function ArticlesPage() {
         author: data.author || "",
         date: data.date || "",
         tags: data.tags || "",
+        published: data.published || false,
       };
       return value;
     });
