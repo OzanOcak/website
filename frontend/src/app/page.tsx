@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+//export const revalidate = 60;
+
 export default function Home() {
   return (
     <main>
@@ -218,4 +220,4 @@ export default function Home() {
   );
 }
 
-export const dynamic = "force-static";
+//export const dynamic = "force-static";

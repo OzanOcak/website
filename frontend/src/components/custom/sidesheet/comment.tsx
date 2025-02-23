@@ -25,6 +25,7 @@ import { useEditComment } from "@/hooks/roles/comments/useEditComment";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FaUser } from "react-icons/fa";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useUnlikeComment } from "@/hooks/roles/comments/useUnlikeComment";
 //import { ElipsisVertical } from "./icons/ElipsisVertical";
 
 const FormSchema = z.object({
@@ -53,6 +54,7 @@ export function CommentSection({ postId }: { postId: string }) {
   const { data: comments = [], isLoading, isError } = useGetComments(postId);
   const { mutate: createComment } = useCreateComment(postId);
   const { mutate: likeComment } = useLikeComment(postId);
+  const { mutate: unlikeComment } = useUnlikeComment(postId);
   const { mutate: editComment } = useEditComment();
   const [localComments, setLocalComments] = useState<Comment[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -62,6 +64,8 @@ export function CommentSection({ postId }: { postId: string }) {
   const [editedContent, setEditedContent] = useState(""); // Track edited content
   const pic = useStore.getState().profilePicture;
   const name = useStore.getState().name;
+
+  const [likedComments, setLikedComments] = useState<Set<number>>(new Set());
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -127,6 +131,28 @@ export function CommentSection({ postId }: { postId: string }) {
     });
   };
 
+  const handleLikeToggle = (commentId: number) => {
+    if (likedComments.has(commentId)) {
+      // Unlike the comment
+      unlikeComment(commentId.toString(), {
+        onSuccess: () => {
+          setLikedComments((prev) => {
+            const newSet = new Set(prev);
+            newSet.delete(commentId);
+            return newSet;
+          });
+        },
+      });
+    } else {
+      // Like the comment
+      likeComment(commentId.toString(), {
+        onSuccess: () => {
+          setLikedComments((prev) => new Set(prev).add(commentId));
+        },
+      });
+    }
+  };
+
   // Handle comment editing
   const handleEditComment = (commentId: number, content: string) => {
     setEditingCommentId(commentId); // Set the comment being edited
@@ -174,7 +200,9 @@ export function CommentSection({ postId }: { postId: string }) {
     }
   };
 
-  const handleLike = (commentId: number) => {
+  {
+    /*
+    const handleLike = (commentId: number) => {
     likeComment(commentId.toString(), {
       onSuccess: () => {
         setLocalComments((prevComments) =>
@@ -187,7 +215,8 @@ export function CommentSection({ postId }: { postId: string }) {
       },
     });
   };
-
+*/
+  }
   if (isLoading) return <div>Loading comments...</div>;
   if (isError) return <div>Error fetching comments</div>;
 
@@ -311,10 +340,11 @@ export function CommentSection({ postId }: { postId: string }) {
                   <div className="flex space-x-4 mt-2">
                     <Button
                       variant="outline"
-                      onClick={() => handleLike(comment.id)}
+                      onClick={() => handleLikeToggle(comment.id)}
                       className="border border-transparent"
                     >
-                      <ThumbsUpIcon filled={true} /> ({comment.likeCount})
+                      <ThumbsUpIcon filled={likedComments.has(comment.id)} /> (
+                      {comment.likeCount})
                     </Button>
                     <Button
                       variant="outline"
