@@ -1,11 +1,20 @@
 ---
 title: ChatGPT vs. Gemini - A Comparative Analysis
 slug: chatgpt-vs-gemini
-description: Explore the differences between ChatGPT and Gemini, two leading conversational AI models, and understand their unique features and capabilities.
+description: >-
+  Explore the differences between ChatGPT and Gemini, two leading conversational
+  AI models, and understand their unique features and capabilities.
 imageUrl: /images/coding.jpeg
 author: ozan
 date: 12.09.2024
-tags: [AI, chatGBT, gemini, assembly, docker, analysis]
+tags:
+  - AI
+  - chatGBT
+  - gemini
+  - assembly
+  - docker
+  - analysis
+published: true
 ---
 
 # ChatGPT vs. Gemini: A Comparative Analysis

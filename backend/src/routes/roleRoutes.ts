@@ -21,6 +21,8 @@ import { unlikeComment } from "../controllers/feature-controllers/comments/unlik
 import { getLikeBlog } from "../controllers/feature-controllers/blog-likes/get-likes-controller";
 import { likeBlog } from "../controllers/feature-controllers/blog-likes/like-controller";
 import { dislikeBlog } from "../controllers/feature-controllers/blog-likes/unlike-controller";
+import { unpublishPost } from "../controllers/feature-controllers/admin/unpublish-post";
+import { publishPost } from "../controllers/feature-controllers/admin/publish-post";
 
 const router = Router();
 
@@ -102,5 +104,9 @@ router.post("/comments/:commentId/unlikecomment", unlikeComment);
 router.post("/comments/:commentId/reply", createComment);
 router.delete("/comments/:commentId", deleteCommentById);
 router.patch("/comments/:commentId", editComment);
+
+// blog publish/unpublish
+router.post("/admin/blogs/:slug/publish", publishPost);
+router.post("/admin/blogs/:slug/unpublish", unpublishPost);
 
 export default router;

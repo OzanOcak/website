@@ -22,6 +22,8 @@ import { useGetComments } from "@/hooks/roles/comments/useFetchComments";
 import { EditDeleteComment } from "./editdeletecomment";
 import { useDeleteComment } from "@/hooks/roles/comments/useDeleteComment";
 import { useEditComment } from "@/hooks/roles/comments/useEditComment";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { FaUser } from "react-icons/fa";
 //import { ElipsisVertical } from "./icons/ElipsisVertical";
 
 const FormSchema = z.object({
@@ -193,13 +195,19 @@ export function CommentSection({ postId }: { postId: string }) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <div className="flex items-start space-x-3">
-            <Image
-              src={pic}
-              alt="User Avatar"
-              width={40}
-              height={40}
-              className="w-10 h-10 rounded-full"
-            />
+            <Avatar className="w-10 h-10">
+              {isLoading || isError ? (
+                <div className="w-10 h-10 bg-gray-300 animate-pulse rounded-full"></div>
+              ) : null}
+              {isLoading || isError ? null : (
+                <>
+                  <AvatarImage src={pic} />
+                  <AvatarFallback>
+                    <FaUser className="w-6 h-6 text-gray-500" />
+                  </AvatarFallback>
+                </>
+              )}
+            </Avatar>
             <div className="flex-1">
               <span className="font-semibold">{name}</span>
               <FormField

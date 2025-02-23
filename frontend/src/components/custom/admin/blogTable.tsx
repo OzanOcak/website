@@ -1,12 +1,45 @@
+"use client";
+import { useState } from "react";
 import { BlogType } from "@/app/(private)/(roles)/articles/page";
-import Link from "next/link";
-import { FaEllipsisH } from "react-icons/fa";
+import axiosInstance from "@/utils/AxiosInterceptor";
 
 interface BlogPostTableProps {
   blogs: BlogType[];
 }
 
 const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
+  const [loadingStates, setLoadingStates] = useState<{
+    [slug: string]: boolean;
+  }>({});
+
+  const handlePublish = async (slug: string) => {
+    setLoadingStates((prev) => ({ ...prev, [slug]: true })); // Set loading state
+    try {
+      await axiosInstance.post(`/admin/blogs/${slug}/publish`);
+      // Optionally, refetch the blogs or update the UI
+      alert(`Post ${slug} published successfully`);
+    } catch (error) {
+      console.error("Error publishing post:", error);
+      alert("Failed to publish post");
+    } finally {
+      setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
+    }
+  };
+
+  const handleUnpublish = async (slug: string) => {
+    setLoadingStates((prev) => ({ ...prev, [slug]: true })); // Set loading state
+    try {
+      await axiosInstance.post(`/admin/blogs/${slug}/unpublish`);
+      // Optionally, refetch the blogs or update the UI
+      alert(`Post ${slug} unpublished successfully`);
+    } catch (error) {
+      console.error("Error unpublishing post:", error);
+      alert("Failed to unpublish post");
+    } finally {
+      setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
+    }
+  };
+
   return (
     <div className="rounded-md border border-gray-200 overflow-hidden">
       <div className="overflow-x-auto">
@@ -40,14 +73,26 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
                   <td className="px-4 py-4 whitespace-nowrap text-sm">
                     {blog.date}
                   </td>
-
                   <td className="flex justify-end mr-4 px-4 py-4 whitespace-nowrap text-sm text-right">
-                    <Link
-                      href={`/admin/blogs/${blog.slug}`}
-                      className="hover:text-black"
-                    >
-                      <FaEllipsisH className="text-md" />
-                    </Link>
+                    {blog.published ? (
+                      <button
+                        onClick={() => handleUnpublish(blog.slug)}
+                        disabled={loadingStates[blog.slug]}
+                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                      >
+                        {loadingStates[blog.slug]
+                          ? "Unpublishing..."
+                          : "Unpublish"}
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handlePublish(blog.slug)}
+                        disabled={loadingStates[blog.slug]}
+                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                      >
+                        {loadingStates[blog.slug] ? "Publishing..." : "Publish"}
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))

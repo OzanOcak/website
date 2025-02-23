@@ -5,7 +5,15 @@ description: Comprehensive guide on learning C programming from basics to advanc
 imageUrl: /images/coding.jpeg
 author: ozan
 date: 12.09.2024
-tags: [c, assembly, docker, assembly, docker, assembly, docker]
+tags:
+  - c
+  - assembly
+  - docker
+  - assembly
+  - docker
+  - assembly
+  - docker
+published: true
 ---
 
 Welcome to this comprehensive C programming tutorial! Whether you're a complete beginner or looking to deepen your understanding of C, this guide will take you through the fundamentals and introduce advanced concepts as you progress.

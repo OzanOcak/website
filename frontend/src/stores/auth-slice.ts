@@ -29,6 +29,15 @@ export const createAuthSlice = (
       state.role = "";
       state.email = "";
       state.profilePicture = "";
+      state.userDeleted = false;
+
+      // Clear likedBlogs directly
+      {
+        /* Object.keys(state.likedBlogs).forEach((blogId) => {
+        state.likedBlogs[blogId] = false;
+      });*/
+      }
+
       localStorage.removeItem("loginTimestamp"); // for session
       sessionStorage.removeItem("codeVerifier"); // for pkce
       sessionStorage.removeItem("oauth_provider"); // google, facebook etc..

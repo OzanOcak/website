@@ -1,12 +1,21 @@
 ---
 title: Cybersecurity Roadmap - A Guide to Protecting Your Digital Assets
 slug: cybersecurity-roadmap
-description: Explore a step-by-step roadmap for building a robust cybersecurity strategy to safeguard your digital assets and protect against cyber threats.
+description: >-
+  Explore a step-by-step roadmap for building a robust cybersecurity strategy to
+  safeguard your digital assets and protect against cyber threats.
 imageUrl: /images/coding.jpeg
 author: ozan
 date: 12.09.2024
-tags: [c, assembly, docker, assembly, docker, assembly, docker]
-published: false
+tags:
+  - c
+  - assembly
+  - docker
+  - assembly
+  - docker
+  - assembly
+  - docker
+published: true
 ---
 
 # Cybersecurity Roadmap: A Guide to Protecting Your Digital Assets
