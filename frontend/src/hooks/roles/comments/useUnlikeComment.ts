@@ -8,7 +8,7 @@ const unlikeComment = async (commentId: string) => {
   return response.data.comment;
 };
 
-export const useLikeComment = (postId: string) => {
+export const useUnlikeComment = (postId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: unlikeComment,

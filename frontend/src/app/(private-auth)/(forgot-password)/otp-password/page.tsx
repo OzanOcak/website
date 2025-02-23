@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState, useRef } from "react";
 import { useOtpVerify } from "@/hooks/forgotten-password/useOtpVerify";
 import { useCountdown } from "@/hooks/forgotten-password/useCountDown";
