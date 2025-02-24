@@ -13,6 +13,7 @@ import { updateUserSelfName } from "../controllers/feature-controllers/user/upda
 import { deleteSelfUserProfile } from "../controllers/feature-controllers/user/delete-self-user-profile";
 import { unpublishPost } from "../controllers/feature-controllers/admin/unpublish-post";
 import { publishPost } from "../controllers/feature-controllers/admin/publish-post";
+import { getTotalVisit } from "../controllers/role-controllers/total-vist-controller";
 
 const router = Router();
 

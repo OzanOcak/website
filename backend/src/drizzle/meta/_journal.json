@@ -57,6 +57,13 @@
       "when": 1740179482015,
       "tag": "0007_strange_bloodstrike",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1740428255461,
+      "tag": "0008_classy_klaw",
+      "breakpoints": true
     }
   ]
 }
