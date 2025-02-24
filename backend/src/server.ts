@@ -3,6 +3,9 @@ import { connectDatabase } from "./db/db-conn";
 import authRoutes from "./routes/authRoutes";
 import roleRoutes from "./routes/roleRoutes";
 import oauthRoutes from "./routes/oauthRoutes";
+import commentRoutes from "./routes/commentRoutes";
+import likeblogRoutes from "./routes/likeblogRoutes";
+
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -32,6 +35,8 @@ const startServer = async () => {
     app.use("/api", authRoutes);
     app.use("/api", roleRoutes);
     app.use("/api", oauthRoutes);
+    app.use("/api", commentRoutes);
+    app.use("/api", likeblogRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
