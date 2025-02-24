@@ -1,5 +1,6 @@
 import { relations } from "drizzle-orm";
 import {
+  bigint,
   integer,
   pgTable,
   serial,
@@ -14,6 +15,11 @@ export const users = pgTable("users", {
   email: varchar("email", { length: 255 }).unique().notNull(),
   password: varchar("password", { length: 255 }), // Optional for OAuth users
   role: varchar("role", { length: 10 }).default("user").notNull(),
+});
+
+export const website_visits = pgTable("website_visits", {
+  id: serial("id").primaryKey(),
+  total_visits: bigint("total_visits", { mode: "number" }).default(0).notNull(),
 });
 
 export const likes = pgTable("likes", {
