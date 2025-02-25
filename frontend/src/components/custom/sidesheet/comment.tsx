@@ -27,6 +27,7 @@ import { FaUser } from "react-icons/fa";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useUnlikeComment } from "@/hooks/roles/comments/useUnlikeComment";
 //import { ElipsisVertical } from "./icons/ElipsisVertical";
+import { toast, Toaster } from "sonner";
 
 const FormSchema = z.object({
   comment: z
@@ -93,6 +94,17 @@ export function CommentSection({ postId }: { postId: string }) {
     const userId = useStore.getState().id;
     const username = useStore.getState().name;
     const profilePicture = useStore.getState().profilePicture;
+
+    if (!loggedInUserId) {
+      toast(
+        <div className="h-16 w-80 bg-gray-200 text-black dark:bg-gray-800 dark:text-gray-200 flex items-center justify-center">
+          <p className="text-[1rem] font-semibold">
+            You need to sign in to reply.
+          </p>
+        </div>
+      );
+      return;
+    }
 
     createComment(
       { content: data.comment, userId },
@@ -223,148 +235,151 @@ export function CommentSection({ postId }: { postId: string }) {
   if (isError) return <div>Error fetching comments</div>;
 
   return (
-    <ScrollArea style={{ height: `calc(100vh - 100px)` }}>
-      <div className="w-ful py-4 border-t border-gray-300 pr-3">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="flex items-start space-x-3">
-              <Avatar className="w-10 h-10">
-                {isLoading || isError ? (
-                  <div className="w-10 h-10 bg-gray-300 animate-pulse rounded-full"></div>
-                ) : null}
-                {isLoading || isError ? null : (
+    <>
+      <ScrollArea style={{ height: `calc(100vh - 100px)` }}>
+        <div className="w-ful py-4 border-t border-gray-300 pr-3">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <Avatar className="w-10 h-10">
+                  {isLoading || isError ? (
+                    <div className="w-10 h-10 bg-gray-300 animate-pulse rounded-full"></div>
+                  ) : null}
+                  {isLoading || isError ? null : (
+                    <>
+                      <AvatarImage src={pic} />
+                      <AvatarFallback>
+                        <FaUser className="w-6 h-6 text-gray-500" />
+                      </AvatarFallback>
+                    </>
+                  )}
+                </Avatar>
+                <div className="flex-1">
+                  <span className="font-semibold">{name}</span>
+                  <FormField
+                    control={form.control}
+                    name="comment"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Textarea
+                            placeholder="What are your thoughts?"
+                            className={`resize-none transition-all ${
+                              isExpanded ? "h-32" : "h-10"
+                            }`}
+                            onFocus={() => setIsExpanded(true)}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
+              {isExpanded && (
+                <div className="flex justify-end space-x-2">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={handleCancel}
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Cancel
+                  </Button>
+                  <Button type="submit">Submit</Button>
+                </div>
+              )}
+            </form>
+          </Form>
+
+          <div className="mt-6 border-t border-gray-200">
+            {localComments.map((comment: Comment) => (
+              <div key={comment.id} className="p-4">
+                <div className="flex items-center">
+                  <Image
+                    src={comment.profilePicture || "/default-avatar.png"}
+                    alt="User Avatar"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 rounded-full mr-3"
+                  />
+                  <div className="flex w-full justify-between ">
+                    <div>
+                      <span className="font-semibold">{comment.username}</span>{" "}
+                      <span className="text-xs text-gray-500 ">
+                        {formatDistanceToNow(new Date(comment.createdAt), {
+                          addSuffix: true,
+                        })}{" "}
+                      </span>
+                    </div>
+                    {/* Conditionally render EditDeleteComment */}
+                    {(loggedInUserId && loggedInUserId === comment.userId) ||
+                    loggedInUserRole === "admin" ? (
+                      <div className="right-0">
+                        <EditDeleteComment
+                          commentId={comment.id}
+                          onDelete={() => handleDeleteComment(comment.id)} // Pass delete handler
+                          onEdit={() =>
+                            handleEditComment(comment.id, comment.content)
+                          } // Pass edit handler
+                        />
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+                {/* Comment content or text input for editing */}
+                {editingCommentId === comment.id ? (
+                  <div className="mt-2">
+                    <Textarea
+                      value={editedContent}
+                      onChange={(e) => setEditedContent(e.target.value)}
+                      className="w-full"
+                    />
+                    <div className="flex space-x-4 mt-2">
+                      <Button
+                        variant="outline"
+                        onClick={handleCancelEdit}
+                        className="border border-transparent"
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={() => handleSaveEdit(comment.id)}
+                      >
+                        Save
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
                   <>
-                    <AvatarImage src={pic} />
-                    <AvatarFallback>
-                      <FaUser className="w-6 h-6 text-gray-500" />
-                    </AvatarFallback>
+                    <p className="mt-2">{comment.content}</p>
+                    <div className="flex space-x-4 mt-2">
+                      <Button
+                        variant="outline"
+                        onClick={() => handleLikeToggle(comment.id)}
+                        className="border border-transparent"
+                      >
+                        <ThumbsUpIcon filled={likedComments.has(comment.id)} />{" "}
+                        ({comment.likeCount})
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={() => handleReply(comment.username)}
+                      >
+                        Reply
+                      </Button>
+                    </div>
                   </>
                 )}
-              </Avatar>
-              <div className="flex-1">
-                <span className="font-semibold">{name}</span>
-                <FormField
-                  control={form.control}
-                  name="comment"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Textarea
-                          placeholder="What are your thoughts?"
-                          className={`resize-none transition-all ${
-                            isExpanded ? "h-32" : "h-10"
-                          }`}
-                          onFocus={() => setIsExpanded(true)}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
               </div>
-            </div>
-
-            {isExpanded && (
-              <div className="flex justify-end space-x-2">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  onClick={handleCancel}
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Cancel
-                </Button>
-                <Button type="submit">Submit</Button>
-              </div>
-            )}
-          </form>
-        </Form>
-
-        <div className="mt-6 border-t border-gray-200">
-          {localComments.map((comment: Comment) => (
-            <div key={comment.id} className="p-4">
-              <div className="flex items-center">
-                <Image
-                  src={comment.profilePicture || "/default-avatar.png"}
-                  alt="User Avatar"
-                  width={32}
-                  height={32}
-                  className="w-8 h-8 rounded-full mr-3"
-                />
-                <div className="flex w-full justify-between ">
-                  <div>
-                    <span className="font-semibold">{comment.username}</span>{" "}
-                    <span className="text-xs text-gray-500 ">
-                      {formatDistanceToNow(new Date(comment.createdAt), {
-                        addSuffix: true,
-                      })}{" "}
-                    </span>
-                  </div>
-                  {/* Conditionally render EditDeleteComment */}
-                  {(loggedInUserId && loggedInUserId === comment.userId) ||
-                  loggedInUserRole === "admin" ? (
-                    <div className="right-0">
-                      <EditDeleteComment
-                        commentId={comment.id}
-                        onDelete={() => handleDeleteComment(comment.id)} // Pass delete handler
-                        onEdit={() =>
-                          handleEditComment(comment.id, comment.content)
-                        } // Pass edit handler
-                      />
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-              {/* Comment content or text input for editing */}
-              {editingCommentId === comment.id ? (
-                <div className="mt-2">
-                  <Textarea
-                    value={editedContent}
-                    onChange={(e) => setEditedContent(e.target.value)}
-                    className="w-full"
-                  />
-                  <div className="flex space-x-4 mt-2">
-                    <Button
-                      variant="outline"
-                      onClick={handleCancelEdit}
-                      className="border border-transparent"
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => handleSaveEdit(comment.id)}
-                    >
-                      Save
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <p className="mt-2">{comment.content}</p>
-                  <div className="flex space-x-4 mt-2">
-                    <Button
-                      variant="outline"
-                      onClick={() => handleLikeToggle(comment.id)}
-                      className="border border-transparent"
-                    >
-                      <ThumbsUpIcon filled={likedComments.has(comment.id)} /> (
-                      {comment.likeCount})
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => handleReply(comment.username)}
-                    >
-                      Reply
-                    </Button>
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </ScrollArea>
+      </ScrollArea>
+      <Toaster />
+    </>
   );
 }
