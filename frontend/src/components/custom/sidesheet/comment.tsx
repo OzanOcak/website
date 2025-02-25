@@ -146,6 +146,16 @@ export function CommentSection({ postId }: { postId: string }) {
   };
 
   const handleLikeToggle = (commentId: number) => {
+    if (!loggedInUserId) {
+      toast(
+        <div className="h-16 w-80 bg-gray-200 text-black dark:bg-gray-800 dark:text-gray-200 flex items-center justify-center">
+          <p className="text-[1rem] font-semibold">
+            You need to sign in to like the comments.
+          </p>
+        </div>
+      );
+      return;
+    }
     if (likedComments.has(commentId)) {
       // Unlike the comment
       unlikeComment(commentId.toString(), {
