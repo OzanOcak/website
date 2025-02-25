@@ -29,8 +29,6 @@ export const roles: Record<UserRole, { permissions: string[] }> = {
       "like_comment",
       "delete_comment",
       "edit_comment",
-      "publish_post",
-      "unpublish_post",
     ],
   },
 };
