@@ -42,7 +42,7 @@ export const forgotPassword = async (
     verificationOTPPassword(username, email, otp);
 
     const accessToken = jwt.sign(
-      { id: id.toString() },
+      { id: id.toString(), role: "user" },
       process.env.ACCESS_JWT_SECRET!,
       {
         expiresIn: "5m",

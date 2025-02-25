@@ -40,7 +40,7 @@ export const authenticate = (
       req.accessToken = accessToken;
       // console.log("You are:", req.role);
       // console.log("Payload:", payload);
-
+      console.log("Authenticated user:", req.userId, "role:", req.role); // Log user info for debugging
       next();
     }
   );
