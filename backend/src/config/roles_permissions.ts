@@ -27,6 +27,10 @@ export const roles: Record<UserRole, { permissions: string[] }> = {
       "delete_self_user",
       "create_comment",
       "like_comment",
+      "delete_comment",
+      "edit_comment",
+      "publish_post",
+      "unpublish_post",
     ],
   },
 };
