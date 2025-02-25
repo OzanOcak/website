@@ -29,7 +29,7 @@ router.post("/verify-email", ipRateLimiter, authenticate, verifyEmail);
 //router.get("/verify-reset-code", verifyPasswordResetCode);
 
 router.post("/forgot-password", ipRateLimiter, forgotPassword);
-router.post("/update-password", ipRateLimiter, authenticate, updatePassword);
+router.post("/update-password", authenticate, ipRateLimiter, updatePassword);
 router.post("/verify-otp", authenticate, verifyOtpPassword);
 
 export default router;

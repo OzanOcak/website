@@ -22,7 +22,7 @@ export const SignIn: React.FC<SignInProps> = ({ onClose }) => {
       id="signin"
       variant="outline"
       onClick={handleLogin}
-      className="text-gray-700 font-bold dark:text-gray-200 hover:bg-gray-200"
+      className="text-gray-700 font-bold dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
     >
       Sign in
     </Button>

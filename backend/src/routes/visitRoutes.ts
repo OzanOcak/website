@@ -5,7 +5,7 @@ import { authenticate } from "../middleware/authenticate-user";
 
 const router = Router();
 
-router.get("/get-visit-count", getVisitorCount); // Public route
+router.get("/admin/get-visit-count", getVisitorCount); // Public route
 router.post("/increase-visit-count", increaseVisitorCount); // Public route with rate limiter
 
 export default router;

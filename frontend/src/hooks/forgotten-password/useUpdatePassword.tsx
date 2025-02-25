@@ -11,7 +11,7 @@ const updateUserPassword = async (
 ): Promise<void> => {
   // Retrieve the access token from local storage
   const accessToken = localStorage.getItem("xg8a");
-  //console.log("access-token", accessToken);
+  console.log("access-token", accessToken);
 
   try {
     console.log("Sending request to verify OTP!!!");
