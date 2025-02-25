@@ -66,6 +66,8 @@ export function CommentSection({ postId }: { postId: string }) {
   const name = useStore.getState().name;
 
   const [likedComments, setLikedComments] = useState<Set<number>>(new Set());
+  const loggedInUserId = useStore.getState().id;
+  const loggedInUserRole = useStore.getState().role;
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -299,15 +301,19 @@ export function CommentSection({ postId }: { postId: string }) {
                       })}{" "}
                     </span>
                   </div>
-                  <div className="right-0">
-                    <EditDeleteComment
-                      commentId={comment.id}
-                      onDelete={() => handleDeleteComment(comment.id)} // Pass delete handler
-                      onEdit={() =>
-                        handleEditComment(comment.id, comment.content)
-                      } // Pass edit handler
-                    />
-                  </div>
+                  {/* Conditionally render EditDeleteComment */}
+                  {(loggedInUserId && loggedInUserId === comment.userId) ||
+                  loggedInUserRole === "admin" ? (
+                    <div className="right-0">
+                      <EditDeleteComment
+                        commentId={comment.id}
+                        onDelete={() => handleDeleteComment(comment.id)} // Pass delete handler
+                        onEdit={() =>
+                          handleEditComment(comment.id, comment.content)
+                        } // Pass edit handler
+                      />
+                    </div>
+                  ) : null}
                 </div>
               </div>
               {/* Comment content or text input for editing */}
