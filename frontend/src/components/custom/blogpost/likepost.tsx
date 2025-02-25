@@ -7,7 +7,6 @@ import { ThumbsUpIcon } from "@/components/icons/ThumbsUpIcon";
 import { useGetLikes } from "@/hooks/roles/bloglikes/useGetLikes";
 import { useLike } from "@/hooks/roles/bloglikes/useLike";
 import { useDislike } from "@/hooks/roles/bloglikes/useDislike";
-import { toast } from "sonner";
 
 interface LikeDislikeButtonsProps {
   postId: string;
@@ -25,7 +24,6 @@ const LikeDislikeButtons: React.FC<LikeDislikeButtonsProps> = ({ postId }) => {
   const isBlogLiked = useStore((state) => state.isBlogLiked); // Access the isBlogLiked function
 
   const handleLike = () => {
-    toast("like!!!!");
     if (isBlogLiked(postId)) {
       // If already liked, unlike the post
       unlikeBlog(postId);
