@@ -7,7 +7,7 @@ import UserTable from "@/components/custom/admin/userTable";
 import { useEffect, useState } from "react";
 import { useStore } from "@/stores/useAuthStore";
 import SearchBox from "@/components/custom/admin/searchBox";
-import useTotalVisit from "@/hooks/roles/admin/useGetTotalVisit";
+import { useGetVisitCounts } from "@/hooks/roles/visitcount/useGetVisitCounts";
 
 export default function AdminPage() {
   const { userDeleted, setUserDeleted } = useStore();
@@ -23,7 +23,7 @@ export default function AdminPage() {
     searchCriteria
   );
 
-  const { data: numberofusers } = useTotalVisit();
+  const { data: count } = useGetVisitCounts();
 
   useEffect(() => {
     if (userDeleted) {
@@ -100,8 +100,8 @@ export default function AdminPage() {
         {/* User Table */}
         {/*data ? <UserTable users={data.users} /> : <Fallback />*/}
         <UserTable users={data?.users ?? []} />
-        <div>
-          <p>Total Visits: {numberofusers?.total_visits}</p>
+        <div className="t-4">
+          <p>Total Visits: {count?.total_visits}</p>{" "}
         </div>
       </div>
     </Layout>
