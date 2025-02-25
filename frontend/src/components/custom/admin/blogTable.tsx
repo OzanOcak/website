@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { BlogType } from "@/app/(private)/(roles)/articles/page";
 import axiosInstance from "@/utils/AxiosInterceptor";
+import { useStore } from "@/stores/useAuthStore";
+import Link from "next/link";
 
 interface BlogPostTableProps {
   blogs: BlogType[];
@@ -11,6 +13,7 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
   const [loadingStates, setLoadingStates] = useState<{
     [slug: string]: boolean;
   }>({});
+  const userRole = useStore.getState().role;
 
   const handlePublish = async (slug: string) => {
     setLoadingStates((prev) => ({ ...prev, [slug]: true })); // Set loading state
@@ -65,7 +68,9 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
               blogs.map((blog) => (
                 <tr key={blog.slug}>
                   <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    {blog.title}
+                    {blog.title.length > 15
+                      ? `${blog.title.substring(0, 25)}...`
+                      : blog.title}
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap text-sm">
                     {blog.author}
@@ -74,24 +79,36 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
                     {blog.date}
                   </td>
                   <td className="flex justify-end mr-4 px-4 py-4 whitespace-nowrap text-sm text-right">
-                    {blog.published ? (
-                      <button
-                        onClick={() => handleUnpublish(blog.slug)}
-                        disabled={loadingStates[blog.slug]}
-                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                      >
-                        {loadingStates[blog.slug]
-                          ? "Unpublishing..."
-                          : "Unpublish"}
-                      </button>
+                    {userRole === "admin" ? (
+                      <>
+                        {blog.published ? (
+                          <button
+                            onClick={() => handleUnpublish(blog.slug)}
+                            disabled={loadingStates[blog.slug]}
+                            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                          >
+                            {loadingStates[blog.slug]
+                              ? "Unpublishing..."
+                              : "Unpublish"}
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => handlePublish(blog.slug)}
+                            disabled={loadingStates[blog.slug]}
+                            className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                          >
+                            {loadingStates[blog.slug]
+                              ? "Publishing..."
+                              : "Publish"}
+                          </button>
+                        )}
+                      </>
                     ) : (
-                      <button
-                        onClick={() => handlePublish(blog.slug)}
-                        disabled={loadingStates[blog.slug]}
-                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                      >
-                        {loadingStates[blog.slug] ? "Publishing..." : "Publish"}
-                      </button>
+                      <Link href={`/blogpost/${blog.slug}`}>
+                        <div className="bg-green-800 hover:bg-green-700 px-2 py-1 rounded-md">
+                          READ
+                        </div>
+                      </Link>
                     )}
                   </td>
                 </tr>

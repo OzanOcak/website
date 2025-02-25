@@ -118,17 +118,18 @@ export default function ProfilePage() {
               </Avatar>
             </div>
             <div className="w-full md:w-3/4 flex flex-col justify-center px-4">
-              <div className="block sm:flex sm:justify-between text-lg">
-                <div className="font-bold w-28 dark:text-gray-200">
+              {/* Username Section */}
+              <div className="flex justify-between text-lg mb-4">
+                <div className="font-bold dark:text-gray-200">
                   <p>Username:</p>
                 </div>
                 {isEditing ? (
-                  <div className="flex justify-between items-start gap-2 mb-4">
+                  <div className="flex items-center gap-2">
                     <input
                       type="text"
                       value={newName}
                       onChange={(e) => setNewName(e.target.value)}
-                      className="border border-gray-300 dark:border-gray-600 rounded-md p-1 text-sm dark:bg-gray-700 dark:text-gray-200"
+                      className="border border-gray-300 dark:border-gray-600 rounded-md p-1 text-sm dark:bg-gray-700 dark:text-gray-200 w-48 text-left"
                     />
                     <button
                       onClick={handleUpdateUsername}
@@ -144,35 +145,39 @@ export default function ProfilePage() {
                     </button>
                   </div>
                 ) : (
-                  <div className="flex justify-between">
-                    <p className="w-48 dark:text-gray-200">
-                      {profile.username}
-                    </p>
-                    <button
-                      onClick={() => setIsEditing(true)}
-                      className="text-sm text-blue-500 hover:text-blue-700 ml-8 sm:ml-0"
-                    >
-                      <p>Change</p>
-                    </button>
+                  <div className="flex items-center gap-2">
+                    <p className="dark:text-gray-200">{profile.username}</p>
                   </div>
                 )}
               </div>
-              <div className="flex justify-between text-lg">
+
+              {/* Role Section */}
+              <div className="flex justify-between text-lg mb-4">
                 <div className="font-bold dark:text-gray-200">
                   <p>Role:</p>
                 </div>
                 <div className="dark:text-gray-200">{profile.role}</div>
               </div>
-              <div className="flex justify-between text-lg">
+
+              {/* Email Section */}
+              <div className="flex justify-between text-lg mb-4">
                 <div className="font-bold dark:text-gray-200">
                   <p>Email:</p>
                 </div>
                 <div className="dark:text-gray-200">{profile.email}</div>
               </div>
-              <div className="flex justify-center mt-16">
+
+              {/* Buttons in the same line */}
+              <div className="flex justify-between items-center mt-16">
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="text-blue-500 hover:text-blue-700 text-sm"
+                >
+                  Change Username
+                </button>
                 <button
                   onClick={handleDeleteUser}
-                  className="text-red-500 hover:underline transition w-full max-w-xs text-left"
+                  className="text-red-500 hover:text-red-700 text-sm"
                 >
                   Delete Account
                 </button>

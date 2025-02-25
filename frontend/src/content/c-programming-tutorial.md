@@ -2,7 +2,7 @@
 title: C Programming Tutorial
 slug: c-programming-tutorial
 description: Comprehensive guide on learning C programming from basics to advanced topics.
-imageUrl: /images/coding.jpeg
+imageUrl: /images/9.png
 author: ozan
 date: 12.09.2024
 tags:

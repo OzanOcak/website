@@ -1,21 +1,35 @@
-//import { useUserName } from "@/hooks/roles/useProfile";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import Layout from "@/components/custom/layout";
-//import { Pending } from "@/components/custom/isPending";
-//import { Erroring } from "@/components/custom/isError";
 
 export default function ProfilePage() {
-  //const { data: profile, isPending, isError, error } = useUserName();
-
-  // if (isPending) return <Pending />;
-  //if (isError) return <Erroring />;
-  //if (!profile) return <div>No profile found, {error}</div>;
-
   return (
     <Layout>
-      <div>
-        {/* Display user name or other profile info */}
-        <p>Sorry!, not so many things to do for you</p>
+      <div className="m-4 ">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </Layout>
   );
