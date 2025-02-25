@@ -1,9 +1,34 @@
 //"use cache";
+"use client";
+import { useIncreaseVisitCount } from "@/hooks/roles/visitcount/useIncreaseVisitCount";
+import { useStore } from "@/stores/useAuthStore";
 import Image from "next/image";
+import { useEffect } from "react";
 
 //export const revalidate = 60;
 
 export default function Home() {
+  const visited = useStore.getState().visited;
+  const setVisited = useStore.getState().setVisited;
+
+  const { mutate: increaseVisitCount } = useIncreaseVisitCount();
+
+  useEffect(() => {
+    const trackVisit = async () => {
+      if (!visited) {
+        try {
+          await increaseVisitCount(); // Call the mutate function
+          console.log("Visit tracked successfully");
+          setVisited(true);
+        } catch (error) {
+          console.error("Error tracking visit:", error);
+        }
+      }
+    };
+
+    trackVisit();
+  }, [visited, setVisited, increaseVisitCount]);
+
   return (
     <main>
       <section className="container px-4 py-10 mx-auto lg:h-128 lg:space-x-8 lg:flex lg:items-center">

@@ -5,6 +5,8 @@ export type ClientSlice = {
   setPath: (lastPath: string) => void; // Update lastPath
   userDeleted: boolean; // admin user changed
   setUserDeleted: (userDeleted: boolean) => void;
+  visited: boolean;
+  setVisited: (visited: boolean) => void;
 
   // New state for liked blogs
   likedBlogs: Record<string, boolean>; // Store liked blogs as { "blog-1": true, "blog-2": true }
@@ -18,6 +20,7 @@ type State = {
   lastPath: string;
   userDeleted: boolean;
   likedBlogs: Record<string, boolean>;
+  visited: boolean;
 };
 
 // User slice creation
@@ -27,6 +30,9 @@ export const createClientSlice = (
   lastPath: "/", // Default value for lastPath
   setPath: (lastPath: string) => set((state) => ({ ...state, lastPath })),
   userDeleted: false,
+  visited: false,
+  setVisited: (visited: boolean) => set((state) => ({ ...state, visited })),
+
   setUserDeleted: (userDeleted: boolean) =>
     set((state) => ({ ...state, userDeleted })),
 

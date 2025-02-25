@@ -5,12 +5,11 @@ import roleRoutes from "./routes/roleRoutes";
 import oauthRoutes from "./routes/oauthRoutes";
 import commentRoutes from "./routes/commentRoutes";
 import likeblogRoutes from "./routes/likeblogRoutes";
-import totalVisitsRouter from "./routes/totalVisitsRouter";
+import visitRoutes from "./routes/visitRoutes";
 
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import { trackVisit } from "./middleware/track-visit";
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -34,18 +33,14 @@ const startServer = async () => {
       })
     );
 
-    app.use(trackVisit);
+    // app.use(trackVisit);
 
     app.use("/api", authRoutes);
     app.use("/api", roleRoutes);
     app.use("/api", oauthRoutes);
     app.use("/api", commentRoutes);
     app.use("/api", likeblogRoutes);
-    app.use("/api", totalVisitsRouter); // Add the total-visits endpoint
-
-    app.get("/api", (req, res) => {
-      res.send("Welcome to the home page!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    });
+    app.use("/api", visitRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
