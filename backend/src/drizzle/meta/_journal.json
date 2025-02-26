@@ -5,64 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1739303993926,
-      "tag": "0000_mute_paladin",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1739818973254,
-      "tag": "0001_dark_toro",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1739850836958,
-      "tag": "0002_loud_nextwave",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1739897831261,
-      "tag": "0003_faulty_gwen_stacy",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1739912146716,
-      "tag": "0004_curved_mongu",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1740000487864,
-      "tag": "0005_ambiguous_wallop",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1740004681790,
-      "tag": "0006_conscious_shinobi_shaw",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1740179482015,
-      "tag": "0007_strange_bloodstrike",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1740428255461,
-      "tag": "0008_classy_klaw",
+      "when": 1740590991852,
+      "tag": "0000_naive_randall",
       "breakpoints": true
     }
   ]

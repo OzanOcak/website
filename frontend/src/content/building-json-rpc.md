@@ -1,5 +1,5 @@
 ---
-title: "Building a JSON-RPC API with TypeScript and Express"
+title: Building a JSON-RPC API with TypeScript and Express
 slug: building-json-rpc
 description: Understanding JSON-RPC
 imageUrl: /images/6.png
@@ -10,7 +10,7 @@ tags:
   - express
   - api
   - trpc
-published: false
+published: true
 ---
 
 In this tutorial, we'll create a simple JSON-RPC API using TypeScript and Express, leveraging the typed-rpc library for easy RPC handling. We will also create a client to interact with our API. By the end, you'll have a fully functional API that can respond to requests.

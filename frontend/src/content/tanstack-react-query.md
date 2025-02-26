@@ -1,5 +1,5 @@
 ---
-title: "Tanstack React Query"
+title: Tanstack React Query
 slug: tanstack-react-query
 description: Understanding Tanstack React Query
 imageUrl: /images/5.png
@@ -9,7 +9,7 @@ tags:
   - React
   - React-Router
   - Axios
-published: false
+published: true
 ---
 
 ## TanStack React Query Tutorial

@@ -1,5 +1,5 @@
 ---
-title: "Setting Up a Simple Node.js Express Api and PostgreSql database with Docker"
+title: Setting Up a Simple Node.js Express Api and PostgreSql database with Docker
 slug: simple-express-server
 description: Comprehensive guide on learning SQL and drizzle.
 imageUrl: /images/3.png
@@ -10,7 +10,7 @@ tags:
   - Node
   - Express
   - Docker
-published: false
+published: true
 ---
 
 In this article, we will walk through the steps to create a simple RESTful API using Node.js with Express, backed by a PostgreSQL database, all running in Docker containers. This setup allows for easy development and deployment, ensuring consistency across environments.

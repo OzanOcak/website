@@ -10,7 +10,7 @@ export const unpublishPost = async (
 
   try {
     // Update the markdown file
-    const filePath = `src/content/${slug}.md`;
+    const filePath = `../frontend/src/content/${slug}.md`;
     const fileContent = readFileSync(filePath, "utf-8");
     const { data, content } = matter(fileContent);
 
