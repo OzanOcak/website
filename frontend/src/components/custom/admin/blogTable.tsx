@@ -1,46 +1,57 @@
 "use client";
 import { useState } from "react";
 import { BlogType } from "@/app/(private)/(roles)/articles/page";
-import axiosInstance from "@/utils/AxiosInterceptor";
 import { useStore } from "@/stores/useAuthStore";
 import Link from "next/link";
+import { useQueryClient } from "@tanstack/react-query";
+import { useHandlePublish } from "@/hooks/roles/blogpublish/useHandlePublish";
+import { useHandleUnpublish } from "@/hooks/roles/blogpublish/useHandleUnpublish";
 
 interface BlogPostTableProps {
   blogs: BlogType[];
 }
 
 const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
+  const queryClient = useQueryClient();
+
   const [loadingStates, setLoadingStates] = useState<{
     [slug: string]: boolean;
   }>({});
   const userRole = useStore.getState().role;
 
-  const handlePublish = async (slug: string) => {
+  const { mutate: publishPost } = useHandlePublish();
+  const { mutate: unpublishPost } = useHandleUnpublish();
+
+  const handlePublish = (slug: string) => {
     setLoadingStates((prev) => ({ ...prev, [slug]: true })); // Set loading state
-    try {
-      await axiosInstance.post(`/admin/blogs/${slug}/publish`);
-      // Optionally, refetch the blogs or update the UI
-      alert(`Post ${slug} published successfully`);
-    } catch (error) {
-      console.error("Error publishing post:", error);
-      alert("Failed to publish post");
-    } finally {
-      setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
-    }
+    publishPost(slug, {
+      onSuccess: () => {
+        setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
+        queryClient.invalidateQueries({ queryKey: ["blogs"] }); // Invalidate the blogs query to refetch data
+        alert("Post published successfully");
+      },
+      onError: (error) => {
+        setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
+        console.error("Error publishing post:", error);
+        alert("Failed to publish post");
+      },
+    });
   };
 
-  const handleUnpublish = async (slug: string) => {
+  const handleUnpublish = (slug: string) => {
     setLoadingStates((prev) => ({ ...prev, [slug]: true })); // Set loading state
-    try {
-      await axiosInstance.post(`/admin/blogs/${slug}/unpublish`);
-      // Optionally, refetch the blogs or update the UI
-      alert(`Post ${slug} unpublished successfully`);
-    } catch (error) {
-      console.error("Error unpublishing post:", error);
-      alert("Failed to unpublish post");
-    } finally {
-      setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
-    }
+    unpublishPost(slug, {
+      onSuccess: () => {
+        setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
+        queryClient.invalidateQueries({ queryKey: ["blogs"] }); // Invalidate the blogs query to refetch data
+        alert("Post unpublished successfully");
+      },
+      onError: (error) => {
+        setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
+        console.error("Error unpublishing post:", error);
+        alert("Failed to unpublish post");
+      },
+    });
   };
 
   return (

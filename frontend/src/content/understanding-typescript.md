@@ -1,5 +1,5 @@
 ---
-title: "Understanding Advanced Types in TypeScript"
+title: Understanding Advanced Types in TypeScript
 slug: understanding-typescript
 description: Understanding Typescript
 imageUrl: /images/7.png
@@ -7,7 +7,7 @@ author: ozan
 date: 16.11.2024
 tags:
   - typescript
-published: false
+published: true
 ---
 
 ## Advanced Types

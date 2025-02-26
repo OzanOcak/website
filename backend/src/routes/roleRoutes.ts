@@ -66,14 +66,14 @@ router.patch(
 );
 
 router.post(
-  "/admin/blogs/:slug/publish",
+  "/admin/blog/:slug/publish",
   authenticate,
   checkPermissionsToAuthorize("publish_post"), // Only admins can publish posts
   publishPost
 );
 
 router.post(
-  "/admin/blogs/:slug/unpublish",
+  "/admin/blog/:slug/unpublish",
   authenticate,
   checkPermissionsToAuthorize("unpublish_post"), // Only admins can unpublish posts
   unpublishPost
