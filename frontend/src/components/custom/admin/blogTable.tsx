@@ -27,13 +27,13 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
     publishPost(slug, {
       onSuccess: () => {
         setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
-        queryClient.invalidateQueries({ queryKey: ["blogs"] }); // Invalidate the blogs query to refetch data
-        alert("Post published successfully");
+        queryClient.invalidateQueries({ queryKey: ["articles"] }); // Invalidate the blogs query to refetch data
+        //alert("Post published successfully");
       },
       onError: (error) => {
         setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
         console.error("Error publishing post:", error);
-        alert("Failed to publish post");
+        // alert("Failed to publish post");
       },
     });
   };
@@ -43,13 +43,13 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
     unpublishPost(slug, {
       onSuccess: () => {
         setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
-        queryClient.invalidateQueries({ queryKey: ["blogs"] }); // Invalidate the blogs query to refetch data
-        alert("Post unpublished successfully");
+        queryClient.invalidateQueries({ queryKey: ["articles"] }); // Invalidate the blogs query to refetch data
+        // alert("Post unpublished successfully");
       },
       onError: (error) => {
         setLoadingStates((prev) => ({ ...prev, [slug]: false })); // Reset loading state
         console.error("Error unpublishing post:", error);
-        alert("Failed to unpublish post");
+        // alert("Failed to unpublish post");
       },
     });
   };
@@ -75,56 +75,7 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
             </tr>
           </thead>
           <tbody className="bg-white dark:bg-gray-600 divide-y divide-gray-200 text-gray-500 dark:text-gray-200">
-            {!blogs || blogs.length > 0 ? (
-              blogs.map((blog) => (
-                <tr key={blog.slug}>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    {blog.title.length > 15
-                      ? `${blog.title.substring(0, 25)}...`
-                      : blog.title}
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm">
-                    {blog.author}
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm">
-                    {blog.date}
-                  </td>
-                  <td className="flex justify-end mr-4 px-4 py-4 whitespace-nowrap text-sm text-right">
-                    {userRole === "admin" ? (
-                      <>
-                        {blog.published ? (
-                          <button
-                            onClick={() => handleUnpublish(blog.slug)}
-                            disabled={loadingStates[blog.slug]}
-                            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                          >
-                            {loadingStates[blog.slug]
-                              ? "Unpublishing..."
-                              : "Unpublish"}
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => handlePublish(blog.slug)}
-                            disabled={loadingStates[blog.slug]}
-                            className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                          >
-                            {loadingStates[blog.slug]
-                              ? "Publishing..."
-                              : "Publish"}
-                          </button>
-                        )}
-                      </>
-                    ) : (
-                      <Link href={`/blogpost/${blog.slug}`}>
-                        <div className="bg-green-800 hover:bg-green-700 px-2 py-1 rounded-md">
-                          READ
-                        </div>
-                      </Link>
-                    )}
-                  </td>
-                </tr>
-              ))
-            ) : (
+            {!blogs || blogs.length === 0 ? (
               <tr>
                 <td
                   colSpan={5}
@@ -133,6 +84,62 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
                   No results.
                 </td>
               </tr>
+            ) : (
+              blogs
+                .filter((blog) => {
+                  // Show all blogs for admin
+                  if (userRole === "admin") return true;
+                  // Show only published blogs for non-admin users
+                  return blog.published;
+                })
+                .map((blog) => (
+                  <tr key={blog.slug}>
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                      {blog.title.length > 15
+                        ? `${blog.title.substring(0, 25)}...`
+                        : blog.title}
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-sm">
+                      {blog.author}
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-sm">
+                      {blog.date}
+                    </td>
+                    <td className="flex justify-end mr-4 px-4 py-4 whitespace-nowrap text-sm text-right">
+                      {userRole === "admin" ? (
+                        <>
+                          {blog.published ? (
+                            <button
+                              onClick={() => handleUnpublish(blog.slug)}
+                              disabled={loadingStates[blog.slug]}
+                              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                            >
+                              {loadingStates[blog.slug]
+                                ? "Unpublishing..."
+                                : "Unpublish"}
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => handlePublish(blog.slug)}
+                              disabled={loadingStates[blog.slug]}
+                              className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                            >
+                              {loadingStates[blog.slug]
+                                ? "Publishing..."
+                                : "Publish"}
+                            </button>
+                          )}
+                        </>
+                      ) : (
+                        <Link href={`/blogpost/${blog.slug}`}>
+                          <div className="bg-green-800 hover:bg-green-700 px-2 py-1 rounded-md">
+                            READ
+                          </div>
+                        </Link>
+                      )}
+                    </td>
+                  </tr>
+                ))
             )}
           </tbody>
         </table>
