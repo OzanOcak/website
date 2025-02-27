@@ -2,7 +2,6 @@
 "use client";
 import { useIncreaseVisitCount } from "@/hooks/roles/visitcount/useIncreaseVisitCount";
 import { useStore } from "@/stores/useAuthStore";
-import Image from "next/image";
 import { useEffect } from "react";
 
 //export const revalidate = 60;
@@ -30,215 +29,145 @@ export default function Home() {
   }, [visited, setVisited, increaseVisitCount]);
 
   return (
-    <main>
-      <section className="container px-4 py-10 mx-auto lg:h-128 lg:space-x-8 lg:flex lg:items-center">
-        <div className="w-full text-center lg:text-left lg:w-1/2 lg:-mt-8">
-          <h1 className="text-3xl leading-snug text-gray-800 dark:text-gray-200 md:text-4xl">
-            A <span className="font-semibold">tech blog</span> for community
-            <br className="hidden lg:block" /> components using
+    <main className="mt-[-1rem] bg-gray-100 dark:bg-gray-900">
+      {/* Hero Section - Full Screen Height */}
+      <section className="h-screen flex items-center justify-center text-center bg-gray-200 text-gray-900 dark:bg-black dark:text-gray-100">
+        <div className="animate-fade-in">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            A <span className="text-green-500">Tech Blog</span> for App
+            Development
           </h1>
-          <p className="mt-4 text-lg text-gray-500 dark:text-gray-300">
-            Open source blog and templates to <br className="hidden lg:block" />
+          <p className="text-lg md:text-xl text-gray-800 dark:text-gray-300 mb-8">
+            Open source blog and templates to empower developers worldwide.
           </p>
-        </div>
-        <div className="w-full mt-4 lg:mt-0 lg:w-1/2">
-          <Image
-            src="https://www.creative-tim.com/twcomponents/svg/website-designer-bro-purple.svg"
-            alt="tailwind css components"
-            className="w-full h-full max-w-md mx-auto"
-            width={100}
-            height={60}
-            priority
-          />
+          <div className="flex justify-center space-x-4">
+            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+              Get Started
+            </button>
+            <button className="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+              Learn More
+            </button>
+          </div>
         </div>
       </section>
 
-      <section className="text-gray-600 dark:text-gray-50 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <h2 className="text-4xl pb-8 mb-4 font-bold  text-center">
+      {/* Services Section */}
+      <section className="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 py-24">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12">
             About Our Services
           </h2>
-          <div className="flex flex-wrap -m-4">
-            <div className="p-4 lg:w-1/3">
-              <div className="h-full bg-gray-200 dark:bg-gray-900 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative shadow-lg">
-                <h2 className="tracking-widest text-xs title-font font-medium  mb-1">
-                  WEB DEVELOPMENT
-                </h2>
-                <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 dark:text-white mb-3">
-                  Full-Stack Solutions
-                </h1>
-                <p className="leading-relaxed mb-3 text-gray-700 dark:text-gray-50  ">
-                  Building robust, scalable, and responsive web applications
-                  using modern tech stacks like React, Node.js, and more.
-                </p>
-                <a className=" inline-flex items-center hover:text-indigo-700">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Web Development Card */}
+            <div className="bg-gray-300 dark:bg-gray-800 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+              <h3 className="text-xl font-semibold mb-4">Web Development</h3>
+              <p className="text-gray-800 dark:text-gray-300 mb-6">
+                Building robust, scalable, and responsive web applications.
+              </p>
+              <a
+                href="#"
+                className="text-green-500 hover:text-green-400 flex items-center"
+              >
+                Learn More
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-                <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                  <span className="text-gray-400 dark:text-gray-500 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    2.4K Views
-                  </span>
-                  <span className="text-gray-400 dark:text-gray-500 inline-flex items-center leading-none text-sm">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                    </svg>
-                    32 Comments
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3">
-              <div className="h-full bg-gray-200 dark:bg-gray-900 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative shadow-lg">
-                <h2 className="tracking-widest text-xs title-font font-medium  mb-1">
-                  MOBILE DEVELOPMENT
-                </h2>
-                <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 dark:text-white mb-3">
-                  Cross-Platform Apps
-                </h1>
-                <p className="leading-relaxed mb-3 text-gray-700 dark:text-gray-400">
-                  Crafting seamless mobile experiences for both Android and iOS
-                  using frameworks like React Native and Flutter.
-                </p>
-                <a className=" inline-flex items-center hover:text-indigo-700">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
                     strokeWidth="2"
-                    fill="none"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+
+            {/* Mobile Development Card */}
+            <div className="bg-gray-300 dark:bg-gray-800 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+              <h3 className="text-xl font-semibold mb-4">Mobile Development</h3>
+              <p className="text-gray-800 dark:text-gray-300 mb-6">
+                Crafting seamless mobile experiences for both Android and iOS
+              </p>
+              <a
+                href="#"
+                className="text-green-500 hover:text-green-400 flex items-center"
+              >
+                Learn More
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-                <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                  <span className="text-gray-400 dark:text-gray-500 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    1.8K Views
-                  </span>
-                  <span className="text-gray-400 dark:text-gray-500 inline-flex items-center leading-none text-sm">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                    </svg>
-                    18 Comments
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3">
-              <div className="h-full bg-gray-200 dark:bg-gray-900 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative shadow-lg">
-                <h2 className="tracking-widest text-xs title-font font-medium  mb-1">
-                  CLOUD SOLUTIONS
-                </h2>
-                <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 dark:text-white mb-3">
-                  Scalable Infrastructure
-                </h1>
-                <p className="leading-relaxed mb-3 text-gray-700 dark:text-gray-400">
-                  Implementing and managing cloud environments with AWS, Azure,
-                  and GCP to ensure your applications scale effortlessly.
-                </p>
-                <a className=" inline-flex items-center hover:text-indigo-700">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
                     strokeWidth="2"
-                    fill="none"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+
+            {/* Cloud Solutions Card */}
+            <div className="bg-gray-300 dark:bg-gray-800 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+              <h3 className="text-xl font-semibold mb-4">
+                Desktop Applications
+              </h3>
+              <p className="text-gray-800 dark:text-gray-300 mb-6">
+                Building robust, scalable, and responsive web applications.
+              </p>
+              <a
+                href="#"
+                className="text-green-500 hover:text-green-400 flex items-center"
+              >
+                Learn More
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-                <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                  <span className="text-gray-400 dark:text-gray-500 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    3.1K Views
-                  </span>
-                  <span className="text-gray-400 dark:text-gray-500 inline-flex items-center leading-none text-sm">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                    </svg>
-                    24 Comments
-                  </span>
-                </div>
-              </div>
+                    strokeWidth="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Web Security Section - Text Block */}
+      <section
+        className="bg-gradient-to-r from-green-600 to-gray-100 via-gray-100 py-32 my-24
+       dark:from-green-600 dark:to-gray-900 dark:via-gray-900"
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">
+            Secure Your Web Applications
+          </h2>
+          <p className="text-lg text-gray-900 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            In today is digital world, web security is more important than ever.
+            Protect your applications from vulnerabilities, data breaches, and
+            cyber threats with best practices and cutting-edge tools.
+          </p>
+          <div className="flex justify-center space-x-4">
+            <button className="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+              Learn More
+            </button>
+            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+              Get Started
+            </button>
           </div>
         </div>
       </section>

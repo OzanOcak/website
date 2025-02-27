@@ -57,6 +57,7 @@ async function fetchBlogPost(slug: string) {
     author: data.author || "",
     date: data.date || "",
     tags: data.tags || "",
+    published: data.published || false,
   };
 }
 

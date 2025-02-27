@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useStore } from "@/stores/useAuthStore";
 import { routeConfig } from "./routeConfig";
+import useInactivityTimeout from "@/hooks/sessions/useInactivityTimeout";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,8 @@ interface ProtectedLayoutProps {
 
 export default function PrivateLayout({ children }: ProtectedLayoutProps) {
   const router = useRouter();
+  useInactivityTimeout();
+
   const pathname = usePathname(); // Get the current path
 
   const role = useStore((state) => state.role); // Get role from Zustand store

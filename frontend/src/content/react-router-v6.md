@@ -1,5 +1,5 @@
 ---
-title: "Understanding React Router: Complete Guide to createBrowserRouter"
+title: 'Understanding React Router: Complete Guide to createBrowserRouter'
 slug: react-router-v6
 description: Understanding React Router
 imageUrl: /images/4.png

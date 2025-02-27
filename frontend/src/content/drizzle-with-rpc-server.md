@@ -11,7 +11,7 @@ tags:
   - Drizzle
   - Docker
   - PostGres
-published: false
+published: true
 ---
 
 In this blog post, we will walk through the process of setting up Drizzle ORM on a typed RPC server which we have built previous plog post, using PostgreSQL. We will cover the installation of necessary packages, configuration files, and how to seed the database. Let’s get started!

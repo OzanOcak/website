@@ -13,7 +13,7 @@ tags:
   - docker
   - assembly
   - docker
-published: false
+published: true
 ---
 
 Welcome to this comprehensive C programming tutorial! Whether you're a complete beginner or looking to deepen your understanding of C, this guide will take you through the fundamentals and introduce advanced concepts as you progress.
