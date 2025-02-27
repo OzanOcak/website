@@ -31,16 +31,16 @@ export default function OtpRequestPageForRegistration() {
     }
 
     const otpString = otp.join("");
-    console.log("OTP String:", otpString); // Log the constructed OTP
+    // console.log("OTP String:", otpString); // Log the constructed OTP
     if (otpString.length === 6 && otp.every((digit) => digit !== "")) {
       setLoading(true);
-      console.log("OTP String to submit:", otpString); // Add this line
-      console.log("Loading started"); // Add this line
+      //console.log("OTP String to submit:", otpString); // Add this line
+      //console.log("Loading started"); // Add this line
 
       mutation.mutate(otpString, {
         onSuccess: () => {
           setLoading(false);
-          console.log("OTP verified successfully!");
+          // console.log("OTP verified successfully!");
         },
         onError: (error: Error) => {
           setLoading(false);
