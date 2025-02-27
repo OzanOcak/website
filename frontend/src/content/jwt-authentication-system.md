@@ -17,9 +17,9 @@ tags:
 published: true
 ---
 
-# Building a Secure JWT Token-Based Authentication and Role-Based Authorization System
+# Building a Secure JWT Token-Based Authentication and Role-Based Authorization System from Scratch
 
-In today's digital landscape, security is paramount. As a developer with a background in computer engineering and over seven years of front-end web development experience, I set out to create a robust authentication and authorization system that not only meets industry standards but also provides a seamless user experience. In this post, I will share the key features and best practices I implemented in my JWT token-based authentication and role-based authorization system.
+In today's digital landscape, security is paramount. As a developer with a background in computer engineering and over seven years of front-end web development experience, I set out to create a robust authentication and authorization system that not only meets industry standards but also provides a seamless user experience. In this post, I will share the key features and best practices I implemented in my JWT token-based authentication and role-based authorization system. Note that I built everything from scratch from using third libraries.
 
 # Key Features
 
