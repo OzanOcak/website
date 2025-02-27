@@ -1,7 +1,10 @@
 import { useStore } from "@/stores/useAuthStore";
 import { useEffect } from "react";
 
-const useInactivityTimeout = (timeoutDuration = 30 * 60 * 1000) => {
+const useInactivityTimeout = (
+  timeoutDuration = 30 * 60 * 1000,
+  onTimeout?: () => void
+) => {
   // Default to 30 minutes
 
   useEffect(() => {
@@ -16,6 +19,10 @@ const useInactivityTimeout = (timeoutDuration = 30 * 60 * 1000) => {
         console.log("Inactivity timeout reached. Clearing token.");
         localStorage.removeItem("loginTimestamp"); // Clear the local storage and access token
         useStore.getState().clearToken(); // Clear access token and user data
+        // Call the onTimeout callback if provided
+        if (onTimeout) {
+          onTimeout();
+        }
       }, timeoutDuration);
     };
 
@@ -36,7 +43,7 @@ const useInactivityTimeout = (timeoutDuration = 30 * 60 * 1000) => {
       window.removeEventListener("click", handleActivity);
       window.removeEventListener("scroll", handleActivity);
     };
-  }, [timeoutDuration]);
+  }, [onTimeout, timeoutDuration]);
 };
 
 export default useInactivityTimeout;
