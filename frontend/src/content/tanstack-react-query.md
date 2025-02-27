@@ -12,9 +12,9 @@ tags:
 published: true
 ---
 
-## TanStack React Query Tutorial
+# TanStack React Query Tutorial
 
-### Introduction
+## Introduction
 
 TanStack Query (formerly React Query) is a powerful data-fetching library for React applications. It provides hooks for managing server state, simplifying data fetching, caching, synchronization, and updating your UI efficiently.
 
@@ -31,7 +31,7 @@ In your package.json, add the following script to run the JSON server:
 "server": "json-server --watch db.json --port 3001"
 ```
 
-### Traditional Data Fetching
+## Traditional Data Fetching
 
 In traditional data fetching, we manage loading states and errors manually. Here’s how you can fetch a list of todos using Axios:
 
@@ -78,7 +78,7 @@ const TodoList: React.FC = () => {
 };
 ```
 
-### Fetching with React Query
+## Fetching with React Query
 
 Using React Query simplifies data fetching significantly. Here’s how to fetch todos with it:
 
@@ -131,7 +131,7 @@ const TodoQuery: React.FC = () => {
 };
 ```
 
-### React Query Dev Tools
+## React Query Dev Tools
 
 To inspect your queries, install the React Query DevTools:
 
@@ -158,7 +158,7 @@ You can monitor fetching states using isLoading and isFetching:
 Initially, both isLoading and isFetching will be true. After fetching, they will both be false.
 If you navigate away and return, isLoading will be false, but isFetching will be true if the data is stale.
 
-### Stale Time
+## Stale Time
 
 Control how long data is considered fresh using the staleTime option in useQuery:
 
@@ -195,7 +195,7 @@ const { data, refetch } = useQuery({
 // Button to manually fetch
 `<button onClick={() => refetch()}>Fetch</button>`
 
-### Querying by ID
+## Querying by ID
 
 To fetch specific post details by ID, create a route and use useParams:
 
@@ -231,7 +231,7 @@ const PostDetailsRQ = () => {
 };
 ```
 
-### Pagination
+## Pagination
 
 To implement pagination, use query parameters in your fetch function:
 
@@ -269,7 +269,7 @@ const PaginatedQueries = () => {
 };
 ```
 
-### Infinite Scroll
+## Infinite Scroll
 
 To implement infinite scrolling, use useInfiniteQuery:
 
@@ -306,7 +306,7 @@ const InfiniteQueries = () => {
 };
 ```
 
-### Infinite Scroll with Intersection Observer
+## Infinite Scroll with Intersection Observer
 
 You can enhance the infinite scroll by using react-intersection-observer:
 
@@ -346,7 +346,7 @@ const InfiniteQueries2 = () => {
 };
 ```
 
-### Using Mutations
+## Using Mutations
 
 To add a new todo using mutations:
 
@@ -419,7 +419,7 @@ const AddTodo = () => {
 };
 ```
 
-### Optimistic Updates
+## Optimistic Updates
 
 To implement optimistic updates, use the onMutate callback:
 
@@ -447,7 +447,7 @@ const { mutate: addTodoMutation } = useMutation({
 });
 ```
 
-### Conclusion
+## Conclusion
 
 TanStack React Query streamlines the process of fetching, caching, and syncing server state in React applications. By leveraging its powerful features, you can enhance your application's performance and user experience significantly.
 

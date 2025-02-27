@@ -50,7 +50,7 @@ export default function RootLayout({
           {/* Footer */}
           <footer className="bg-gary-100 dark:bg-gray-900 py-8 text-center">
             <p className="dark:text-gray-400">
-              © 2025 OOTech Blog. All rights reserved.
+              © 2025 OOApps Blog. All rights reserved.
             </p>
           </footer>
         </Providers>

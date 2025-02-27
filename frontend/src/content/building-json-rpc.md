@@ -15,7 +15,7 @@ published: true
 
 In this tutorial, we'll create a simple JSON-RPC API using TypeScript and Express, leveraging the typed-rpc library for easy RPC handling. We will also create a client to interact with our API. By the end, you'll have a fully functional API that can respond to requests.
 
-### Prerequisites
+# Prerequisites
 
 Node.js installed on your machine (version 16 or higher).
 Basic knowledge of TypeScript and JavaScript.
@@ -61,7 +61,7 @@ Create a TypeScript configuration file named tsconfig.json:
 }
 ```
 
-### Implement the API
+## Implement the API
 
 Create the API entry point at src/api/index.ts:
 
@@ -98,7 +98,7 @@ export const myService = {
 export type MyService = typeof myService;
 ```
 
-### Create the Client
+## Create the Client
 
 Set up the client in src/client/index.ts:
 
@@ -116,7 +116,7 @@ async function callApi() {
 callApi();
 ```
 
-### Add Scripts to package.json
+## Add Scripts to package.json
 
 Update your package.json to include a start script:
 
@@ -126,7 +126,7 @@ Update your package.json to include a start script:
 }
 ```
 
-### Run Your API
+## Run Your API
 
 Start your server:
 
@@ -155,9 +155,9 @@ You should receive a response like this:
 }
 ```
 
-### Advanced Usage
+# Advanced Usage
 
-#### Sending Custom Headers
+## Sending Custom Headers
 
 Clients can send custom headers using a getHeaders function:
 
@@ -172,7 +172,7 @@ const client = rpcClient<MyService>({
 
 Tip: The getHeaders function can also be async.
 
-#### Aborting Requests
+## Aborting Requests
 
 Abort requests by passing the Promise to client.$abort():
 
@@ -183,16 +183,16 @@ const res = client.hello("world");
 client.$abort(res);
 ```
 
-#### Error Handling
+## Error Handling
 
 In case of an error, the client throws an RpcError with message, code, and optionally data. Customize errors with RpcHandlerOptions or provide an onError handler for logging.
 
 For internal errors (invalid request, method not found), the error code follows the specs.
 
-#### CORS Credentials
+## CORS Credentials
 
 Include credentials in cross-origin requests with credentials: 'include'.
 
-### Conclusion
+## Conclusion
 
 In this tutorial, we successfully set up a JSON-RPC API using TypeScript and Express. We created a simple service that responds to a greeting request and built a client to interact with the API. This setup can serve as a foundation for building more complex applications using RPC communication.

@@ -10,11 +10,11 @@ tags:
 published: true
 ---
 
-## Advanced Types
+# Advanced Types
 
 TypeScript offers a robust type system that helps developers catch errors early and improve code quality. One of the powerful features of TypeScript is its advanced types, which include constructs like as const, tuples, generics, and built-in types. In this post, we’ll explore these concepts with code snippets for clarity.
 
-### As Const
+## As Const
 
 The as const assertion allows you to create immutable types. For example, while a normal variable can be mutable, using as const makes its properties read-only. This is particularly useful when creating enums or constant values.
 
@@ -34,7 +34,7 @@ type Person = { skillLevel: (typeof LEVELS)[number] }; // can be assigned  to va
 LEVELS.forEach((level) => console.log(level)); // this can be iterated unlice type
 ```
 
-### Tuples
+## Tuples
 
 Tuples are fixed-length arrays with specific types. They can be useful for representing structured data.
 
@@ -46,7 +46,7 @@ Object.entries(person).forEach(([key, value]) => {
 }); // type Tuple = [string, boolean] ,note that useState returns tupple
 ```
 
-### Generics
+## Generics
 
 Generics enable you to create reusable components that can work with any data type. The <HTMLInputElement> is an example of a generic type.
 
@@ -76,7 +76,7 @@ type APIResponse<TData> = {
 const a: APIResponse<Array<number>> = { data: [1, 2, 3], isError: false };
 ```
 
-### Async Functions
+## Async Functions
 
 TypeScript can infer return types for async functions, making code cleaner and more readable.
 
@@ -96,7 +96,7 @@ wait(1000).then((value) => {
 
 TypeScript provides built-in utility types like Omit, Pick, Partial, and Required to manipulate types easily.
 
-### Omit and Pick
+## Omit and Pick
 
 To create a new type based on an existing one, you can use Pick or Omit:
 
@@ -118,7 +118,7 @@ function saveTodo(newTodo: NewTodo) {
 }
 ```
 
-### Partial and Required
+## Partial and Required
 
 To make properties optional or required:
 
@@ -138,7 +138,7 @@ type PartialPick<T, Key extends keyof T> = Partial<Pick<T, Key>> & Omit<T, Key>;
 type FormTodo2 = PartialPick<Todo, "completed">; // now completed is optional
 ```
 
-### ReturnType and Parameters
+## ReturnType and Parameters
 
 TypeScript allows you to extract the return type of a function or its parameters using ReturnType and Parameters.
 
@@ -155,7 +155,7 @@ function checkLength(a: string, b: number) {
 type ParamsOfCheckLen = Parameters<typeof CheckLength>; // [a:string, b:number] // a tupple
 ```
 
-### Record
+## Record
 
 The Record type is useful for creating objects with specific keys and values.
 
@@ -163,7 +163,7 @@ The Record type is useful for creating objects with specific keys and values.
 type PeopleGroupByName = Record<Person["name"], Person[]>;
 ```
 
-### Readonly
+## Readonly
 
 The Readonly type creates immutable versions of existing types.
 This is basically same **_as const_** but readonly can be used for creating another type.
@@ -176,7 +176,7 @@ type FinalTodo = Readonly<Todo>;
 
 Type narrowing allows for more precise type checking in your code. Basic type guards help differentiate types effectively.
 
-### Basic Type Guards
+## Basic Type Guards
 
 ```ts
 type Todo = {
@@ -205,7 +205,7 @@ if(todo.description !== undefined) {
 
 - This **!** also tell tsc that it is not possible be to be null but it overwrites typescript
 
-### Discriminated Union
+## Discriminated Union
 
 Discriminated unions simplify handling different types:
 
@@ -222,7 +222,7 @@ type ErrorResponse = {
 type UserApiResponse = SuccessResponse | ErrorResponse;
 ```
 
-### Function Overloads
+## Function Overloads
 
 Function overloads allow you to define multiple ways to call a function based on different input types.
 
@@ -235,6 +235,6 @@ const t1 = sum([20,22]);
 const t2 = sum(20,22);
 ```
 
-### Conclusion
+## Conclusion
 
 Understanding advanced types in TypeScript enhances code quality and maintainability. By leveraging features like as const, generics, utility types, and type narrowing, developers can write more robust and error-resistant applications. Embrace these tools to improve your TypeScript skills!

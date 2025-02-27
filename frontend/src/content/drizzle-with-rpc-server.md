@@ -16,7 +16,7 @@ published: true
 
 In this blog post, we will walk through the process of setting up Drizzle ORM on a typed RPC server which we have built previous plog post, using PostgreSQL. We will cover the installation of necessary packages, configuration files, and how to seed the database. Let’s get started!
 
-### Install Required Packages
+## Install Required Packages
 
 First, we need to install the necessary dependencies for Drizzle ORM and PostgreSQL. Open your terminal and run the following command:
 
@@ -27,7 +27,7 @@ npm install -D drizzle-kit @types/pg nodemon tsx
 
 This command installs Drizzle ORM for database interactions, the PostgreSQL client, and development tools like nodemon for automatic server restarts.
 
-### Set Up the Project Structure
+## Set Up the Project Structure
 
 Next, we’ll create a basic project structure. Run the following commands to create the required directories and files:
 
@@ -38,7 +38,7 @@ touch db/dbConn.ts db/migrate.ts db/schema.ts
 
 This creates a db directory where we will store our database connection, migration scripts, and schema definitions.
 
-### Create Configuration Files
+## Create Configuration Files
 
 We will create three configuration files in the root of the project directory, at the same level as package.json: .env, docker-compose.yaml, and drizzle.config.ts.
 
@@ -69,7 +69,7 @@ volumes:
 
 In this configuration, we define a PostgreSQL service with environment variables that will be populated from our .env file. Note that we commented out the Adminer service, as it is not needed for our setup with Drizzle ORM.
 
-### Environment Variables
+## Environment Variables
 
 Next, create a .env file to store environment variables:
 
@@ -85,7 +85,7 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5432/database
 
 This file contains the configuration for connecting to your PostgreSQL database. Make sure to adjust the values as necessary for your setup.
 
-### Drizzle Configuration
+## Drizzle Configuration
 
 Now, let's set up the Drizzle configuration by creating drizzle.config.ts:
 
@@ -107,7 +107,7 @@ export default defineConfig({
 
 This configuration file tells Drizzle ORM how to connect to the database and where to find the schema.
 
-### Update Package Scripts
+## Update Package Scripts
 
 Next, we’ll add some scripts to our package.json to streamline our development workflow. Here’s how to modify the scripts section:
 
@@ -126,7 +126,7 @@ Next, we’ll add some scripts to our package.json to streamline our development
 
 These scripts allow you to run the API, client, database migrations, and seeding commands easily.
 
-### Database Connection
+## Database Connection
 
 We start by establishing a connection to our PostgreSQL database using the dbConn.ts file. Here’s how the code looks:
 
@@ -182,7 +182,7 @@ We load environment variables using dotenv.
 We configure a connection pool to PostgreSQL.
 We create a Drizzle ORM instance with the database connection and schema.
 
-### Database Migrations
+## Database Migrations
 
 Next, we need to perform database migrations to create the necessary tables. The migrate.ts file will handle this:
 
@@ -216,7 +216,7 @@ Here, we:
 Connect to the database and execute migrations defined in the specified folder.
 Ensure the client is released after the operation, preventing resource leaks.
 
-### Defining the Schema
+## Defining the Schema
 
 We define our database schema in the schema directory. For example, the category.ts file defines a category table:
 
@@ -232,7 +232,7 @@ export const category = pgTable("category", {
 
 This schema represents a simple category table with an auto-incrementing id and a unique name.
 
-### Seeding the Database
+## Seeding the Database
 
 Now, let's seed our database with initial data. We have our seed data defined in JSON format:
 
@@ -295,7 +295,7 @@ main()
 
 This script truncates the existing data and inserts the new seed data.
 
-### Running the Setup
+## Running the Setup
 
 Now that everything is set up, here’s how to run your application:
 
@@ -344,7 +344,7 @@ Once your server is running, you can query the database through your RPC API. Th
 ]
 ```
 
-### Using Drizzle Studio
+## Using Drizzle Studio
 
 To visualize your database schema and data, you can use Drizzle Studio by running:
 
@@ -354,6 +354,6 @@ npx drizzle-kit studio
 
 This will provide a user-friendly interface to interact with your database.
 
-### Conclusion
+## Conclusion
 
 You have successfully set up a typed RPC API connected to a PostgreSQL database using Drizzle ORM. You learned how to configure the database connection, create migrations, seed initial data, and interact with the database via an API. This setup provides a robust foundation for building scalable applications.
