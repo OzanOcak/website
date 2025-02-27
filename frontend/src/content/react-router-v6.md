@@ -1,5 +1,5 @@
 ---
-title: 'Understanding React Router: Complete Guide to createBrowserRouter'
+title: "Understanding React Router: Complete Guide to createBrowserRouter"
 slug: react-router-v6
 description: Understanding React Router
 imageUrl: /images/4.png
@@ -17,7 +17,7 @@ React Router is an essential library for building single-page applications (SPAs
 
 createBrowserRouter is a part of React Router that simplifies route management in your React applications. It allows you to define routes declaratively and manage complex routing scenarios with ease.
 
-### Key Features of createBrowserRouter
+## Key Features of createBrowserRouter
 
 **1- Declarative Routing:** It allows you to define routes in a more declarative manner, making your code easier to read and maintain.
 
@@ -208,19 +208,19 @@ const router = createBrowserRouter([
 ]);
 ```
 
-## Comparison with React Query
+# Comparison with React Query
 
-### Using React Query
+## Using React Query
 
 React Query provides advanced features like caching, background data fetching, and global state management. Here’s a brief comparison:
 
-### Pros of React React Router:
+## Pros of React React Router:
 
 - Integrated with Routing: Loaders are tied directly to route definitions, making it easy to fetch data when navigating to a specific route.
 - Simplicity: For basic data fetching needs, using loaders keeps your code straightforward by centralizing data fetching logic alongside route definitions.
 - Automatic Data Fetching: Data is automatically fetched when navigating to a route, which can simplify the component logic.
 
-### Cons of React Router:
+## Cons of React Router:
 
 - Limited Features: Loaders lack advanced features like caching, background refetching, and automatic retries that are standard in dedicated data-fetching libraries.
 - No Global State Management: Loaders do not provide a way to manage global state or share data across multiple components without re-fetching.

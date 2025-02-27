@@ -12,11 +12,11 @@ tags:
 published: true
 ---
 
-## Introduction
+# Introduction
 
 In modern web development, efficiently managing database interactions is crucial for building responsive applications. Drizzle, a powerful TypeScript ORM, provides developers with a robust toolkit for querying and observing database tables. One of its standout features is the ease of use in executing SQL queries, allowing for seamless data retrieval and manipulation.
 
-### Drizzle-Kit Studio
+## Drizzle-Kit Studio
 
 ```bash
 npx drizzle-kit studio
@@ -26,7 +26,7 @@ To streamline your database interactions, you can utilize npx drizzle-kit studio
 
 You can also see database diagram and source code of project in [github](https://github.com/OzanOcak/json-rpc-api)
 
-### execute() vs returning()
+## execute() vs returning()
 
 When working with Drizzle, you often encounter two primary methods for executing queries: execute() and returning(). Understanding the difference between these methods is essential for effective data handling.
 
@@ -54,11 +54,11 @@ const result = await db
   });
 ```
 
-### Relations and ORM like Queries
+## Relations and ORM like Queries
 
 You can also create relations and qury like prisma orm with drizzle.
 
-#### One-to-Many Relationship Example
+## One-to-Many Relationship Example
 
 Example: Users and Orders
 In this case, a user can have many orders.
@@ -72,7 +72,7 @@ export const ordersRelations = relations(orders, ({ one, many }) => ({
 }));
 ```
 
-#### Many-to-Many Relationship Example
+## Many-to-Many Relationship Example
 
 Example: Products and Categories
 In this case, products can belong to many categories, and categories can have many products.
@@ -97,7 +97,7 @@ export const productsRelations = relations(products, ({ many }) => ({
 }));
 ```
 
-#### Sample Queries
+## Sample Queries
 
 One-to-Many Query: Fetching a User's Orders
 
@@ -131,9 +131,9 @@ The one-to-many relationship example shows how a user can be linked to multiple 
 The many-to-many relationship example illustrates how products can be associated with multiple categories and vice versa.
 Sample queries demonstrate how to fetch related data using these relationships in an ORM-like style.
 
-## Basic
+# Basic
 
-### 1. Basic SELECT Statement
+## 1. Basic SELECT Statement
 
 To select all cart items:
 
@@ -141,7 +141,7 @@ To select all cart items:
 db.select().from(cartItems);
 ```
 
-### 2. SELECT with WHERE Clause
+## 2. SELECT with WHERE Clause
 
 To select cart items for a specific cart ID:
 
@@ -149,7 +149,7 @@ To select cart items for a specific cart ID:
 db.select().from(cartItems).where(eq(cartItems.cartId, "your-cart-id")); // UUID
 ```
 
-### 3. Filtering Results with AND
+## 3. Filtering Results with AND
 
 To select reviews for a specific product by a specific user:
 
@@ -164,7 +164,7 @@ db.select()
   );
 ```
 
-### 4. Filtering Results with OR
+## 4. Filtering Results with OR
 
 To select reviews that are either from a specific user or have a specific rating:
 
@@ -194,7 +194,7 @@ The .from() method specifies the table.
 The .where() method adds conditions, using eq(), and(), or(), and not() for filtering.
 Replace 'your-cart-id-here', 'your-product-id-here', and 'your-user-id-here' with actual UUID values as needed.
 
-### 6. Sorting Results with ORDER BY
+## 6. Sorting Results with ORDER BY
 
 To select all reviews and sort them by rating in descending order:
 
@@ -202,7 +202,7 @@ To select all reviews and sort them by rating in descending order:
 db.select().from(reviews).orderBy(desc(reviews.rating)); // Sort by rating in descending order
 ```
 
-### 7. Combining ORDER BY with LIMIT
+## 7. Combining ORDER BY with LIMIT
 
 To select the top 5 highest-rated reviews for a specific product:
 
@@ -229,7 +229,7 @@ The .orderBy() method is used to specify the sorting criteria. You can use asc()
 The .limit() method restricts the number of results returned.
 Replace 'your-product-id-here' with the actual UUID when executing the queries.
 
-### 9. Using Aggregate Functions
+## 9. Using Aggregate Functions
 
 COUNT()
 To count the number of reviews for a specific product:
@@ -292,7 +292,7 @@ const maxRating = await db
   .execute();
 ```
 
-### 10. Grouping Results with GROUP BY
+## 10. Grouping Results with GROUP BY
 
 To group reviews by user and count how many reviews each user has made:
 
@@ -305,7 +305,7 @@ db.select({
   .groupBy(reviews.userId); // Group by userId
 ```
 
-### 11. Filtering Groups with HAVING
+## 11. Filtering Groups with HAVING
 
 To find users who have made more than 3 reviews:
 
@@ -336,7 +336,7 @@ db.select()
   .innerJoin(products, eq(cartItems.productId, products.id)); // Join with products table
 ```
 
-### 13. Left Join
+## 13. Left Join
 
 To select all cart items and their associated products, including cart items that may not have a corresponding product:
 
@@ -346,7 +346,7 @@ db.select()
   .leftJoin(products, eq(cartItems.productId, products.id));
 ```
 
-### 14. Right Join
+## 14. Right Join
 
 To select all products and their associated cart items, including products that may not have been added to any cart:
 
@@ -356,7 +356,7 @@ db.select()
   .rightJoin(cartItems, eq(cartItems.productId, products.id));
 ```
 
-### 15. Full Outer Join
+## 15. Full Outer Join
 
 To select all cart items and products, including those that may not have matches in either table:
 
@@ -370,7 +370,7 @@ Each query uses the .select() method to initiate the selection.
 The .from() method specifies the primary table, while the join methods (innerJoin, leftJoin, rightJoin, fullOuterJoin, and crossJoin) specify how to combine it with other tables.
 The eq() function is used to define the condition for joining tables.
 
-### 16. Nested Subqueries Queries
+## 16. Nested Subqueries Queries
 
 To find all products that have reviews with an average rating above 4.0:
 
@@ -389,7 +389,7 @@ db.select()
   );
 ```
 
-### 17. Correlated Subqueries
+## 17. Correlated Subqueries
 
 To find all users who have written reviews for products with an average rating above 4.0:
 
@@ -419,7 +419,7 @@ db.select()
 Nested Queries: The first example uses a subquery to find product IDs that have an average rating greater than 4.0. The outer query then retrieves products that match these IDs using inArray().
 Correlated Subqueries: The second example retrieves users who have written reviews for products with an average rating above 4.0. The subquery correlates to the outer query by using users.id to link to reviews.userId.
 
-### 18. UNION
+## 18. UNION
 
 To combine results from two different queries (e.g., retrieves user IDs from both reviews and wishlists):
 
@@ -429,7 +429,7 @@ db.select({ userId: reviews.userId })
   .union(db.select({ userId: wishlists.userId }).from(wishlists)); // get user IDs from wishlists
 ```
 
-### 19. UNION ALL
+## 19. UNION ALL
 
 To combine results from two different queries without removing duplicates (e.g., retrieves all user IDs from reviews and wishlists):
 
@@ -441,7 +441,7 @@ db.select({ userId: reviews.userId })
   );
 ```
 
-### 20. INTERSECT
+## 20. INTERSECT
 
 To find user IDs that exist in both reviews and wishlists:
 
@@ -453,7 +453,7 @@ db.select({ userId: reviews.userId })
   );
 ```
 
-### 21. EXCEPT
+## 21. EXCEPT
 
 To find user IDs from reviews that do not exist in wishlists:
 
@@ -470,7 +470,7 @@ UNION ALL: Combines the results of two queries without removing duplicates.
 INTERSECT: Retrieves common results from two queries.
 EXCEPT: Retrieves results from the first query that do not exist in the second query.
 
-### 22. INSERT Statements
+## 22. INSERT Statements
 
 Inserting a New Cart Item
 To insert a new item into the cart_items table:
@@ -484,7 +484,7 @@ db.insert(product).values({
 });
 ```
 
-### 23. UPDATE Statements
+## 23. UPDATE Statements
 
 Updating a Review
 To update the comment and rating of a specific review:
@@ -498,7 +498,7 @@ db.update(reviews)
   .where(eq(reviews.id, "your-review-id-here")); // Replace with actual UUID
 ```
 
-### 24. DELETE Statements
+## 24. DELETE Statements
 
 Deleting a Wishlist Item
 To delete a specific item from the wishlist_items table:
@@ -524,7 +524,7 @@ Durability: Once a transaction is committed, it remains so, even in the event of
 COMMIT and ROLLBACK Statements
 In Drizzle ORM, you can manage transactions using COMMIT and ROLLBACK to ensure that your operations adhere to ACID properties.
 
-### 25.Transaction
+## 25.Transaction
 
 ```js
 db.transaction();
@@ -557,7 +557,7 @@ try {
 }
 ```
 
-### 26.Savepoints
+## 26.Savepoints
 
 Savepoints allow you to set a point within a transaction to which you can roll back without affecting the entire transaction.
 
@@ -611,7 +611,7 @@ COMMIT: Saves all changes made during the transaction. In the example, if all op
 ROLLBACK: Reverts any changes made during the transaction if an error occurs. You can roll back to the last savepoint or the entire transaction.
 Savepoints: Allow you to set a point within a transaction. If an error occurs after a savepoint, you can roll back to that point rather than starting over from the beginning.
 
-### 27. Indexes
+## 27. Indexes
 
 What Are Indexes?
 Indexes are special database structures that improve the speed of data retrieval operations on a database table. They work similarly to an index in a book, allowing the database to find and access data without scanning every row in the table.
@@ -655,9 +655,9 @@ Increased Storage Space: Indexes consume additional disk space, which can be sig
 Conclusion
 Indexes are powerful tools for enhancing database performance, especially for read-heavy applications. However, it's crucial to balance the benefits of faster query performance against the overhead they introduce for write operations and storage requirements. Careful planning and analysis are necessary to determine when and where to use indexes effectively.
 
-## Advanced
+# Advanced
 
-### Views in Databases
+## Views in Databases
 
 Views are virtual tables that provide a way to represent the result of a query as if it were a table. They can simplify complex queries, enhance security by restricting access to certain data, and allow users to work with a simplified representation of the data.
 
@@ -692,7 +692,7 @@ const productRatings = await db
 
 This retrieves the average ratings from the product_average_ratings view.
 
-#### Updatable Views
+## Updatable Views
 
 Updatable views allow you to perform INSERT, UPDATE, and DELETE operations on the view, which will affect the underlying tables. However, not all views are updatable. A view is typically updatable if it meets certain conditions, such as:
 
@@ -725,11 +725,11 @@ await db
   .execute();
 ```
 
-#### Materialized Views
+## Materialized Views
 
 Materialized views are similar to regular views but store the result of the query physically. This allows for faster access to data, as the results do not need to be recalculated on each query. However, they require maintenance to keep the data up to date.
 
-#### Creating a Materialized View
+## Creating a Materialized View
 
 To create a materialized view (if supported by the database), you might use a command like this (note that Drizzle ORM may not directly support creating materialized views, and you may need to use raw SQL):
 
@@ -747,7 +747,7 @@ To update the data in a materialized view, you typically need to refresh it:
 REFRESH MATERIALIZED VIEW product_ratings_mv;
 ```
 
-#### Conclusion
+## Conclusion
 
 Views: Simplify complex queries and provide a secure interface to the data.
 Updatable Views: Allow data manipulation through the view, affecting the underlying tables.

@@ -24,7 +24,10 @@ export const SideBar = ({
       className={cn(" hidden w-0 lg:block lg:w-[20%] mr-16 " /*, className*/)}
     >
       <div className="sticky top-20" style={{ top: "80px" }}>
-        <ScrollArea className="flex flex-col items-start  h-[60%] ">
+        <ScrollArea
+          className="flex flex-col items-start   "
+          style={{ height: `calc(100vh - 100px)` }}
+        >
           <ul className="not-prose text-xs ">
             {links &&
               links.map((link) => (

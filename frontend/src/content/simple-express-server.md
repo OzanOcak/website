@@ -15,7 +15,7 @@ published: true
 
 In this article, we will walk through the steps to create a simple RESTful API using Node.js with Express, backed by a PostgreSQL database, all running in Docker containers. This setup allows for easy development and deployment, ensuring consistency across environments.
 
-### Step 1: Set Up Your Project
+## Step 1: Set Up Your Project
 
 Create a project directory:
 
@@ -33,7 +33,7 @@ npm i -D nodemon
 cat package.json
 ```
 
-### Step 2: Create the Express Application
+## Step 2: Create the Express Application
 
 1. Create a new file named app.js:
 
@@ -95,7 +95,7 @@ DB_PORT=5432
 PORT=3000
 ```
 
-### Step 3: Create Docker Setup
+## Step 3: Create Docker Setup
 
 Next, we’ll configure Docker to run our application and database.
 
@@ -146,7 +146,7 @@ volumes:
   pgdata:
 ```
 
-### Step 4: Create the Database Table
+## Step 4: Create the Database Table
 
 1. Launch the Docker containers:
 
@@ -181,7 +181,7 @@ insert into items (1, 'tom');
 select * from items;
 ```
 
-### Step 5: Testing the API
+## Step 5: Testing the API
 
 Now, let’s test our API to ensure everything is working as expected. We will use curl.
 
@@ -191,6 +191,6 @@ curl http://localhost:3000
 curl http://localhost:3000/items
 ```
 
-### Conclusion
+## Conclusion
 
 In this tutorial, we successfully set up a simple RESTful API using Node.js, Express, and PostgreSQL, all running within Docker containers. This setup simplifies the development process and ensures that the application behaves consistently across different environments.
