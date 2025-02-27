@@ -39,6 +39,11 @@ export default function PrivateLayout({ children }: ProtectedLayoutProps) {
     }
   }, [hasAccess, isAdminRoute, router, currentPath, setPath]);
 
+  // Use the modified useInactivityTimeout with a redirect on timeout
+  useInactivityTimeout(30 * 60 * 1000, () => {
+    router.push("/");
+  });
+
   // Render children if access is granted
   return hasAccess || !isAdminRoute ? children : null;
 }
