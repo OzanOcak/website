@@ -38,7 +38,7 @@ const Page = () => {
 
 export default Page;
 
-export const BlackScreen = () => {
+const BlackScreen = () => {
   return (
     <div className="min-h-screen bg-gray-300 dark:bg-black/0 text-white flex items-center justify-center p-8">
       <div className="max-w-4xl w-full">
