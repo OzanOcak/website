@@ -4,9 +4,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/src/server.js",
-    "start-dev": "ts-node src/server.ts",
+    "start-dev": "NODE_ENV=development ts-node src/server.ts",
     "dev": "nodemon --exec ts-node src/server.ts",
-    "build": "tsc --outDir dist/",
+    "start-prod": "NODE_ENV=production node dist/server.js",
+    "build": "tsc --outDir dist/ && npm run migrate",
     "db:generate": "npx drizzle-kit generate  --config='./drizzle.config.ts'",
     "db:push": "npx ts-node src/db/migrate.ts",
     "migrate": "npx drizzle-kit generate  --config='./drizzle.config.ts' && npx ts-node src/db/migrate.ts"

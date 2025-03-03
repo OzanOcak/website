@@ -7,11 +7,11 @@ dotenv.config(); // Load environment variables
 
 // PostgreSQL connection configuration
 const pool = new Pool({
-  host: process.env.DB_HOST!,
-  port: Number(process.env.DB_PORT!),
-  user: process.env.DB_USERNAME!,
-  password: process.env.DB_PASSWORD!,
-  database: process.env.DB_NAME!,
+  host: process.env.DB_HOST || "localhost", // The hostname or IP address of your database server.
+  port: Number(process.env.DB_PORT) || 5432,
+  user: process.env.DB_USERNAME || "postgres",
+  password: process.env.DB_PASSWORD || "postgres",
+  database: process.env.DB_NAME || "database",
 });
 
 // Initialize the database connection
