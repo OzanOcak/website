@@ -10,8 +10,15 @@ import visitRoutes from "./routes/visitRoutes";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import path from "node:path";
 
-dotenv.config(); // Load environment variables from .env file
+dotenv.config({
+  path: path.resolve(
+    __dirname,
+    `.env.${process.env.NODE_ENV || "development"}`
+  ),
+}); // If process.env.NODE_ENV is undefined, it defaults to development and loads
+// .env.development (or .env if .env.development doesn't exist).
 
 const PORT = process.env.PORT || 3000;
 
