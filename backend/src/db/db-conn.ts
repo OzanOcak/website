@@ -30,7 +30,7 @@ export async function connectDatabase() {
       console.error("Connection error", err);
     }
   } else {
-    console.log("Already connected to PostgreSQL database");
+    console.log("Connected to PostgreSQL database:", process.env.DB_HOST);
   }
 }
 

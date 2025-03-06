@@ -20,7 +20,7 @@ dotenv.config({
 }); // If process.env.NODE_ENV is undefined, it defaults to development and loads
 // .env.development (or .env if .env.development doesn't exist).
 
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 const startServer = async () => {
   try {
@@ -30,15 +30,30 @@ const startServer = async () => {
     app.use(express.json());
     app.use(cookieParser());
 
+    // List of allowed origins
+    const allowedOrigins = [
+      "http://localhost:5173", // Development origin
+      "https://website-nine-eta-87.vercel.app", // Production origin
+    ];
+
     // Enable CORS for all routes
-    app.use(
-      cors({
-        origin: "http://localhost:5173", //  frontend origin
-        credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-        exposedHeaders: ["Refresh-Token-ID", "Authorization"], // Expose the Authorization header
-        methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"], // Allow the necessary methods
-      })
-    );
+    const corsOptions = {
+      origin: (
+        origin: string | undefined,
+        callback: (err: Error | null, allow?: boolean) => void
+      ) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true); // Allow the request
+        } else {
+          callback(new Error("Not allowed by CORS")); // Block the request
+        }
+      },
+      credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+      exposedHeaders: ["Refresh-Token-ID", "Authorization"], // Expose the Authorization header
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"], // Allow the necessary methods
+    };
+
+    app.use(cors(corsOptions));
 
     // app.use(trackVisit);
 
@@ -49,7 +64,11 @@ const startServer = async () => {
     app.use("/api", likeblogRoutes);
     app.use("/api", visitRoutes);
 
-    app.listen(PORT, () => {
+    app.get("/api/hello", (req, res) => {
+      res.json({ message: "Hello, World!" });
+    });
+
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`Server is running on http://localhost:${PORT}`);
     });
   } catch (error) {

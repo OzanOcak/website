@@ -20,19 +20,25 @@ export const oauthCallback: RequestHandler = async (
 ): Promise<void> => {
   const { code, state, error } = req.query;
 
+  // Determine the base URL based on the environment
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://website-nine-eta-87.vercel.app" // Production URL
+      : "http://localhost:5173"; // Development URL
+
   //console.log("code :", code);
   //console.log("state :", state);
 
   // Check if the user cancelled the OAuth flow
   if (error) {
     // console.log("OAuth flow cancelled by user:", error);
-    return res.redirect("http://localhost:5173"); // Redirect to the login page
+    return res.redirect(baseUrl); // Redirect to the login page
   }
 
   // Validate the code and state
   if (typeof code !== "string" || typeof state !== "string") {
     const errorMessage = encodeURIComponent("Invalid code or state");
-    return res.redirect(`http://localhost:5173/error?message=${errorMessage}`);
+    return res.redirect(`${baseUrl}/error?message=${errorMessage}`);
   }
 
   // Retrieve the code verifier using the state
@@ -40,7 +46,7 @@ export const oauthCallback: RequestHandler = async (
 
   if (!codeVerifier) {
     const errorMessage = encodeURIComponent("Missing code verifier");
-    return res.redirect(`http://localhost:5173/error?message=${errorMessage}`);
+    return res.redirect(`${baseUrl}/error?message=${errorMessage}`);
   }
 
   try {
@@ -59,9 +65,7 @@ export const oauthCallback: RequestHandler = async (
     // 5. Ensure profile.email is a valid string
     if (!profile.email || !profile.id) {
       const errorMessage = encodeURIComponent("Invalid profile data");
-      return res.redirect(
-        `http://localhost:5173/error?message=${errorMessage}`
-      );
+      return res.redirect(`${baseUrl}/error?message=${errorMessage}`);
     }
 
     //console.log("profile :", profile);
@@ -89,13 +93,13 @@ export const oauthCallback: RequestHandler = async (
     });
 
     // Redirect to the username page with the username as a query parameter
-    const redirectUrl = `http://localhost:5173/username?xyz=${encodeURIComponent(
+    const redirectUrl = `${baseUrl}/username?xyz=${encodeURIComponent(
       profile.name!
     )}`;
     res.redirect(redirectUrl);
   } catch (error) {
     // Redirect to an error page or the home page
-    const errorRedirectUrl = `http://localhost:5173/error`; // Or any other error page
+    const errorRedirectUrl = `${baseUrl}/error`; // Or any other error page
     res.redirect(errorRedirectUrl);
   }
 };
