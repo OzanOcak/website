@@ -18,7 +18,7 @@ export const users = pgTable("users", {
 });
 
 export const website_visits = pgTable("website_visits", {
-  id: serial("id").primaryKey(),
+  id: integer("id").notNull().primaryKey(), // not serial cuz no need increase by 1
   total_visits: bigint("total_visits", { mode: "number" }).default(0).notNull(),
 });
 

@@ -1,0 +1,1 @@
+ALTER TABLE "website_visits" ALTER COLUMN "id" SET DEFAULT 1;
