@@ -1,9 +1,12 @@
 import { useStore } from "@/stores/useAuthStore";
 import axios from "axios";
+import dotenv from "dotenv";
+
 //import { jwtDecode } from "jwt-decode";
+dotenv.config();
 
 const axiosInstance = axios.create({
-  baseURL: "http://192.168.50.23:3000/api",
+  baseURL: process.env.API_BASE_URL || "http://localhost:3000/api",
   withCredentials: true, // Allows credentials (cookies) to be sent
   headers: {
     "Content-Type": "application/json", // Default header for JSON
