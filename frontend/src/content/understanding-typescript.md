@@ -7,7 +7,7 @@ author: ozan
 date: 16.11.2024
 tags:
   - typescript
-published: true
+published: false
 ---
 
 # Advanced Types

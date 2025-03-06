@@ -3,7 +3,7 @@ import axios from "axios";
 //import { jwtDecode } from "jwt-decode";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "http://192.168.50.23:3000/api",
   withCredentials: true, // Allows credentials (cookies) to be sent
   headers: {
     "Content-Type": "application/json", // Default header for JSON
