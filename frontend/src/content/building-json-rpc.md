@@ -10,7 +10,7 @@ tags:
   - express
   - api
   - trpc
-published: true
+published: false
 ---
 
 In this tutorial, we'll create a simple JSON-RPC API using TypeScript and Express, leveraging the typed-rpc library for easy RPC handling. We will also create a client to interact with our API. By the end, you'll have a fully functional API that can respond to requests.

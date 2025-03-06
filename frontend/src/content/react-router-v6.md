@@ -8,7 +8,7 @@ date: 12.10.2024
 tags:
   - React
   - React-Router
-published: true
+published: false
 ---
 
 React Router is an essential library for building single-page applications (SPAs) in React. It provides a robust way to manage navigation, routes, and data fetching. In this guide, we’ll explore the createBrowserRouter API, its features like loaders and actions, and how it compares to using React Query for data management. To get started, install React Router if you haven’t already: `npm install react-router-dom`
