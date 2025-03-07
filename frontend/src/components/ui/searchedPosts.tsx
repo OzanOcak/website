@@ -10,9 +10,10 @@ interface SearchProps {
   blogs: BlogType[];
 }
 
-const Search: React.FC<SearchProps> = ({ blogs }) => {
+const SearchedPosts: React.FC<SearchProps> = ({ blogs }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [isTagFilterOpen, setIsTagFilterOpen] = useState(false);
 
   // Get all unique tags from the blogs
   const allTags = Array.from(new Set(blogs.flatMap((blog) => blog.tags)));
@@ -21,7 +22,9 @@ const Search: React.FC<SearchProps> = ({ blogs }) => {
   const filteredBlogs = blogs
     .filter((blog: BlogType) => blog.published)
     .filter((blog: BlogType) =>
-      blog.title.toLowerCase().includes(searchTerm.toLowerCase())
+      `${blog.title} ${blog.tags.join(" ")}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
     )
     .filter(
       (blog: BlogType) =>
@@ -31,7 +34,7 @@ const Search: React.FC<SearchProps> = ({ blogs }) => {
     .sort((a: BlogType, b: BlogType) => {
       const dateA = parse(b.date, "dd.MM.yyyy", new Date()).getTime();
       const dateB = parse(a.date, "dd.MM.yyyy", new Date()).getTime();
-      return dateB - dateA; // Sort in descending order (newest first)
+      return dateA - dateB; // Sort in descending order (newest first)
     });
 
   const handleTagChange = (tag: string) => {
@@ -40,6 +43,10 @@ const Search: React.FC<SearchProps> = ({ blogs }) => {
         ? prevTags.filter((t) => t !== tag)
         : [...prevTags, tag]
     );
+  };
+
+  const toggleTagFilter = () => {
+    setIsTagFilterOpen((prev) => !prev);
   };
 
   return (
@@ -55,23 +62,47 @@ const Search: React.FC<SearchProps> = ({ blogs }) => {
         />
       </div>
 
-      {/* Tag Filter */}
+      {/* Tag Filter Accordion */}
       <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">Filter by Tags:</h2>
-        <div className="flex flex-wrap gap-2">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => handleTagChange(tag)}
-              className={`px-4 py-2 rounded-full ${
-                selectedTags.includes(tag)
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-gray-700"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
+        <button
+          onClick={toggleTagFilter}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault(); // Prevent scrolling on Space key
+              toggleTagFilter();
+            }
+          }}
+          aria-expanded={isTagFilterOpen}
+          aria-controls="tag-filter-content"
+          className="text-xl font-semibold mb-2 cursor-pointer focus:outline-none "
+        >
+          Filter by Tags {isTagFilterOpen ? "▲" : "▼"}
+        </button>
+
+        {/* use div tag instead isTagFilterOpen? for smoothness */}
+        <div
+          id="tag-filter-content"
+          role="region"
+          aria-hidden={!isTagFilterOpen}
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            isTagFilterOpen ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="flex flex-wrap gap-2">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => handleTagChange(tag)}
+                className={`px-4 py-2 rounded-full ${
+                  selectedTags.includes(tag)
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -99,4 +130,4 @@ const Search: React.FC<SearchProps> = ({ blogs }) => {
   );
 };
 
-export default Search;
+export default SearchedPosts;

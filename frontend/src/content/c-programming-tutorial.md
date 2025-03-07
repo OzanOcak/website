@@ -6,12 +6,6 @@ imageUrl: /images/9.png
 author: ozan
 date: 12.09.2024
 tags:
-  - c
-  - assembly
-  - docker
-  - assembly
-  - docker
-  - assembly
   - docker
 published: true
 ---

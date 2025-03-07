@@ -11,10 +11,8 @@ tags:
   - NGINX
   - Reverse Proxy
   - Web Server
-  - Web Development
-  - Server Configuration
-  - API Management
-  - Security
+  - API
+  - Cybersecurity
 published: true
 ---
 
