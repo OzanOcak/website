@@ -3,6 +3,7 @@ import rateLimit from "express-rate-limit";
 import { getLikeBlog } from "../controllers/feature-controllers/blog-likes/get-likes-controller";
 import { likeBlog } from "../controllers/feature-controllers/blog-likes/like-controller";
 import { dislikeBlog } from "../controllers/feature-controllers/blog-likes/unlike-controller";
+import { getCommentCountByBlogId } from "../controllers/feature-controllers/comments/fetch-comment-count";
 
 const router = Router();
 
@@ -17,4 +18,6 @@ router.get("/blogpost/:postId/bloglikes", getLikeBlog); // Public route
 router.post("/blogpost/:postId/likeblog", likeRateLimiter, likeBlog); // Public route with rate limiter
 router.post("/blogpost/:postId/unlikeblog", likeRateLimiter, dislikeBlog); // Public route with rate limiter
 
+// blog's comment count
+router.get("/blogpost/:postId/commentcount", getCommentCountByBlogId); // Public route
 export default router;
