@@ -1,7 +1,7 @@
 import fs, { readFileSync } from "fs";
 import matter from "gray-matter";
 import { Metadata } from "next";
-import Search from "@/components/ui/search";
+import SearchedPosts from "@/components/ui/searchedPosts";
 
 export interface BlogType {
   slug: string;
@@ -42,7 +42,7 @@ try {
 const BlogList = () => {
   return (
     <div className="container mx-auto p-4">
-      <Search blogs={blogs} /> {/* Use the Search component here */}
+      <SearchedPosts blogs={blogs} /> {/* Use the Search component here */}
     </div>
   );
 };

@@ -8,13 +8,9 @@ imageUrl: /images/11.png
 author: o. ocak
 date: 06.03.2025
 tags:
-  - SSL
-  - TLS
-  - Web Security
+  - SSL/TLS
   - Certbot
-  - HTTPS
   - Cybersecurity
-  - Data Protection
   - Encryption
 published: true
 ---

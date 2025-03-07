@@ -9,7 +9,6 @@ author: ozan
 date: 27.02.2025
 tags:
   - JWT
-  - Role-based auth
   - OAuth 2.0
   - PKCE
   - FA2
