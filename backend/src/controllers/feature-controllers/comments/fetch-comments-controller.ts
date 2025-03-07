@@ -12,7 +12,7 @@ export const getCommentsByBlogId = async (
   try {
     // Fetch comments for the blog post
     const commentsList = await db
-      .select({
+      .selectDistinctOn([comments.id], {
         id: comments.id,
         content: comments.content,
         userId: comments.userId,

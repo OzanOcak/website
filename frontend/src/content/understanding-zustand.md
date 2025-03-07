@@ -9,7 +9,7 @@ tags:
   - react
   - typescript
   - zustand
-published: false
+published: true
 ---
 
 # Zustand Tutorial: Managing State in React Applications

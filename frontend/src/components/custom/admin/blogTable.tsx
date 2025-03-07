@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import { BlogType } from "@/app/(private)/(roles)/articles/page";
 import { useStore } from "@/stores/useAuthStore";
 import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { useHandlePublish } from "@/hooks/roles/blogpublish/useHandlePublish";
 import { useHandleUnpublish } from "@/hooks/roles/blogpublish/useHandleUnpublish";
+import { BlogType } from "@/app/(public)/blog/page";
 
 interface BlogPostTableProps {
   blogs: BlogType[];

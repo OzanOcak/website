@@ -14,7 +14,7 @@ tags:
   - PKCE
   - FA2
   - OTP
-published: false
+published: true
 ---
 
 # Building a Secure JWT Token-Based Authentication and Role-Based Authorization System from Scratch

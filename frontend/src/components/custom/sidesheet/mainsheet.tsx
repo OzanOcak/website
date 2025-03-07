@@ -45,7 +45,7 @@ export function SheetSide({ slug }: { slug: string }) {
         className="flex items-center gap-2 px-6 py-[1.23rem] text-xl rounded-full text-gray-700 hover:text-gray-800
       dark:text-white bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 hover:dark:bg-gray-800 border-none"
       >
-        <MessageSquareText />
+        <MessageSquareText />1
       </Button>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent side={side}>

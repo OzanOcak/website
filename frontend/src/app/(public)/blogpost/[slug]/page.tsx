@@ -87,7 +87,6 @@ export default async function BlogPostPage({
           </div>
           <div className="flex  space-x-2 mr-2">
             <LikeDislikeButtons postId={slug} />
-
             <div className="font-extrabold text-lg -mt-1 mx-1"> </div>
             <SheetSide slug={slug} />
           </div>

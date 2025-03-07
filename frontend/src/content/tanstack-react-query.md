@@ -9,7 +9,7 @@ tags:
   - React
   - React-Router
   - Axios
-published: false
+published: true
 ---
 
 # TanStack React Query Tutorial

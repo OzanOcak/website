@@ -86,6 +86,7 @@ export function CommentSection({ postId }: { postId: string }) {
         );
       });
       setLocalComments(sortedComments);
+      console.log(comments);
     }
   }, [comments]);
 
@@ -165,6 +166,13 @@ export function CommentSection({ postId }: { postId: string }) {
             newSet.delete(commentId);
             return newSet;
           });
+          setLocalComments((prevComments) =>
+            prevComments.map((comment) =>
+              comment.id === commentId
+                ? { ...comment, likeCount: comment.likeCount - 1 }
+                : comment
+            )
+          );
         },
       });
     } else {
@@ -174,6 +182,13 @@ export function CommentSection({ postId }: { postId: string }) {
           setLikedComments((prev) => new Set(prev).add(commentId));
         },
       });
+      setLocalComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment.id === commentId
+            ? { ...comment, likeCount: comment.likeCount + 1 }
+            : comment
+        )
+      );
     }
   };
 
