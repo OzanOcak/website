@@ -51,7 +51,13 @@ interface Comment {
   profilePicture: string;
 }
 
-export function CommentSection({ postId }: { postId: string }) {
+export function CommentSection({
+  postId,
+  onCommentAdded,
+}: {
+  postId: string;
+  onCommentAdded: () => void;
+}) {
   const { data: comments = [], isLoading, isError } = useGetComments(postId);
   const { mutate: createComment } = useCreateComment(postId);
   const { mutate: likeComment } = useLikeComment(postId);
@@ -127,6 +133,7 @@ export function CommentSection({ postId }: { postId: string }) {
           form.reset();
           setIsExpanded(false);
           setReplyingTo(null);
+          onCommentAdded();
         },
       }
     );

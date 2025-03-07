@@ -15,11 +15,26 @@ import {
 } from "@/components/ui/sheet";
 import { MessageSquareText } from "lucide-react";
 import { CommentSection } from "./comment";
+import { useGetCommentCount } from "@/hooks/roles/comments/useFetchCommentCount";
+import { useQueryClient } from "@tanstack/react-query";
 
 export function SheetSide({ slug }: { slug: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [side, setSide] = useState<"right" | "bottom">("right"); // State for the side
   //const [username, setUsername] = useState("@peduarte");
+  const [isCommentAdded, setIsCommentAdded] = useState(false); // Track new comments
+  const queryClient = useQueryClient();
+
+  const {
+    data: commentCountData,
+    // isLoading,
+    // isError,
+  } = useGetCommentCount(slug);
+
+  // Callback to update isCommentAdded
+  const onCommentAdded = () => {
+    setIsCommentAdded(true); // Set to true when a new comment is added
+  };
 
   // Function to check screen width and update the side
   const updateSide = () => {
@@ -42,19 +57,41 @@ export function SheetSide({ slug }: { slug: string }) {
       <Button
         onClick={() => setIsOpen(true)}
         variant="outline"
-        className="flex items-center gap-2 px-6 py-[1.23rem] text-xl rounded-full text-gray-700 hover:text-gray-800
+        className="flex items-center gap-2 px-3 py-[1.26rem]  rounded-full text-gray-700 hover:text-gray-800
       dark:text-white bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 hover:dark:bg-gray-800 border-none"
       >
-        <MessageSquareText />1
+        <MessageSquareText />
+        {commentCountData?.count > 0 ? (
+          <span className="font-md">{commentCountData.count}</span> // Display comment count
+        ) : (
+          <span className="font-md">0</span>
+        )}
       </Button>
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <Sheet
+        open={isOpen}
+        onOpenChange={(open) => {
+          if (!open) {
+            console.log("Sheet closed. Invalidating query...");
+            console.log(isCommentAdded);
+            if (isCommentAdded) {
+              queryClient.invalidateQueries({
+                queryKey: ["blogpost", slug, "commentcount"],
+              });
+            }
+            setIsOpen(false); // Close the sheet
+            setIsCommentAdded(false); // Reset the flag
+          } else {
+            setIsOpen(true); // Open the sheet
+          }
+        }}
+      >
         <SheetContent side={side}>
           <SheetHeader>
             <SheetTitle>Responses:</SheetTitle>
             <SheetDescription></SheetDescription>
           </SheetHeader>
           <div className="">
-            <CommentSection postId={slug} />
+            <CommentSection postId={slug} onCommentAdded={onCommentAdded} />
           </div>
         </SheetContent>
       </Sheet>
