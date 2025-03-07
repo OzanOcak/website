@@ -42,7 +42,6 @@ try {
 const BlogList = () => {
   return (
     <div className="container mx-auto p-4">
-      {" "}
       <Search blogs={blogs} /> {/* Use the Search component here */}
     </div>
   );
