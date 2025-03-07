@@ -3,17 +3,7 @@ import matter from "gray-matter";
 import { readFileSync } from "fs";
 import BlogPostTable from "@/components/custom/admin/blogTable";
 import Layout from "@/components/custom/layout";
-
-export type BlogType = {
-  slug: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  author: string;
-  date: string;
-  tags: string;
-  published: boolean;
-};
+import { BlogType } from "@/app/(public)/blog/page";
 
 export default function ArticlesPage() {
   let blogs: BlogType[] = [];

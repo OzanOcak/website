@@ -124,9 +124,10 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
                               disabled={loadingStates[blog.slug]}
                               className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
                             >
-                              {loadingStates[blog.slug]
+                              {/*loadingStates[blog.slug]
                                 ? "Publishing..."
-                                : "Publish"}
+                                : "Publish"*/}
+                              Publish
                             </button>
                           )}
                         </>
