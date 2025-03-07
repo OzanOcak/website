@@ -30,8 +30,9 @@ const Page = () => {
       >
         <BlackScreen />
       </div>
-
-      <WhiteScreen />
+      <div className="flex justify-center">
+        <WhiteScreen />
+      </div>
     </div>
   );
 };
@@ -107,7 +108,7 @@ const BlackScreen = () => {
 const WhiteScreen = () => {
   return (
     <div
-      className="min-h-screen bg-white text-black dark:bg-gray-800 dark:text-gray-100 
+      className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-gray-100 
     flex flex-col md:flex-row p-8"
     >
       {/* Main Content - Full width on small screens, 60% width on medium and larger screens */}
@@ -194,7 +195,7 @@ const WhiteScreen = () => {
       </div>
 
       {/* Side Navigation - Block on small screens, sidebar on medium and larger screens */}
-      <nav className="w-full text-gray-700  dark:text-gray-100  order-1 md:order-2 md:w-64 mb-8 md:mb-0 md:ml-8 md:sticky md:top-8 md:self-start">
+      <nav className="w-full capitalize font-bold  text-gray-700  dark:text-gray-100  order-1 md:order-2 md:w-64 mb-8 md:mb-0 md:ml-8 md:sticky md:top-8 md:self-start">
         <div className="space-y-2">
           <a
             href="#the-company"

@@ -9,11 +9,11 @@ interface VerifyOtpResponse {
 }
 
 export const verifyOtp = async (otp: string): Promise<VerifyOtpResponse> => {
-  console.log("Verifying OTP:", otp);
+  // console.log("Verifying OTP:", otp);
 
   // Retrieve the access token from local storage
   const accessToken = localStorage.getItem("xg8a");
-  console.log("access-token", accessToken);
+  // console.log("access-token", accessToken);
 
   try {
     console.log("Sending request to verify OTP...");
@@ -26,7 +26,7 @@ export const verifyOtp = async (otp: string): Promise<VerifyOtpResponse> => {
         },
       }
     );
-    console.log("Received response from verify OTP request:", response);
+    // console.log("Received response from verify OTP request:", response);
 
     if (response.status !== 200) {
       console.log("Error verifying OTP:", response.data.message);

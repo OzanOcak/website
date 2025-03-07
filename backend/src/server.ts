@@ -11,6 +11,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import path from "node:path";
+import helmet from "helmet";
 
 dotenv.config({
   path: path.resolve(
@@ -54,6 +55,7 @@ const startServer = async () => {
     };
 
     app.use(cors(corsOptions));
+    app.use(helmet());
 
     // app.use(trackVisit);
 
