@@ -182,3 +182,14 @@ ol {
     @apply bg-background text-foreground;
   }
 }
+
+.sticky-sidebar {
+  position: sticky;
+  top: 0; /* This will make the sidebar stick to the top of the viewport */
+  height: 100vh; /* Make sure it takes the full height of the viewport */
+  overflow-y: auto; /* Allow scrolling if the content exceeds the height */
+  /* Optional: Add some padding or background color */
+  padding: 1rem;
+  background-color: white; /* or any other background color */
+  z-index: 10; /* Ensure it stays above other content */
+}

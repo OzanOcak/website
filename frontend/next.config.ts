@@ -1,4 +1,9 @@
 import type { NextConfig } from "next";
+import { loadEnvConfig } from "@next/env";
+
+// Load environment variables
+const projectDir = process.cwd();
+loadEnvConfig(projectDir);
 
 const nextConfig: NextConfig = {
   images: {
