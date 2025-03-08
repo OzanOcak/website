@@ -1,17 +1,16 @@
 import { useStore } from "@/stores/useAuthStore";
 import axios from "axios";
-import dotenv from "dotenv";
-
 //import { jwtDecode } from "jwt-decode";
-dotenv.config();
 
 const axiosInstance = axios.create({
-  baseURL: process.env.API_BASE_URL || "http://localhost:3000/api",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000/api",
   withCredentials: true, // Allows credentials (cookies) to be sent
   headers: {
     "Content-Type": "application/json", // Default header for JSON
   },
 });
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("API Base URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
 
 // Add a request interceptor to add the access token to all requests
 axiosInstance.interceptors.request.use(

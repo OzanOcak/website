@@ -48,7 +48,7 @@ export default function RootLayout({
           </div>
           {children}
           {/* Footer */}
-          <footer className="bg-gary-100 dark:bg-gray-900 py-8 text-center">
+          <footer className="bg-gary-100 dark:bg-gray-900 pt-8 text-center">
             <p className="dark:text-gray-400">
               © 2025 OOApps Blog. All rights reserved.
             </p>
