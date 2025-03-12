@@ -20,6 +20,7 @@ dotenv.config({
   ),
 }); // If process.env.NODE_ENV is undefined, it defaults to development and loads
 // .env.development (or .env if .env.development doesn't exist).
+console.log("environment: ", process.env.NODE_ENV);
 
 const PORT = Number(process.env.PORT) || 3000;
 
@@ -28,6 +29,10 @@ const startServer = async () => {
     // Optionally, run migrations or initialize other resources here
     await connectDatabase();
     const app = express();
+
+    // Enable trust proxy to use X-Forwarded-For header
+    app.set("trust proxy", true);
+
     app.use(express.json());
     app.use(cookieParser());
 
@@ -35,6 +40,7 @@ const startServer = async () => {
     const allowedOrigins = [
       "http://localhost:5173", // Development origin
       "https://website-nine-eta-87.vercel.app", // Production origin
+      "https://oocak.com",
     ];
 
     // Enable CORS for all routes
@@ -55,6 +61,7 @@ const startServer = async () => {
     };
 
     app.use(cors(corsOptions));
+    //app.use(cors());
     app.use(helmet());
 
     // app.use(trackVisit);

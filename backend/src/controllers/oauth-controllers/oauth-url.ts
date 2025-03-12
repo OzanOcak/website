@@ -25,6 +25,11 @@ export const getGoogleOAuthUrl = async (
       return;
     }
 
+    // Log environment variables
+    console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
+    console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);
+    console.log("Google Redirect URI:", process.env.GOOGLE_REDIRECT_URI);
+
     // create an instance of OAuth2Client using the google.auth.OAuth2 constructor,
     const oauth2Client = new google.auth.OAuth2(
       process.env.GOOGLE_CLIENT_ID,
@@ -32,12 +37,16 @@ export const getGoogleOAuthUrl = async (
       process.env.GOOGLE_REDIRECT_URI
     );
 
+    console.log(process.env.GOOGLE_REDIRECT_URI);
+
     // generates the URL to which the user will be redirected to grant permission.
     const state = "some_random_state_string";
     //(req.session as any).oauthState = state;
 
     // Store the code verifier linked to the state
     codeVerifiers[state] = code_verifier;
+
+    console.log("State for CSRF protection:", state);
 
     // use the generateAuthUrl method to generate the authentication URL
     const url = oauth2Client.generateAuthUrl({
@@ -51,6 +60,7 @@ export const getGoogleOAuthUrl = async (
 
     // cast the req object to any to avoid the TypeScript error
     // (req as { googleOauthUrl?: string }).googleOauthUrl = url;
+    console.log("Generated Google OAuth URL:", url);
 
     res.json({ url, state });
     //  next();
