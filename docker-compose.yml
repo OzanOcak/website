@@ -1,0 +1,40 @@
+services:
+  db:
+    container_name: websitedb_container2
+    image: postgres:16
+    env_file:
+      - ./backend/.env
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  #backend:
+  #  container_name: backend_container
+  #  build:
+  #    context: ./backend # Update this to point to the backend folder
+  #  depends_on:
+  #    - db
+  #  environment:
+  #    DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@db:5432/${DB_NAME}
+
+  #frontend:
+  #  container_name: frontend_container
+  #  build:
+  #    context: ./frontend # Assuming you have a Dockerfile in the frontend folder
+  #  ports:
+  #    - 3000:3000 # Adjust the port as needed
+  #  depends_on:
+  #    - backend
+
+volumes:
+  db-data:

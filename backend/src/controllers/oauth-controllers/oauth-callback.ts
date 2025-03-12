@@ -23,7 +23,7 @@ export const oauthCallback: RequestHandler = async (
   // Determine the base URL based on the environment
   const baseUrl =
     process.env.NODE_ENV === "production"
-      ? "https://website-nine-eta-87.vercel.app" // Production URL
+      ? "https://oocak.com" // Production URL
       : "http://localhost:5173"; // Development URL
 
   //console.log("code :", code);

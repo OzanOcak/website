@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1740590991852,
-      "tag": "0000_naive_randall",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1741200445251,
-      "tag": "0001_great_solo",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1741203866143,
-      "tag": "0002_giant_spectrum",
+      "when": 1741543355237,
+      "tag": "0000_low_warbound",
       "breakpoints": true
     }
   ]

@@ -3,8 +3,7 @@ import axios from "axios";
 //import { jwtDecode } from "jwt-decode";
 
 const axiosInstance = axios.create({
-  //baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000/api",
-  baseURL: "https://api.oocak.com/api",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000/api",
   withCredentials: true, // Allows credentials (cookies) to be sent
   headers: {
     "Content-Type": "application/json", // Default header for JSON
