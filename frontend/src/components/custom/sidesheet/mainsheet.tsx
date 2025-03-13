@@ -87,7 +87,7 @@ export function SheetSide({ slug }: { slug: string }) {
       >
         <SheetContent
           side={side}
-          className={side === "bottom" ? "h-[50%] overflow-y-auto" : ""}
+          className={side === "bottom" ? "h-[70%] overflow-y-auto" : ""}
         >
           <SheetHeader>
             <SheetTitle>Responses:</SheetTitle>

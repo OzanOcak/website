@@ -2,6 +2,7 @@
 "use client";
 import { useIncreaseVisitCount } from "@/hooks/roles/visitcount/useIncreaseVisitCount";
 import { useStore } from "@/stores/useAuthStore";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 //export const revalidate = 60;
@@ -11,6 +12,7 @@ export default function Home() {
   const setVisited = useStore.getState().setVisited;
 
   const { mutate: increaseVisitCount } = useIncreaseVisitCount();
+  const router = useRouter();
 
   useEffect(() => {
     const trackVisit = async () => {
@@ -41,10 +43,16 @@ export default function Home() {
             Open source blog and templates to empower developers worldwide.
           </p>
           <div className="flex justify-center space-x-4">
-            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+            <button
+              onClick={() => router.push("/apps")}
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
+            >
               Get Started
             </button>
-            <button className="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+            <button
+              onClick={() => router.push("/apps")}
+              className="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
+            >
               Learn More
             </button>
           </div>
