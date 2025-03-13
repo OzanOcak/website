@@ -11,7 +11,6 @@ import {
 } from "../../ui/form";
 import { Textarea } from "../../ui/textarea";
 import { Button } from "../../ui/button";
-import Image from "next/image";
 
 import { formatDistanceToNow } from "date-fns"; // Import the date-fns function
 import { ThumbsUpIcon } from "../../icons/ThumbsUpIcon";
@@ -330,13 +329,19 @@ export function CommentSection({
             {localComments.map((comment: Comment) => (
               <div key={comment.id} className="p-4">
                 <div className="flex items-center">
-                  <Image
-                    src={comment.profilePicture || "/default-avatar.png"}
-                    alt="User Avatar"
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 rounded-full mr-3"
-                  />
+                  <Avatar className="w-7 h-7 mr-2">
+                    {isLoading || isError ? (
+                      <div className="w-7 h-7 bg-gray-300 animate-pulse rounded-full"></div>
+                    ) : null}
+                    {isLoading || isError ? null : (
+                      <>
+                        <AvatarImage src={pic} />
+                        <AvatarFallback>
+                          <FaUser className="w-6 h-6 text-gray-500" />
+                        </AvatarFallback>
+                      </>
+                    )}
+                  </Avatar>
                   <div className="flex w-full justify-between ">
                     <div>
                       <span className="font-semibold">{comment.username}</span>{" "}
