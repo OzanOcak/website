@@ -1,6 +1,6 @@
 const SiteConfig = {
-  title: "Tauri Apps",
-  description: "Apps by ozanocak",
+  title: "oocak.com",
+  description: "Apps by oocakdev",
 };
 
 export default SiteConfig;

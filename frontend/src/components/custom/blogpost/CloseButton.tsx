@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { X, Triangle } from "lucide-react";
+import { X } from "lucide-react";
 import { useRouter } from "next/navigation"; // For Next.js
 
 const CloseButton = () => {
@@ -72,7 +72,7 @@ const CloseButton = () => {
                 cy="22"
                 r="20"
                 fill="none"
-                stroke="#31ce7d" // Use bg-green-400 color
+                stroke="#0ef05b" // Use bg-green-400 color
                 strokeWidth="3" // Increase strokeWidth for a thicker border
                 strokeDasharray={circumference}
                 strokeDashoffset={strokeDashoffset}
@@ -82,18 +82,6 @@ const CloseButton = () => {
             <div className="relative z-10">
               <X size={24} strokeWidth={5} /> {/* Lucide "X" icon */}
             </div>
-          </button>
-        </div>
-      )}
-
-      {/* Scroll-to-Top Button */}
-      {isVisible && (
-        <div className="fixed bottom-8 right-8">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="p-2.5 bg-gray-800 dark:bg-gray-200 text-gray-100 dark:text-black rounded-full shadow-lg hover:bg-gray-700 dark:hover:bg-gray-400 transition-all duration-300"
-          >
-            <Triangle size={24} strokeWidth={5} />
           </button>
         </div>
       )}

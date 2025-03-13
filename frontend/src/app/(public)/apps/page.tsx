@@ -23,9 +23,9 @@ const Page = () => {
     <div>
       {/* Black background section (100vh) */}
       <div
-        className={`h-screen bg-gray-300 dark:bg-black flex mt-[-1rem] items-center justify-center 
+        className={`h-screen bg-gray-200 dark:bg-black flex mt-[-1rem] items-center justify-center 
         transition-colors duration-500 ${
-          isWhiteBackground ? "bg-black" : "bg-gray-300"
+          isWhiteBackground ? "bg-black" : "bg-gray-200"
         }`}
       >
         <BlackScreen />
@@ -41,7 +41,7 @@ export default Page;
 
 const BlackScreen = () => {
   return (
-    <div className="min-h-screen bg-gray-300 dark:bg-black/0 text-white flex items-center justify-center p-8">
+    <div className="min-h-screen bg-gray-200 dark:bg-black/0 text-white flex items-center justify-center p-8">
       <div className="max-w-4xl w-full">
         {/* Kicker */}
         <div className="text-lg font-semibold text-gray-500 mb-4">
