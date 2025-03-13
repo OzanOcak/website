@@ -11,6 +11,8 @@ import { cn } from "@/lib/utils";
 import { SheetSide } from "@/components/custom/sidesheet/mainsheet";
 import LikeDislikeButtons from "@/components/custom/blogpost/likepost";
 import { ContentTable } from "@/components/custom/blogpost/ContentTable";
+import ScrollToTopButton from "@/components/custom/blogpost/ScrollToTopButton";
+import CloseButton from "@/components/custom/blogpost/CloseButton";
 
 async function fetchBlogPost(slug: string) {
   const filePath = path.join(process.cwd(), "src/content", `${slug}.md`);
@@ -76,6 +78,7 @@ export default async function BlogPostPage({
 
   return (
     <div className="flex mx-4 md:mx-16 my-8 lg:mx-16 xl:mx-32 bg-white text-black dark:bg-black/0 dark:text-white/70 ">
+      <CloseButton />
       <SideBar links={post.links} /*tags={post.tags}*/ />
       <div className="w-full lg:w-[80%]">
         <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
@@ -103,6 +106,7 @@ export default async function BlogPostPage({
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

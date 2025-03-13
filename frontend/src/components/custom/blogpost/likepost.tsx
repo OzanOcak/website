@@ -56,8 +56,9 @@ const LikeDislikeButtons: React.FC<LikeDislikeButtonsProps> = ({ postId }) => {
   if (isLoading || isError)
     return (
       <div className="flex items-center gap-4 rounded-full bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-100">
+        <span className="w-0"> </span>
         <ThumbsUpIcon filled={false} />
-        <span className="w-4"> </span>
+        <span className="w-1"></span>
       </div>
     );
 
