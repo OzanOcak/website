@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /verify-otp/
+Disallow: /verify-otp-registration/
+Disallow: /otp-password/
+Disallow: /update-password/
+Disallow: /admin/
+Disallow: /article/
+Disallow: /user/
+Disallow: /profile/
+Disallow: /login/
+Disallow: /signup/
+Disallow: /forgot-password/
+Disallow: /username/
+
+Allow: /apps/
+Allow: /blog/
+Allow: /blogpost/
