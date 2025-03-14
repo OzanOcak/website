@@ -38,6 +38,25 @@ Now that your environment is set up, let’s start with the basics. In this sect
 - **Control Structures**: Understand how to use conditional statements and loops.
 - **Functions**: Learn how to write reusable code blocks.
 
+## My Favorite Video
+
+Here's a video I love:
+
+[![Video Thumbnail](https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+<div class="relative aspect-w-16 aspect-h-9">
+  <iframe
+    class="absolute top-0 left-0 w-full h-full"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+**Caption:** This is my favorite video of all time!
+
 ### Variables and Data Types
 
 ```c
