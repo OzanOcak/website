@@ -94,7 +94,11 @@ export function SheetSide({ slug }: { slug: string }) {
             <SheetDescription></SheetDescription>
           </SheetHeader>
           <div className="">
-            <CommentSection postId={slug} onCommentAdded={onCommentAdded} />
+            <CommentSection
+              postId={slug}
+              onCommentAdded={onCommentAdded}
+              side={side}
+            />
           </div>
         </SheetContent>
       </Sheet>
