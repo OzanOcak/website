@@ -10,9 +10,8 @@ date: 27.02.2025
 tags:
   - JWT
   - OAuth 2.0
-  - PKCE
-  - FA2
-  - OTP
+  - Security
+  - Authentication
 published: true
 ---
 

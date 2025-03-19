@@ -8,7 +8,6 @@ date: 13.11.2024
 tags:
   - typescript
   - express
-  - api
   - trpc
 published: true
 ---
