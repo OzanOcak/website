@@ -7,6 +7,7 @@
     "start-dev": "NODE_ENV=development ts-node src/server.ts",
     "dev": "nodemon --exec ts-node src/server.ts",
     "start-prod": "NODE_ENV=production node dist/server.js",
+    "start-pm2": "pm2 start dist/server.js --name \"backend\" --env NODE_ENV=production",
     "build": "NODE_ENV=production tsc --outDir dist/",
     "db:generate": "npx drizzle-kit generate  --config='./drizzle.config.ts'",
     "db:push": "npx ts-node src/db/migrate.ts",
