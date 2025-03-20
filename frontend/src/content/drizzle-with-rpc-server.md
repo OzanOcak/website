@@ -6,7 +6,7 @@ imageUrl: /images/2.png
 author: ozan
 date: 12.11.2024
 tags:
-  - RPC
+  - Trpc
   - SQL
   - Drizzle
   - Docker

@@ -6,7 +6,7 @@ imageUrl: /images/9.png
 author: o. ocak
 date: 12.09.2024
 tags:
-  - docker
+  - Docker
 published: true
 ---
 

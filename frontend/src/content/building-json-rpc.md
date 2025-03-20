@@ -6,9 +6,9 @@ imageUrl: /images/6.png
 author: ozan
 date: 13.11.2024
 tags:
-  - typescript
-  - express
-  - trpc
+  - Typescript
+  - Express
+  - Trpc
 published: true
 ---
 

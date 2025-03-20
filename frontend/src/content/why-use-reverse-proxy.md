@@ -9,9 +9,7 @@ author: o. ocak
 date: 06.03.2025
 tags:
   - NGINX
-  - Reverse Proxy
-  - Web Server
-  - API
+  - Api
   - Cybersecurity
 published: true
 ---

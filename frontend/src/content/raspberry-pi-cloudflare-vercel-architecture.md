@@ -6,9 +6,6 @@ imageUrl: /images/9.png
 author: O. Ocak
 date: 10.03.2025
 tags:
-  - Raspberry Pi
-  - Cloudflare
-  - Vercel
   - DNS
   - Tunneling
   - Architecture

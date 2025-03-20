@@ -6,7 +6,7 @@ imageUrl: /images/7.png
 author: ozan
 date: 16.11.2024
 tags:
-  - typescript
+  - Typescript
 published: true
 ---
 

@@ -9,7 +9,6 @@ author: o. ocak
 date: 06.03.2025
 tags:
   - SSL/TLS
-  - Certbot
   - Cybersecurity
   - Encryption
 published: true
