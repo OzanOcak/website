@@ -6,9 +6,9 @@ imageUrl: /images/8.png
 author: ozan
 date: 17.11.2024
 tags:
-  - react
-  - typescript
-  - zustand
+  - React
+  - Typescript
+  - Zustand
 published: true
 ---
 
