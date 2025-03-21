@@ -1,6 +1,6 @@
 "use client";
 import LoginForm from "@/components/auth/login";
-//import { GoogleSignInButton } from "@/components/oauth/googleSignin";
+import { GoogleSignInButton } from "@/components/oauth/googleSignin";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
@@ -56,9 +56,11 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/*<div className="flex justify-center">
-          <GoogleSignInButton />
-        </div>*/}
+        {
+          <div className="flex justify-center">
+            <GoogleSignInButton />
+          </div>
+        }
       </div>
     </div>
   );
