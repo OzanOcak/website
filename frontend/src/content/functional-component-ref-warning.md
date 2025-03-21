@@ -6,7 +6,7 @@ imageUrl: /images/1.png
 author: o. ocak
 date: 20.03.2025
 tags:
-  - react
+  - React
 published: true
 ---
 
