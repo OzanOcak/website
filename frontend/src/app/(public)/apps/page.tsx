@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 // Main page component
@@ -117,42 +119,91 @@ const WhiteScreen = () => {
         <article className="rich-text-area">
           {/* The Company */}
           <div className="py-8">
-            <h2 id="the-company" className="text-3xl font-bold mb-6">
-              Desktop English Dictionary App
+            <h2 id="the-company">
+              Welcome to <span className="font-bold">Markle</span>
             </h2>
-            <p className="text-lg  mb-8">
-              Elevate your English vocabulary with our comprehensive Desktop
-              English Dictionary App. Tailored for students, professionals, and
-              language enthusiasts, this app offers a rich database of the most
-              commonly used words, including verbs, nouns, adjectives, adverbs,
-              phrasal verbs, and idioms.
+            {/* Image Section using Next.js Image component */}
+            <div className="image-container  p-16">
+              <Image
+                src="https://github.com/OzanOcak/merkle/blob/main/git-media/markle2.gif?raw=true"
+                alt="Markdown Editor Screenshot"
+                layout="responsive"
+                width={600} // Set the width according to your design
+                height={330} // Set the height according to your design
+                className="rounded-lg" // Optional: Add any additional classes for styling
+              />
+            </div>
+            <p>
+              Unlock your writing potential with Markle, a powerful and
+              user-friendly Markdown editor built with Electron. Designed for
+              writers, developers, and anyone who loves to create, our editor
+              combines the simplicity of Markdown with advanced features to
+              enhance your productivity.
             </p>
+            <h2>Key Features:</h2>
             <ul>
               <li>
-                Elevate your English vocabulary with our comprehensive Desktop
-                English Dictionary App. Tailored for students, professionals,
-                and language enthusiasts, this app offers a rich database of the
-                most commonly used words, including verbs, nouns, adjectives,
-                adverbs, phrasal verbs, and idioms.
+                <strong>VSCode-like Explorer:</strong> Navigate your projects
+                effortlessly with an intuitive file explorer that keeps your
+                workspace organized.
               </li>
               <li>
-                Multiple Selection Exercises: Test your knowledge with engaging
-                quizzes that challenge you to identify the correct usage of
-                words in context. Track your progress and improve your skills
-                over time.
+                <strong>Export Options:</strong> Seamlessly export your
+                documents in multiple formats, including HTML, Markdown, and
+                PDF, making it easy to share your work.
               </li>
               <li>
-                Pronunciation Exercises: Master the art of pronunciation with
-                audio examples for each word. Listen and repeat to refine your
-                accent and fluency.
+                <strong>LaTeX Support:</strong> Perfect for academics and
+                technical writers, our editor supports LaTeX for typesetting
+                complex mathematical equations.
               </li>
               <li>
-                User-Friendly Interface: Navigate effortlessly through a clean,
-                intuitive design that allows you to focus on learning without
-                distractions.
+                <strong>Mermaid Integration:</strong> Create beautiful diagrams
+                and flowcharts directly within your documents using Mermaid
+                syntax.
+              </li>
+              <li>
+                <strong>Code Snippets:</strong> Boost your coding efficiency
+                with customizable code snippets that save you time and effort.
+              </li>
+              <li>
+                <strong>User-Friendly UI:</strong> Enjoy a clean and modern
+                interface designed for a smooth writing experience, whether you
+                are drafting a blog post or coding documentation.
+              </li>
+              <li>
+                <strong>Front Matter Builder:</strong> Easily manage metadata
+                with our front matter builder, allowing you to add essential
+                information to your Markdown files.
+              </li>
+              <li>
+                <strong>SQLite Support:</strong> Utilize SQLite for efficient
+                data storage and management, making it easy to handle your notes
+                and documents.
               </li>
             </ul>
-            <i className="font-semibold">( in development...)</i>
+            <div className="">
+              <h2 className="text-2xl font-bold my-4">Explore the System</h2>
+              <p className="">
+                You can also read about the system I built in order to develop a
+                VSCode-like explorer integrating UI - client and server-side
+                states in the link below.
+                <a
+                  href="https://github.com/OzanOcak/merkle/blob/main/git-media/explorer.md"
+                  className="text-sky-500 hover:underline transition duration-200 px-2"
+                >
+                  Read More
+                </a>
+              </p>
+            </div>
+            {/* Button to go to the project */}
+            <div className="button-container m-2 px-6 py-1 bg-sky-500 hover:bg-sky-700 rounded-md w-48">
+              <Link href="https://github.com/OzanOcak/merkle" passHref>
+                <button className="project-button w-full text-center font-extrabold">
+                  Go to Project
+                </button>
+              </Link>
+            </div>
           </div>
           {/* The Present */}
           <div className="py-8">
@@ -201,7 +252,7 @@ const WhiteScreen = () => {
             href="#the-company"
             className="block  hover:text-black dark:hover:text-gray-500"
           >
-            Desktop English Dictionary App
+            Markle Markdown Editor
           </a>
           <a
             href="#the-present"

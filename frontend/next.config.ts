@@ -7,7 +7,7 @@ loadEnvConfig(projectDir);
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["lh3.googleusercontent.com"], // Add the domain here
+    domains: ["lh3.googleusercontent.com", "github.com"], // Add the domain here
   },
   /* config options here */
   experimental: {
