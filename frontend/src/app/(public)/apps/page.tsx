@@ -119,11 +119,11 @@ const WhiteScreen = () => {
         <article className="rich-text-area">
           {/* The Company */}
           <div className="py-8">
-            <h2 id="the-company">
+            <h2 id="markle">
               Welcome to <span className="font-bold">Markle</span>
             </h2>
             {/* Image Section using Next.js Image component */}
-            <div className="image-container  p-16">
+            <div className="image-container p-0 md:p-4 lg:p-16">
               <Image
                 src="https://github.com/OzanOcak/merkle/blob/main/git-media/markle2.gif?raw=true"
                 alt="Markdown Editor Screenshot"
@@ -140,7 +140,7 @@ const WhiteScreen = () => {
               combines the simplicity of Markdown with advanced features to
               enhance your productivity.
             </p>
-            <h2>Key Features:</h2>
+            <h2 className="my-2">Key Features:</h2>
             <ul>
               <li>
                 <strong>VSCode-like Explorer:</strong> Navigate your projects
@@ -205,9 +205,112 @@ const WhiteScreen = () => {
               </Link>
             </div>
           </div>
+          {/* The Company */}
+          <div className="py-8">
+            <h2 id="auth">Authentication & Authorization</h2>
+            {/* Image Section using Next.js Image component */}
+            <div className="image-container p-0 md:p-4 lg:p-16">
+              <Image
+                src="https://github.com/OzanOcak/merkle/blob/main/git-media/auth.gif?raw=true"
+                alt="Markdown Editor Screenshot"
+                layout="responsive"
+                width={600} // Set the width according to your design
+                height={330} // Set the height according to your design
+                className="rounded-lg" // Optional: Add any additional classes for styling
+              />
+            </div>
+            <p>
+              AuthFlow is a robust, self-contained authentication and
+              authorization system designed to handle modern security challenges
+              without relying on third-party libraries (except NodeMailer for
+              OTP delivery). Built from scratch with OWASP best practices, it
+              offers a modular, scalable solution for apps requiring
+              fine-grained user access control, multi-factor authentication
+              (MFA), and token-based security.
+            </p>
+            <h2 className="mt-4">Key Features:</h2>
+            <h3>🔒 End-to-End JWT Security</h3>
+            <ul>
+              <li>
+                Stateless authentication using access/refresh tokens with token
+                invalidation (token IDs).
+              </li>
+              <li>
+                Secure cookie handling and session management for server-side
+                validation.
+              </li>
+              <li>
+                Axios interceptor integration for seamless token renewal and
+                request retries.
+              </li>
+            </ul>
+            <h3 className="mt-4">🛡 Multi-Layered Authentication</h3>
+            <ul>
+              <li>OAuth2-style flows for third-party integrations.</li>
+              <li>
+                <strong>Code Snippets:</strong> Boost your coding efficiency
+                with customizable code snippets that save you time and effort.
+              </li>
+              <li>Time-based OTP (TOTP) and email-based 2FA.</li>
+              <li>
+                Customizable password policies and brute-force protection.
+              </li>
+            </ul>
+            <h3 className="mt-4">🔑 User-Centric Authorization</h3>
+            <ul>
+              <li>
+                Role and permission management inspired by OAuth’s scope logic,
+                enabling granular access control (e.g., user:read, admin:write).
+              </li>
+              <li>
+                Lightweight, library-free implementation for full transparency
+                and control.
+              </li>
+            </ul>
+            <h3 className="mt-4">⚡ Modern Tech Stack</h3>
+            <ul>
+              <li>
+                Frontend: React + TypeScript, React Query for state management,
+                Zod for schema validation.
+              </li>
+              <li>
+                Backend: Express.js with Node.js, Drizzle ORM, PostgreSQL.
+                TypeScript throughout for type safety.
+              </li>
+              <li>
+                DevOps-ready: Containerized deployment with Docker; easily
+                integrates into REST/gRPC APIs.{" "}
+              </li>
+            </ul>
+            <div className="">
+              <h2 className="text-2xl font-bold my-4">Explore the System</h2>
+              <p className="">
+                You can read about the system I built in order to self host my
+                api and tunnel it via Clouflare and make it publicly available
+                to frontemd hasted ib Vercel
+                <a
+                  href="https://github.com/OzanOcak/merkle/blob/main/git-media/architecture.md"
+                  className="text-sky-500 hover:underline transition duration-200 px-2"
+                >
+                  Read More
+                </a>
+              </p>
+              <p className="">
+                You can also read about thearticle of the system I built in
+                order to self host my api and tunnel it via Clouflare and make
+                it publicly available to frontemd hasted ib Vercel
+                <a
+                  href="http://localhost:5173/blogpost/raspberry-pi-cloudflare-vercel-architecture"
+                  className="text-sky-500 hover:underline transition duration-200 px-2"
+                >
+                  Read More
+                </a>
+              </p>
+            </div>
+          </div>
           {/* The Present */}
           <div className="py-8">
-            <h2 id="the-present" className="text-3xl font-bold mb-6">
+            <h2 id="makeitenglish" className="text-3xl font-bold mb-6">
               Mobile English Dictionary App
             </h2>
             <p className="text-lg mb-8">
@@ -249,13 +352,19 @@ const WhiteScreen = () => {
       <nav className="w-full capitalize font-bold  text-gray-700  dark:text-gray-100  order-1 md:order-2 md:w-64 mb-8 md:mb-0 md:ml-8 md:sticky md:top-8 md:self-start">
         <div className="space-y-2">
           <a
-            href="#the-company"
+            href="#markle"
             className="block  hover:text-black dark:hover:text-gray-500"
           >
             Markle Markdown Editor
           </a>
           <a
-            href="#the-present"
+            href="#auth"
+            className="block  hover:text-black dark:hover:text-gray-500"
+          >
+            Authentication and Authorization System
+          </a>
+          <a
+            href="#makeitenglish"
             className="block hover:text-black dark:hover:text-gray-500"
           >
             Mobile English Dictionary App
