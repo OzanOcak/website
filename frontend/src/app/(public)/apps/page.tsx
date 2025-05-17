@@ -46,17 +46,15 @@ const BlackScreen = () => {
     <div className="min-h-screen bg-gray-200 dark:bg-black/0 text-white flex items-center justify-center p-8">
       <div className="max-w-4xl w-full">
         {/* Kicker */}
-        <div className="text-lg font-semibold text-gray-500 mb-4">
-          Master Plan
-        </div>
+        <div className="text-lg font-semibold text-gray-500 ">Master Plan</div>
 
         {/* Heading with Gradient Text */}
-        <h1 className="text-5xl md:text-6xl font-bold mb-6">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 mt-12 sm:mt-0">
           <span className="text-gray-500 dark:text-white ">
             Discover Your Path to Language Mastery
           </span>
           <span className="text-lg md:text-xl bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            Powered by a passion for learning languages effortlessly.
+            Powered by a passion for developing apps effortlessly.
           </span>
         </h1>
 
@@ -123,7 +121,7 @@ const WhiteScreen = () => {
               Welcome to <span className="font-bold">Markle</span>
             </h2>
             {/* Image Section using Next.js Image component */}
-            <div className="image-container p-0 md:p-4 lg:p-16">
+            <div className="image-container p-0 md:p-4 lg:p-16 mb-4">
               <Image
                 src="https://github.com/OzanOcak/merkle/blob/main/git-media/markle2.gif?raw=true"
                 alt="Markdown Editor Screenshot"
@@ -209,7 +207,7 @@ const WhiteScreen = () => {
           <div className="py-8">
             <h2 id="auth">Authentication & Authorization</h2>
             {/* Image Section using Next.js Image component */}
-            <div className="image-container p-0 md:p-4 lg:p-16">
+            <div className="image-container p-0 md:p-4 lg:p-16 mb-4">
               <Image
                 src="https://github.com/OzanOcak/merkle/blob/main/git-media/auth.gif?raw=true"
                 alt="Markdown Editor Screenshot"
@@ -285,9 +283,9 @@ const WhiteScreen = () => {
             <div className="">
               <h2 className="text-2xl font-bold my-4">Explore the System</h2>
               <p className="">
-                You can read about the system I built in order to self host my
-                api and tunnel it via Clouflare and make it publicly available
-                to frontemd hasted ib Vercel
+                You can read about the website I built in order to self host api
+                and tunnel it via Clouflare and make it publicly available to
+                frontend is hosted by Vercel
                 <a
                   href="https://github.com/OzanOcak/merkle/blob/main/git-media/architecture.md"
                   className="text-sky-500 hover:underline transition duration-200 px-2"
@@ -296,9 +294,8 @@ const WhiteScreen = () => {
                 </a>
               </p>
               <p className="">
-                You can also read about thearticle of the system I built in
-                order to self host my api and tunnel it via Clouflare and make
-                it publicly available to frontemd hasted ib Vercel
+                You can also read the article about the achitecture of my
+                website.
                 <a
                   href="http://localhost:5173/blogpost/raspberry-pi-cloudflare-vercel-architecture"
                   className="text-sky-500 hover:underline transition duration-200 px-2"
