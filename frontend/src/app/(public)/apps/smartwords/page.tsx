@@ -160,7 +160,7 @@ const App = () => {
           rel="noopener noreferrer"
           className="bg-white text-blue-700 font-bold py-4 px-10 rounded-full text-xl md:text-2xl shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
         >
-          Download SmartWords Today!
+          Download SmartWords
         </a>
       </section>
 
