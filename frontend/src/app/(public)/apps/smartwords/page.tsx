@@ -23,7 +23,7 @@ const Page = () => {
 
         {/* Call to Action Button */}
         <a
-          href="" // REPLACE THIS WITH YOUR APP STORE LINK ONCE LIVE
+          href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-white text-blue-700 font-bold py-4 px-10 rounded-full text-xl md:text-2xl shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 animate-fade-in-up delay-400"
@@ -217,13 +217,14 @@ const Page = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
           Take Control of Your English Learning Journey!
         </h2>
+        {/* Call to Action Button */}
         <a
-          href="" // REPLACE THIS WITH YOUR APP STORE LINK ONCE LIVE
+          href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-white text-teal-600 font-bold py-4 px-12 rounded-full text-xl md:text-2xl shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
+          className="bg-white text-blue-700 font-bold py-4 px-10 rounded-full text-xl md:text-2xl shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 animate-fade-in-up delay-400"
         >
-          Download SmartWords Now!
+          Download on the App Store!
         </a>
       </section>
 
