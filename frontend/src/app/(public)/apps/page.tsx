@@ -340,7 +340,7 @@ const WhiteScreen = () => {
                 conversations.
               </li>
             </ul>
-            <div className="button-container m-2 px-6 py-1 bg-sky-500 hover:bg-sky-700 rounded-md w-48">
+            <div className="button-container m-2 mt-4 px-6 py-2 bg-sky-500 hover:bg-sky-700 rounded-md w-72">
               <Link href="https://oocak.com/apps/smartwords" passHref>
                 <button className="project-button w-full text-center font-extrabold">
                   Go to SmartWords&apos;s Page
