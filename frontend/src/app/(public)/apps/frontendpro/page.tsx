@@ -24,7 +24,7 @@ import {
   User,
 } from "lucide-react";
 
-export default function FrontendProLandingPage() {
+const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const features = [
@@ -610,4 +610,6 @@ export default function FrontendProLandingPage() {
       </footer>
     </div>
   );
-}
+};
+
+export default App;
