@@ -23,7 +23,7 @@ const migrateDatabase = async () => {
         delay: RETRY_DELAY,
         backoff: "EXPONENTIAL",
         logger: (msg) => console.log(`🔄 Retrying: ${msg}`),
-      }
+      },
     );
 
     // Perform migrations with timeout
@@ -38,7 +38,7 @@ const migrateDatabase = async () => {
         retries: 3,
         delay: 1000,
         timeout: 30000, // 30 second timeout for migrations
-      }
+      },
     );
 
     console.log("🎉 Migrations completed successfully");
