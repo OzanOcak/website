@@ -1,11 +1,18 @@
-//"use cache";
 "use client";
+
 import { useIncreaseVisitCount } from "@/hooks/roles/visitcount/useIncreaseVisitCount";
 import { useStore } from "@/stores/useAuthStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-
-//export const revalidate = 60;
+import Link from "next/link";
+import {
+  BookOpen,
+  Languages,
+  Code2,
+  ArrowRight,
+  ShieldCheck,
+  Cpu,
+} from "lucide-react";
 
 export default function Home() {
   const visited = useStore.getState().visited;
@@ -18,7 +25,7 @@ export default function Home() {
     const trackVisit = async () => {
       if (!visited) {
         try {
-          await increaseVisitCount(); // Call the mutate function
+          await increaseVisitCount();
           console.log("Visit tracked successfully");
           setVisited(true);
         } catch (error) {
@@ -30,151 +37,147 @@ export default function Home() {
     trackVisit();
   }, [visited, setVisited, increaseVisitCount]);
 
+  const appShowcase = [
+    {
+      title: "Smart Words Dictionary",
+      desc: "Offline-first vocabulary engine featuring 30,000+ words, spaced-repetition memory tracking, and exam practice modules.",
+      path: "/apps/smartwords",
+      tag: "iOS & Mobile",
+      icon: BookOpen,
+      metrics: "30k+ Words • 200k Questions",
+    },
+    {
+      title: "Go French",
+      desc: "Interactive language acquisition suite focused on real-world conversational patterns, grammar drills, and spaced recall.",
+      path: "/apps/gofrench",
+      tag: "Learning Engine",
+      icon: Languages,
+      metrics: "Grammar • Active Recall",
+    },
+    {
+      title: "Frontend Pro",
+      desc: "Targeted technical interview practice engine and interactive quizzes for modern web developers.",
+      path: "/apps/frontendpro",
+      tag: "Developer Tools",
+      icon: Code2,
+      metrics: "React • TypeScript • Web Architecture",
+    },
+  ];
+
   return (
-    <main className="mt-[-1rem] bg-gray-100 dark:bg-gray-900">
-      {/* Hero Section - Full Screen Height */}
-      <section className="h-screen flex items-center justify-center text-center bg-gray-200 text-gray-900 dark:bg-black dark:text-gray-100">
-        <div className="animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            A <span className="text-green-500">Tech Blog</span> for App
-            Development
+    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased">
+      {/* Hero Section */}
+      <section className="min-h-[85vh] flex items-center justify-center text-center px-4 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-xs font-mono text-emerald-600 dark:text-emerald-400">
+            <Cpu className="w-3.5 h-3.5 animate-pulse" /> Local-First &
+            Developer Ecosystem
+          </div>
+
+          <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            High-Performance Apps & <br />
+            <span className="text-emerald-500">Developer Tools</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-800 dark:text-gray-300 mb-8">
-            Open source blog and templates to empower developers worldwide.
+
+          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Exploring software engineering, local-first architecture, offline
+            vocabulary engines, and modern frontend platforms.
           </p>
-          <div className="flex justify-center space-x-4">
+
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+            <a
+              href="#featured-apps"
+              className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3.5 px-8 rounded-xl shadow-lg shadow-emerald-500/20 transition duration-300"
+            >
+              Explore Applications
+            </a>
             <button
               onClick={() => router.push("/apps")}
-              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
+              className="w-full sm:w-auto bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-emerald-500 font-semibold py-3.5 px-8 rounded-xl transition duration-300"
             >
-              Get Started
-            </button>
-            <button
-              onClick={() => router.push("/apps")}
-              className="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
-            >
-              Learn More
+              All Software
             </button>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            About Our Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Web Development Card */}
-            <div className="bg-gray-300 dark:bg-gray-800 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-              <h3 className="text-xl font-semibold mb-4">Web Development</h3>
-              <p className="text-gray-800 dark:text-gray-300 mb-6">
-                Building robust, scalable, and responsive web applications.
-              </p>
-              <a
-                href="#"
-                className="text-green-500 hover:text-green-400 flex items-center"
-              >
-                Learn More
-                <svg
-                  className="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-
-            {/* Mobile Development Card */}
-            <div className="bg-gray-300 dark:bg-gray-800 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-              <h3 className="text-xl font-semibold mb-4">Mobile Development</h3>
-              <p className="text-gray-800 dark:text-gray-300 mb-6">
-                Crafting seamless mobile experiences for both Android and iOS
-              </p>
-              <a
-                href="#"
-                className="text-green-500 hover:text-green-400 flex items-center"
-              >
-                Learn More
-                <svg
-                  className="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-
-            {/* Cloud Solutions Card */}
-            <div className="bg-gray-300 dark:bg-gray-800 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-              <h3 className="text-xl font-semibold mb-4">
-                Desktop Applications
-              </h3>
-              <p className="text-gray-800 dark:text-gray-300 mb-6">
-                Building robust, scalable, and responsive web applications.
-              </p>
-              <a
-                href="#"
-                className="text-green-500 hover:text-green-400 flex items-center"
-              >
-                Learn More
-                <svg
-                  className="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </a>
-            </div>
+      {/* Featured Apps Showcase Section */}
+      <section id="featured-apps" className="py-20 max-w-6xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span className="text-xs font-mono font-bold text-emerald-500 uppercase tracking-wider">
+              Software Catalog
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">
+              Featured Applications
+            </h2>
           </div>
+          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mt-2 md:mt-0">
+            Dedicated applications designed for speed, privacy, and long-term
+            utility.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {appShowcase.map((app, idx) => {
+            const Icon = app.icon;
+            return (
+              <Link
+                key={idx}
+                href={app.path}
+                className="group p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 shadow-sm hover:border-emerald-500/60 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className="text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2.5 py-1 rounded-md">
+                      {app.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors">
+                    {app.title}
+                  </h3>
+
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {app.desc}
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+                  <span className="text-xs font-mono text-slate-500">
+                    {app.metrics}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-emerald-500 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      {/* Web Security Section - Text Block */}
-      <section
-        className="bg-gradient-to-r from-green-600 to-gray-100 via-gray-100 py-32 my-24
-       dark:from-green-600 dark:to-gray-900 dark:via-gray-900"
-      >
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Secure Your Web Applications
+      {/* Security & Architecture Highlight */}
+      <section className="py-20 bg-slate-100 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-6">
+          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 mx-auto flex items-center justify-center">
+            <ShieldCheck className="w-6 h-6" />
+          </div>
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
+            Security & Local-First Principles
           </h2>
-          <p className="text-lg text-gray-900 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            In today is digital world, web security is more important than ever.
-            Protect your applications from vulnerabilities, data breaches, and
-            cyber threats with best practices and cutting-edge tools.
+          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+            All applications are engineered with privacy-first standards, fast
+            offline persistence using embedded local databases, and clean modern
+            UI interfaces.
           </p>
-          <div className="flex justify-center space-x-4">
-            <button className="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
-              Learn More
-            </button>
-            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
-              Get Started
+          <div className="pt-2 flex justify-center">
+            <button
+              onClick={() => router.push("/apps")}
+              className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md"
+            >
+              Browse All Projects
             </button>
           </div>
         </div>
@@ -182,5 +185,3 @@ export default function Home() {
     </main>
   );
 }
-
-//export const dynamic = "force-static";
