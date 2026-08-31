@@ -2,3 +2,5 @@
 .env
 .env.production
 /dist
+.env.local
+!.env.example
