@@ -1,227 +1,543 @@
+/* eslint-disable react/jsx-key */
 "use client";
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import {
   BookOpen,
   Brain,
-  Target,
+  Zap,
+  CheckCircle2,
+  Download,
+  Menu,
+  X,
+  Search,
   Layers,
-  BarChart,
-  Lightbulb,
+  GraduationCap,
+  WifiOff,
+  Clock,
+  ChevronRight,
+  Sun,
+  Moon,
 } from "lucide-react";
-// If you are using Next.js and want optimized images, uncomment the line below:
-// import Image from "next/image";
 
-// Main page component for SmartWords Marketing
 const App = () => {
-  return (
-    <div className="min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-white font-sans">
-      {/* Hero Section */}
-      <header className="relative h-screen bg-gradient-to-b from-blue-700 to-indigo-900 flex flex-col items-center justify-center text-center text-white p-6 md:p-8 lg:p-12 rounded-b-3xl shadow-xl">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 animate-fade-in-up">
-          SmartWords: Offline English Master
-        </h1>
-        <p className="text-xl md:text-3xl lg:text-4xl font-semibold mb-8 max-w-4xl animate-fade-in-up delay-200">
-          Your Smart Companion for English Mastery, Anywhere, Anytime.
-        </p>
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-        {/* Key Highlights */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-12 animate-fade-in-up delay-300">
-          <span className="text-3xl md:text-4xl font-bold bg-white text-blue-700 px-6 py-3 rounded-full shadow-md">
-            30,000+ Words
-          </span>
-          <span className="text-3xl md:text-4xl font-bold bg-white text-blue-700 px-6 py-3 rounded-full shadow-md">
-            200,000+ Exercises
-          </span>
+  // Directly sync with the root <html> tag to prevent layout leaks
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const features = [
+    {
+      title: "100% Offline Architecture",
+      desc: "Access over 30,000 words and 200,000 interactive practice questions without Wi-Fi or data connection.",
+      icon: WifiOff,
+    },
+    {
+      title: "Beyond Basic Definitions",
+      desc: "Master essential categories often missed by standard dictionaries: Idioms, Phrasal Verbs, and Proverbs.",
+      icon: Layers,
+    },
+    {
+      title: "Adaptive Memory Tracking",
+      desc: "Every word tracks your unique performance score, prioritizing forgotten words and weak spots for revision.",
+      icon: Brain,
+    },
+    {
+      title: "Targeted Exam Paths",
+      desc: "Filter and practice specific vocabulary sets curated for IELTS, TOEFL, GRE, and real-world proficiency levels.",
+      icon: GraduationCap,
+    },
+  ];
+
+  const examCategories = [
+    { name: "IELTS Prep", count: "Academic & General", tag: "Exam Track" },
+    { name: "TOEFL Mastery", count: "High-Frequency Words", tag: "Exam Track" },
+    {
+      name: "GRE Vocabulary",
+      count: "Advanced Verbal Track",
+      tag: "Exam Track",
+    },
+    {
+      name: "Phrasal Verbs",
+      count: "Essential Combinations",
+      tag: "Specialized",
+    },
+    {
+      name: "Idioms & Sayings",
+      count: "Natural Expressions",
+      tag: "Specialized",
+    },
+    {
+      name: "Proverbs Catalog",
+      count: "Cultural Expressions",
+      tag: "Specialized",
+    },
+  ];
+
+  const stats = [
+    { label: "Offline Database Words", value: "30,000+" },
+    { label: "Practice Questions", value: "200,000+" },
+    { label: "Targeted Exam Tracks", value: "IELTS / TOEFL / GRE" },
+    { label: "Data Sync Requirement", value: "0 (Local First)" },
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
+              <BookOpen className="w-5 h-5 stroke-[2.2]" />
+            </div>
+            <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Smart
+              <span className="text-indigo-600 dark:text-indigo-400">
+                Words
+              </span>
+            </span>
+          </div>
+
+          <div className="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a
+              href="#features"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            >
+              Features
+            </a>
+            <a
+              href="#tracks"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            >
+              Exam Tracks
+            </a>
+            <a
+              href="#memory"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            >
+              Memory Engine
+            </a>
+
+            {/* Dark/Light Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors border border-slate-300 dark:border-slate-800"
+              aria-label="Toggle Theme"
+            >
+              {isDarkMode ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
+
+            <a
+              href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-xl font-semibold text-sm transition-all shadow-md shadow-indigo-600/20"
+            >
+              Get App
+            </a>
+          </div>
+
+          <div className="flex items-center space-x-3 md:hidden">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-800"
+            >
+              {isDarkMode ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
+
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-slate-700 dark:text-slate-300 hover:text-indigo-600 focus:outline-none"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
 
-        {/* Call to Action Button */}
-        <a
-          href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white text-blue-700 font-bold py-4 px-10 rounded-full text-xl md:text-2xl shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 animate-fade-in-up delay-400"
-        >
-          Download on the App Store!
-        </a>
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 space-y-3">
+            <a
+              href="#features"
+              onClick={() => setIsMenuOpen(false)}
+              className="block text-slate-700 dark:text-slate-300 hover:text-indigo-600 py-1 text-sm font-semibold"
+            >
+              Features
+            </a>
+            <a
+              href="#tracks"
+              onClick={() => setIsMenuOpen(false)}
+              className="block text-slate-700 dark:text-slate-300 hover:text-indigo-600 py-1 text-sm font-semibold"
+            >
+              Exam Tracks
+            </a>
+            <a
+              href="#memory"
+              onClick={() => setIsMenuOpen(false)}
+              className="block text-slate-700 dark:text-slate-300 hover:text-indigo-600 py-1 text-sm font-semibold"
+            >
+              Memory Engine
+            </a>
+            <a
+              href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-sm shadow-md"
+            >
+              Get App
+            </a>
+          </div>
+        )}
+      </nav>
 
-        {/* Placeholder for a hero app screenshot or video - REMEMBER TO ADD YOUR IMAGE/VIDEO */}
-        {/* If using Next.js Image component: */}
-        {/* <Image
-          src="/images/hero-app-screenshot.png" // Path to your hero screenshot in public/images
-          alt="SmartWords App Interface"
-          width={400} // Adjust width and height based on your image dimensions
-          height={800}
-          className="absolute bottom-[-10%] md:bottom-0 lg:bottom-[-20%] xl:bottom-[-25%] w-80 md:w-96 lg:w-[450px] xl:w-[500px] h-auto object-contain animate-float"
-          style={{ transform: 'translateX(-50%)', left: '50%' }}
-        /> */}
-        {/* If using a standard img tag (less optimized but simpler for quick setup): */}
-        {/* <img
-          src="/images/hero-app-screenshot.png" // Path to your hero screenshot in public/images
-          alt="SmartWords App Interface"
-          className="absolute bottom-[-10%] md:bottom-0 lg:bottom-[-20%] xl:bottom-[-25%] w-80 md:w-96 lg:w-[450px] xl:w-[500px] h-auto object-contain animate-float"
-          style={{ transform: 'translateX(-50%)', left: '50%' }}
-        /> */}
-      </header>
-
-      <section className="py-20 px-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-inner">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">
-            Learn English Offline, Smarter.
-          </h2>
-          <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto">
-            SmartWords offers a truly comprehensive, offline English dictionary
-            with intelligent learning tools. It&apos;s designed to personalize
-            your vocabulary journey and boost your fluency, wherever you are. No
-            internet connection is ever required for full functionality.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature Card 1: Comprehensive Database */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col items-center text-center">
-              <BookOpen className="w-12 h-12 text-blue-600 mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">
-                Vast Word Database
-              </h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                Access a colossal database of over **30,000 English words**,
-                complete with definitions, examples, synonyms, and antonyms.
-              </p>
+      {/* Hero Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-b from-indigo-50/60 to-transparent dark:from-indigo-950/40 dark:via-slate-950 dark:to-slate-950">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-200 dark:border-indigo-500/30 bg-indigo-50 dark:bg-indigo-950/60 text-xs font-mono text-indigo-700 dark:text-indigo-300">
+              <Zap className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 animate-pulse" />
+              SQLite Powered • Zero Latency
             </div>
 
-            {/* Feature Card 2: Smart Vocabulary Classification */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col items-center text-center">
-              <Layers className="w-12 h-12 text-green-600 mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">
-                Smart Classification
-              </h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                Master words by type: nouns, verbs, adjectives, adverbs, idioms,
-                phrasal verbs, proverbs, slang, and native-friendly alternatives
-                for ESL learners.
-              </p>
+            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+              The Ultimate <br />
+              <span className="text-indigo-600 dark:text-indigo-400">
+                Offline Vocabulary
+              </span>{" "}
+              Engine.
+            </h1>
+
+            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed max-w-xl">
+              Master 30,000+ words, idioms, and phrasal verbs with 200,000+
+              practice questions and adaptive memory tracking—completely
+              offline.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <a
+                href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-indigo-600/25"
+              >
+                <Download className="w-5 h-5" />
+                Download on App Store
+              </a>
+              <a
+                href="#tracks"
+                className="inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-indigo-600 font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-sm"
+              >
+                Explore Modules
+              </a>
             </div>
 
-            {/* Feature Card 3: Performance-Based Learning */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col items-center text-center">
-              <Brain className="w-12 h-12 text-purple-600 mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">
-                Personalized Mastery
-              </h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                Our intelligent system tracks your performance, helping you
-                focus on areas needing the most improvement for faster progress.
-              </p>
+            <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-slate-600 dark:text-slate-400 font-mono">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />{" "}
+                100% Offline Database
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />{" "}
+                Free
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />{" "}
+                IELTS / TOEFL / GRE
+              </span>
             </div>
+          </div>
 
-            {/* Feature Card 4: Exam-Focused Word Sets */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col items-center text-center">
-              <Target className="w-12 h-12 text-red-600 mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">Exam Focused</h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                Includes specialized vocabulary for TOEFL, IELTS, GRE, and other
-                key English exams to boost your scores.
-              </p>
-            </div>
+          {/* Minimal App Mockup Frame */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="w-full max-w-[300px] rounded-[40px] border-[8px] border-slate-800 dark:border-slate-800 bg-slate-900 p-2.5 shadow-2xl">
+              <div className="rounded-[30px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col justify-between h-[520px] p-4 text-slate-900 dark:text-slate-100">
+                {/* Mobile App Header */}
+                <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+                  <div className="flex items-center gap-2">
+                    <Search className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                    <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
+                      WORD SEARCH
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-800/50 px-2 py-0.5 rounded">
+                    OFFLINE
+                  </span>
+                </div>
 
-            {/* Feature Card 5: Flashcards & Practice Questions */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col items-center text-center">
-              <Lightbulb className="w-12 h-12 text-yellow-600 mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">
-                Interactive Practice
-              </h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                Engage with over **200,000 diverse exercises**, interactive
-                flashcards, quizzes, and word lists to reinforce learning.
-              </p>
-            </div>
+                {/* Mobile Word Card */}
+                <div className="my-auto space-y-3.5">
+                  <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 shadow-sm">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <span className="text-base font-bold text-slate-900 dark:text-white">
+                          Pragmatic
+                        </span>
+                        <span className="text-xs text-indigo-600 dark:text-indigo-400 block font-mono">
+                          adjective • GRE / TOEFL
+                        </span>
+                      </div>
+                      <span className="text-[11px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
+                        Score: 92%
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                      Dealing with things sensibly and realistically in a way
+                      that is based on practical considerations.
+                    </p>
+                  </div>
 
-            {/* Feature Card 6: Visual Feedback & Progress Tracking */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col items-center text-center">
-              <BarChart className="w-12 h-12 text-orange-600 mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">Visual Progress</h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                Track your progress visually across word categories and levels,
-                ensuring continuous improvement where it matters most.
-              </p>
+                  {/* Practice Question Mock */}
+                  <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                    <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase">
+                      Question 14 / 20
+                    </div>
+                    <div className="text-xs font-medium text-slate-800 dark:text-slate-200">
+                      Select the closest synonym for `Pragmatic`:
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
+                      <div className="p-2 rounded bg-indigo-600 text-white font-bold text-center">
+                        Practical
+                      </div>
+                      <div className="p-2 rounded bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 text-center">
+                        Theoretical
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile Footer Stats */}
+                <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />{" "}
+                    Reviews: 15 Due
+                  </span>
+                  <span className="text-indigo-600 dark:text-indigo-400 font-bold">
+                    200k Questions
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final Call to Action */}
-      <section className="py-20 px-6 bg-gradient-to-r from-teal-500 to-blue-600 text-white text-center rounded-t-3xl shadow-xl mt-12">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          Ready to Master English?
-        </h2>
-        {/* Call to Action Button */}
-        <a
-          href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white text-blue-700 font-bold py-4 px-10 rounded-full text-xl md:text-2xl shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
-        >
-          Download SmartWords
-        </a>
+      {/* Stats Counter */}
+      <section className="py-10 bg-indigo-600 text-white">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {stats.map((stat, i) => (
+            <div key={i} className="space-y-1">
+              <div className="text-2xl md:text-3xl font-black">
+                {stat.value}
+              </div>
+              <div className="text-xs font-semibold text-indigo-200 uppercase tracking-wider">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-10 px-6 bg-gray-200 dark:bg-gray-900 text-center text-gray-600 dark:text-gray-400 rounded-b-3xl">
-        <p>&copy; {new Date().getFullYear()} Oocak. All rights reserved.</p>
-        <div className="mt-4 space-x-4">
-          <a
-            href="YOUR_PRIVACY_POLICY_URL_HERE" // REPLACE THIS
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline"
-          >
-            Privacy Policy
-          </a>
-          <a
-            href="YOUR_SUPPORT_URL_HERE" // REPLACE THIS
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline"
-          >
-            Support
-          </a>
+      {/* Bento Grid Features */}
+      <section id="features" className="py-24 max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-black mb-4 text-slate-900 dark:text-white">
+            Engineered for High-Recall Learning
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            Combines structured dictionary lookup with spaced repetition
+            algorithms and high-volume test sets.
+          </p>
         </div>
-      </footer>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {features.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={idx}
+                className={`p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:border-indigo-500 transition-all ${
+                  idx === 0 ? "md:col-span-2" : ""
+                }`}
+              >
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 border border-indigo-100 dark:border-indigo-800/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Exam Categories Section */}
+      <section
+        id="tracks"
+        className="py-20 bg-slate-100 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800"
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase">
+              Targeted Modules
+            </span>
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white mt-2">
+              Curated Vocabulary Tracks
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {examCategories.map((cat, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/60 transition-colors space-y-3 shadow-sm"
+              >
+                <div className="flex justify-between items-center text-xs font-mono">
+                  <span className="text-indigo-600 dark:text-indigo-400 font-semibold">
+                    {cat.tag}
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                </div>
+                <div className="text-lg font-bold text-slate-900 dark:text-white">
+                  {cat.name}
+                </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  {cat.count}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Memory Engine Focus */}
+      <section id="memory" className="py-24 max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 border border-indigo-100 dark:border-indigo-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+              <Brain className="w-6 h-6" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white">
+              Adaptive Memory Scoring Algorithm
+            </h2>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-base">
+              Traditional flashcards ask you every word equally. Smart Words
+              tracks a dynamic memory score for every single term based on your
+              answer accuracy and review intervals.
+            </p>
+            <div className="space-y-3 pt-2">
+              <div className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+                <span>
+                  Filters out mastered words so you stop wasting time on what
+                  you already know.
+                </span>
+              </div>
+              <div className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+                <span>
+                  Automatically re-introduces forgotten words in upcoming
+                  practice sets.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive Memory Card Representation */}
+          <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+            <div className="flex justify-between items-center text-sm font-mono border-b border-slate-200 dark:border-slate-800 pb-4">
+              <span className="text-slate-500 dark:text-slate-400">
+                ALGORITHM STATUS
+              </span>
+              <span className="text-indigo-600 dark:text-indigo-400 font-bold">
+                ACTIVE TRACKING
+              </span>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-1">
+                  <span className="text-slate-700 dark:text-slate-300">
+                    IELTS Target Mastered
+                  </span>
+                  <span className="text-indigo-600 dark:text-indigo-400">
+                    76%
+                  </span>
+                </div>
+                <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-indigo-600 dark:bg-indigo-500 w-[76%]" />
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-1">
+                  <span className="text-slate-700 dark:text-slate-300">
+                    Weak / Forgotten Terms
+                  </span>
+                  <span className="text-amber-600 dark:text-amber-400">
+                    12 Words Queued
+                  </span>
+                </div>
+                <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-amber-500 w-[24%]" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Footer Section */}
+      <section className="py-24 max-w-6xl mx-auto px-6 text-center">
+        <div className="p-12 rounded-3xl bg-gradient-to-br from-indigo-600 to-indigo-800 text-white shadow-xl shadow-indigo-600/20 space-y-6">
+          <h2 className="text-3xl md:text-5xl font-black">
+            Build Your Mastery Today
+          </h2>
+          <p className="text-indigo-100 max-w-xl mx-auto text-base">
+            Download Smart Words Dictionary and get complete offline access to
+            30,000+ words and 200,000+ interactive questions.
+          </p>
+          <div className="pt-2 flex justify-center">
+            <a
+              href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-slate-900 hover:bg-black text-white font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3"
+            >
+              <Download className="w-5 h-5 text-indigo-400" />
+              Download on App Store
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
 
 export default App;
-
-// Basic animations (you'd typically put these in a global CSS file or a dedicated animation file)
-// For simplicity, added inline here. If using Tailwind, ensure JIT mode or add to your config.
-// You might need to add these keyframes to your global CSS or Tailwind config if they don't apply automatically
-/*
-@keyframes fadeInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0% { transform: translate(-50%, 0px); }
-  50% { transform: translate(-50%, -10px); }
-  100% { transform: translate(-50%, 0px); }
-}
-
-.animate-fade-in-up {
-  animation: fadeInFromBottom 0.6s ease-out forwards;
-}
-
-.animate-fade-in-up.delay-200 { animation-delay: 0.2s; }
-.animate-fade-in-up.delay-300 { animation-delay: 0.3s; }
-.animate-fade-in-up.delay-400 { animation-delay: 0.4s; }
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-*/
