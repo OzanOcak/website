@@ -1,0 +1,58 @@
+# ==========================================
+# Operating System & IDE Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+
+# ==========================================
+# Environment Variables & Secrets (CRITICAL)
+# ==========================================
+.env
+.env*
+!.env.example
+backend/.env
+backend/.env*
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# ==========================================
+# Node.js & Dependencies
+# ==========================================
+node_modules/
+/node_modules
+frontend/node_modules/
+backend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Lockfile generated at root accidentally
+/package-lock.json
+
+# ==========================================
+# Next.js Build & Cache Files
+# ==========================================
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+.next/
+
+# ==========================================
+# Docker & Database Local Storage
+# ==========================================
+db-data/
+postgres-data/
+*.sqlite
+*.db
