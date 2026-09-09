@@ -7,12 +7,20 @@ loadEnvConfig(projectDir);
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["lh3.googleusercontent.com", "github.com"], // Add the domain here
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "github.com",
+      },
+    ],
   },
-  /* config options here */
   experimental: {
     staleTimes: {
-      dynamic: 6000, // 100 min
+      dynamic: 6000,
     },
   },
 };
