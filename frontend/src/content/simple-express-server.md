@@ -2,7 +2,7 @@
 title: Setting Up a Simple Node.js Express Api and PostgreSql database with Docker
 slug: simple-express-server
 description: Comprehensive guide on learning SQL and drizzle.
-imageUrl: /images/3.png
+imageUrl: /images/3.webp
 author: ozan
 date: 23.09.2024
 tags:

@@ -5,12 +5,9 @@ import React, { useState } from "react";
 import {
   Code2,
   Zap,
-  BarChart3,
-  Target,
   Brain,
   Shield,
   Download,
-  BookOpen,
   Filter,
   Menu,
   X,
@@ -35,7 +32,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans antialiased selection:bg-green-500 selection:text-white">
       {/* Sticky Navigation */}
-      <nav className="sticky top-0 z-50 bg-gray-100/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+      <nav className="sticky top-0 z-50 bg-gray-100/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 -mt-4">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center text-white shadow-md">
@@ -158,56 +155,17 @@ const App = () => {
             </div>
           </div>
 
-          {/* Minimal Device Frame Mockup */}
+          {/* GIF Display */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full max-w-[290px] rounded-[36px] border-[6px] border-gray-300 dark:border-gray-800 bg-gray-300 dark:bg-gray-900 p-2 shadow-2xl">
-              <div className="rounded-[28px] bg-gray-100 dark:bg-black border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col justify-between h-[490px]">
-                {/* Mobile Header */}
-                <div className="p-4 border-b border-gray-200 dark:border-gray-800 bg-gray-200/50 dark:bg-gray-900/50">
-                  <div className="flex justify-between items-center text-xs text-gray-700 dark:text-gray-400 font-mono">
-                    <span>ACCURACY TRACK</span>
-                    <span className="text-green-500 font-bold">78%</span>
-                  </div>
-                  <div className="mt-2.5 h-1.5 w-full bg-gray-300 dark:bg-gray-800 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-500 w-[78%]" />
-                  </div>
-                </div>
-
-                {/* Mobile Card Mock */}
-                <div className="p-4 space-y-3 flex-1">
-                  <div className="text-[11px] font-mono text-gray-500 uppercase tracking-wider">
-                    JavaScript • Advanced
-                  </div>
-                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                    Which type is returned by{" "}
-                    <code className="text-green-600 dark:text-green-400 bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded text-xs">
-                      typeof null
-                    </code>
-                    ?
-                  </div>
-                  <div className="space-y-2 pt-1">
-                    {['"null"', '"undefined"', '"object"', '"number"'].map(
-                      (opt, i) => (
-                        <div
-                          key={i}
-                          className={`p-2.5 rounded-lg text-xs font-mono border ${
-                            i === 2
-                              ? "border-green-500 bg-green-500/10 text-green-600 dark:text-green-400 font-bold"
-                              : "border-gray-300 dark:border-gray-800 bg-gray-200/40 dark:bg-gray-900/40 text-gray-700 dark:text-gray-400"
-                          }`}
-                        >
-                          {opt}
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </div>
-
-                {/* Mobile App Navigation */}
-                <div className="p-3 border-t border-gray-200 dark:border-gray-800 bg-gray-200/50 dark:bg-gray-900/50 flex justify-around text-gray-500">
-                  <BookOpen className="w-4 h-4 text-green-500" />
-                  <BarChart3 className="w-4 h-4" />
-                  <Target className="w-4 h-4" />
+            <div className="w-full max-w-[320px] rounded-[36px] border-[6px] border-gray-300 dark:border-gray-800 bg-gray-300 dark:bg-gray-900 p-2 shadow-2xl">
+              <div className="rounded-[28px] bg-black border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col justify-between h-[580px]">
+                {/* GIF Container */}
+                <div className="flex-1 flex items-center justify-center p-4">
+                  <img
+                    src="/gif-files/frontend_pro.gif"
+                    alt="Frontend Pro Demo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
             </div>

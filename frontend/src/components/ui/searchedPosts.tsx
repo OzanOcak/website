@@ -24,12 +24,12 @@ const SearchedPosts: React.FC<SearchProps> = ({ blogs }) => {
     .filter((blog: BlogType) =>
       `${blog.title} ${blog.tags.join(" ")}`
         .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        .includes(searchTerm.toLowerCase()),
     )
     .filter(
       (blog: BlogType) =>
         selectedTags.length === 0 ||
-        selectedTags.some((tag) => blog.tags.includes(tag))
+        selectedTags.some((tag) => blog.tags.includes(tag)),
     )
     .sort((a: BlogType, b: BlogType) => {
       const dateA = parse(b.date, "dd.MM.yyyy", new Date()).getTime();
@@ -41,7 +41,7 @@ const SearchedPosts: React.FC<SearchProps> = ({ blogs }) => {
     setSelectedTags((prevTags) =>
       prevTags.includes(tag)
         ? prevTags.filter((t) => t !== tag)
-        : [...prevTags, tag]
+        : [...prevTags, tag],
     );
   };
 
@@ -113,7 +113,7 @@ const SearchedPosts: React.FC<SearchProps> = ({ blogs }) => {
             <Link href={`/blogpost/${blog.slug}`}>
               <Image
                 className="w-full h-64 object-cover object-top transform hover:scale-105"
-                src={blog.imageUrl ? blog.imageUrl : "/images/blogimg.jpg"}
+                src={blog.imageUrl ? blog.imageUrl : "/images/1.webp"}
                 alt={blog.title}
                 width={180}
                 height={180}

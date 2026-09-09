@@ -2,7 +2,7 @@
 title: Zustand
 slug: understanding-zustand
 description: Understanding zustand
-imageUrl: /images/8.png
+imageUrl: /images/8.webp
 author: ozan
 date: 17.11.2024
 tags:
@@ -32,13 +32,13 @@ export const useStore = create<Store>()(
         immer((set, get, store) => ({
           ...createUserSlice(set as any, get, store as any),
           ...createCartSlice(set as any, get, store as any),
-        }))
+        })),
       ),
       {
         name: "local-storage",
-      }
-    )
-  )
+      },
+    ),
+  ),
 );
 ```
 
@@ -91,7 +91,7 @@ export const createCartSlice = (set, get) => ({
   addProduct: (product) => {
     set((state) => {
       const existingProduct = state.products.find(
-        (item) => item.id === product.id
+        (item) => item.id === product.id,
       );
       if (existingProduct) {
         existingProduct.qty += 1;
@@ -154,8 +154,8 @@ export const useUserStore = create(
     }),
     {
       name: "user-storage", // unique name for the storage
-    }
-  )
+    },
+  ),
 );
 ```
 
@@ -205,7 +205,7 @@ export const useUserStore = create(
     fullName: "",
     address: "",
     setAddress: (address) => set({ address }),
-  }))
+  })),
 );
 ```
 

@@ -42,9 +42,12 @@
     "react-hook-form": "^7.54.2",
     "react-icons": "^5.4.0",
     "react-top-loading-bar": "^3.0.2",
+    "react-tsparticles": "^2.12.2",
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
+    "tsparticles": "^4.4.0",
+    "tsparticles-slim": "^2.12.0",
     "zod": "^3.24.2",
     "zustand": "^5.0.3"
   },

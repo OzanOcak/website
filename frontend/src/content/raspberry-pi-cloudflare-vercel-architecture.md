@@ -2,7 +2,7 @@
 title: Building a Secure and Scalable Architecture with Raspberry Pi, Cloudflare, and Vercel
 slug: raspberry-pi-cloudflare-vercel-architecture
 description: Learn how to build a secure and scalable architecture using Raspberry Pi, Cloudflare Tunnels, and Vercel. Understand why switching to DNS only in Cloudflare is crucial for performance and reliability.
-imageUrl: /images/9.png
+imageUrl: /images/9.webp
 author: O. Ocak
 date: 10.03.2025
 tags:
@@ -14,7 +14,9 @@ published: true
 
 # Building a Secure and Scalable Architecture with Raspberry Pi, Cloudflare, and Vercel
 
-In this blog post, I’ll walk you through my architecture for hosting a full-stack application using a **Raspberry Pi**, **Cloudflare Tunnels**, and **Vercel**. This setup ensures security, scalability, and accessibility while keeping costs low. I’ll also explain why I switched from **Proxied** to **DNS only** in Cloudflare and how this decision improved performance.
+I built this authentication system to learn about JWT, MFA, and self-hosting. It was never meant to be production-ready — but it never crashed. So I open-sourced it.
+
+I’ll walk you through my architecture for hosting a full-stack application using a **Raspberry Pi**, **Cloudflare Tunnels**, and **Vercel**. I built this authentication system to learn about JWT, MFA, and self-hosting. It was never meant to be production-ready — but it never crashed. So I open-sourced it.This setup ensures security, scalability, and accessibility while keeping costs low. I’ll also explain why I switched from **Proxied** to **DNS only** in Cloudflare and how this decision improved performance.
 
 ---
 
@@ -23,22 +25,18 @@ In this blog post, I’ll walk you through my architecture for hosting a full-st
 Here’s a high-level overview of the architecture:
 
 1. **Raspberry Pi**:
-
    - Runs a **PostgreSQL database** and an **Express.js server**.
    - Hosted on **Raspbian OS Lite** (headless, accessed via SSH).
    - Firewall configured to allow only TCP traffic on ports **22 (SSH)**, **80 (HTTP)**, and **443 (HTTPS)**.
 
 2. **Cloudflare Tunnel**:
-
    - Used to expose the Raspberry Pi to the internet without port forwarding.
    - Provides secure access to the Express server and database.
 
 3. **Hostinger**:
-
    - Provides the **domain name** (e.g., `oocak.com`) and **subdomains** (e.g., `api.oocak.com`).
 
 4. **Vercel**:
-
    - Hosts the **front-end application**.
    - Communicates with the back-end API hosted on the Raspberry Pi.
 

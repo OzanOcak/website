@@ -11,7 +11,6 @@ import {
   Menu,
   X,
   Languages,
-  Volume2,
   MapPin,
   Search,
   Compass,
@@ -53,7 +52,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-amber-50/40 text-stone-900 dark:bg-stone-950 dark:text-stone-100 font-sans antialiased selection:bg-amber-500 selection:text-white">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-amber-50/80 dark:bg-stone-950/80 backdrop-blur-md border-b border-amber-200/60 dark:border-stone-800">
+      <nav className="sticky top-0 z-50 bg-amber-50/80 dark:bg-stone-950/80 backdrop-blur-md border-b border-amber-200/60 dark:border-stone-800 -mt-4">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-9 h-9 rounded-xl bg-amber-600 flex items-center justify-center text-white shadow-md">
@@ -192,59 +191,17 @@ const App = () => {
             </div>
           </div>
 
-          {/* App Screen Frame Mockup */}
+          {/* GIF Display */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full max-w-[300px] rounded-[40px] border-[8px] border-stone-800 bg-stone-900 p-2.5 shadow-2xl shadow-amber-950/20">
-              <div className="rounded-[30px] bg-amber-50/90 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 overflow-hidden flex flex-col justify-between h-[520px] p-4 text-stone-900 dark:text-stone-100">
-                {/* Mobile Header */}
-                <div className="flex items-center justify-between pb-3 border-b border-amber-200 dark:border-stone-800">
-                  <span className="text-xs font-bold text-amber-700 dark:text-amber-500 uppercase tracking-wider">
-                    Une Journée à Montréal
-                  </span>
-                  <span className="text-xs font-mono font-bold bg-amber-200/60 dark:bg-stone-800 px-2 py-0.5 rounded-md text-amber-900 dark:text-amber-300">
-                    Ch. 4
-                  </span>
-                </div>
-
-                {/* Mobile Story Mock */}
-                <div className="my-auto space-y-3.5">
-                  <div className="p-3.5 rounded-xl bg-white dark:bg-stone-800 border border-amber-200/80 dark:border-stone-700 shadow-sm">
-                    <p className="text-sm font-medium leading-relaxed">
-                      `Je suis à Montréal. C’est une belle journée. Je regarde
-                      la table.``
-                    </p>
-                    <p className="text-xs text-stone-500 dark:text-stone-400 mt-2 italic">
-                      I am in Montreal. It is a beautiful day.
-                    </p>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-amber-100/70 dark:bg-stone-800/80 border border-amber-300 dark:border-stone-700 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Volume2 className="w-4 h-4 text-amber-600" />
-                      <span className="text-xs font-bold">Line Audio</span>
-                    </div>
-                    <span className="text-[11px] font-mono text-amber-800 dark:text-amber-400 font-bold">
-                      Tap to play
-                    </span>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-amber-600 text-white shadow-sm flex justify-between items-center text-xs font-bold">
-                    <span>Build: `C&apos;est une bonne idée.`</span>
-                    <Sparkles className="w-4 h-4" />
-                  </div>
-                </div>
-
-                {/* Mobile Progress Bar */}
-                <div className="pt-3 border-t border-amber-200 dark:border-stone-800">
-                  <div className="flex justify-between items-center text-[11px] font-bold text-stone-600 dark:text-stone-400 mb-1.5">
-                    <span>CHAPTER PROGRESS</span>
-                    <span className="text-amber-600 dark:text-amber-400">
-                      82%
-                    </span>
-                  </div>
-                  <div className="h-2 w-full bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden">
-                    <div className="h-full bg-amber-600 w-[82%]" />
-                  </div>
+            <div className="w-full max-w-[320px] rounded-[36px] border-[6px] border-gray-300 dark:border-gray-800 bg-gray-300 dark:bg-gray-900 p-2 shadow-2xl">
+              <div className="rounded-[28px] bg-black border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col justify-between h-[580px]">
+                {/* GIF Container */}
+                <div className="flex-1 flex items-center justify-center p-4">
+                  <img
+                    src="/gif-files/gofrench.gif"
+                    alt="Frontend Pro Demo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
             </div>

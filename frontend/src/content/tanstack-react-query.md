@@ -2,7 +2,7 @@
 title: Tanstack React Query
 slug: tanstack-react-query
 description: Understanding Tanstack React Query
-imageUrl: /images/5.png
+imageUrl: /images/5.webp
 author: ozan
 date: 18.11.2024
 tags:
@@ -94,7 +94,7 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <App />
     </QueryClientProvider>
-  </StrictMode>
+  </StrictMode>,
 );
 ```
 
@@ -276,7 +276,7 @@ To implement infinite scrolling, use useInfiniteQuery:
 ```tsx
 const fetchAnimals = ({ pageParam = 1 }: any) => {
   return axios.get(
-    `http://localhost:3001/animals/?_limit=10&_page=${pageParam}`
+    `http://localhost:3001/animals/?_limit=10&_page=${pageParam}`,
   );
 };
 
@@ -298,7 +298,7 @@ const InfiniteQueries = () => {
           <div className="fruit-item" key={animal.id}>
             {animal.name}
           </div>
-        ))
+        )),
       )}
       <button onClick={fetchNextPage}>Load More</button>
     </div>
@@ -338,7 +338,7 @@ const InfiniteQueries2 = () => {
           <div className="fruit-item" key={animal.id}>
             {animal.name}
           </div>
-        ))
+        )),
       )}
       <div ref={ref}>{isFetchingNextPage && "Loading..."}</div>
     </div>
@@ -433,7 +433,7 @@ const { mutate: addTodoMutation } = useMutation({
     queryClient.setQueryData(["todos"], (oldTodos: []) =>
       oldTodos
         ? [...oldTodos, { ...newTodo, id: String(oldTodos.length + 1) }]
-        : oldTodos
+        : oldTodos,
     );
 
     return { previousTodos };

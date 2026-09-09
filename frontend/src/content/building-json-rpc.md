@@ -2,7 +2,7 @@
 title: Building a JSON-RPC API with TypeScript and Express
 slug: building-json-rpc
 description: Understanding JSON-RPC
-imageUrl: /images/6.png
+imageUrl: /images/6.webp
 author: ozan
 date: 13.11.2024
 tags:

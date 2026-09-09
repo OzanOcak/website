@@ -4,7 +4,7 @@ slug: understanding-ssl-tls
 description: >-
   This blog post explores the benefits of using NGINX as a reverse proxy server.
   It explains what a reverse proxy is and details its advantages.
-imageUrl: /images/11.png
+imageUrl: /images/11.webp
 author: o. ocak
 date: 06.03.2025
 tags:

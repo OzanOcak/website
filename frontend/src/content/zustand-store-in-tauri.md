@@ -2,7 +2,7 @@
 title: Implementing Theme Switching in Tauri From Buttons to Zustand Persistence
 slug: zustand-store-in-tauri
 description: Implementing Theme Switching in Tauri From Buttons to Zustand Persistence
-imageUrl: /images/12.png
+imageUrl: /images/12.webp
 author: O. Ocak
 date: 19.03.2025
 tags:
@@ -113,13 +113,13 @@ export const useAppStore = create<AppStore>()(
         return {
           ...createThemeSlice(set, get, api),
         };
-      })
+      }),
     ),
     {
       name: "state",
       storage: customStorage,
-    }
-  )
+    },
+  ),
 );
 
 // ... loadStore implementation ...

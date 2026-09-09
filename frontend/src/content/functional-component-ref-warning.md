@@ -2,7 +2,7 @@
 title: Demystifying React Refs
 slug: functional-component-ref-warning
 description: Demystifying React Refs Why Functional Components Need forwardRef
-imageUrl: /images/1.png
+imageUrl: /images/1.webp
 author: o. ocak
 date: 20.03.2025
 tags:
@@ -58,7 +58,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref} // Forward the ref to the input element
       />
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

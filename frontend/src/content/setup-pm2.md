@@ -2,7 +2,7 @@
 title: How to Set Up PM2 for a Node.js Application on a Raspberry Pi
 slug: setup-pm2
 description: Setting Up and Using sqlx with SQLite in Tauri Rust
-imageUrl: /images/3.png
+imageUrl: /images/3.webp
 author: O. Ocak
 date: 15.03.2025
 tags:

@@ -10,11 +10,9 @@ import {
   Download,
   Menu,
   X,
-  Search,
   Layers,
   GraduationCap,
   WifiOff,
-  Clock,
   ChevronRight,
   Sun,
   Moon,
@@ -22,20 +20,6 @@ import {
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  // Directly sync with the root <html> tag to prevent layout leaks
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   const features = [
     {
@@ -95,7 +79,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+      <nav className="sticky top-0 z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 -mt-4">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
@@ -129,19 +113,6 @@ const App = () => {
               Memory Engine
             </a>
 
-            {/* Dark/Light Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors border border-slate-300 dark:border-slate-800"
-              aria-label="Toggle Theme"
-            >
-              {isDarkMode ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
-
             <a
               href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
               target="_blank"
@@ -153,17 +124,6 @@ const App = () => {
           </div>
 
           <div className="flex items-center space-x-3 md:hidden">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-800"
-            >
-              {isDarkMode ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
-
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-slate-700 dark:text-slate-300 hover:text-indigo-600 focus:outline-none"
@@ -270,73 +230,17 @@ const App = () => {
             </div>
           </div>
 
-          {/* Minimal App Mockup Frame */}
+          {/* GIF Display */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full max-w-[300px] rounded-[40px] border-[8px] border-slate-800 dark:border-slate-800 bg-slate-900 p-2.5 shadow-2xl">
-              <div className="rounded-[30px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col justify-between h-[520px] p-4 text-slate-900 dark:text-slate-100">
-                {/* Mobile App Header */}
-                <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
-                  <div className="flex items-center gap-2">
-                    <Search className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                    <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
-                      WORD SEARCH
-                    </span>
-                  </div>
-                  <span className="text-[10px] font-mono bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-800/50 px-2 py-0.5 rounded">
-                    OFFLINE
-                  </span>
-                </div>
-
-                {/* Mobile Word Card */}
-                <div className="my-auto space-y-3.5">
-                  <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 shadow-sm">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span className="text-base font-bold text-slate-900 dark:text-white">
-                          Pragmatic
-                        </span>
-                        <span className="text-xs text-indigo-600 dark:text-indigo-400 block font-mono">
-                          adjective • GRE / TOEFL
-                        </span>
-                      </div>
-                      <span className="text-[11px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
-                        Score: 92%
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                      Dealing with things sensibly and realistically in a way
-                      that is based on practical considerations.
-                    </p>
-                  </div>
-
-                  {/* Practice Question Mock */}
-                  <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-2">
-                    <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase">
-                      Question 14 / 20
-                    </div>
-                    <div className="text-xs font-medium text-slate-800 dark:text-slate-200">
-                      Select the closest synonym for `Pragmatic`:
-                    </div>
-                    <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
-                      <div className="p-2 rounded bg-indigo-600 text-white font-bold text-center">
-                        Practical
-                      </div>
-                      <div className="p-2 rounded bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 text-center">
-                        Theoretical
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Mobile Footer Stats */}
-                <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />{" "}
-                    Reviews: 15 Due
-                  </span>
-                  <span className="text-indigo-600 dark:text-indigo-400 font-bold">
-                    200k Questions
-                  </span>
+            <div className="w-full max-w-[320px] rounded-[36px] border-[6px] border-gray-300 dark:border-gray-800 bg-gray-300 dark:bg-gray-900 p-2 shadow-2xl">
+              <div className="rounded-[28px] bg-black border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col justify-between h-[580px]">
+                {/* GIF Container */}
+                <div className="flex-1 flex items-center justify-center p-4">
+                  <img
+                    src="/gif-files/smart_words.gif"
+                    alt="Frontend Pro Demo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
             </div>

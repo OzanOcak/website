@@ -2,7 +2,7 @@
 title: Setting Up Drizzle on an RPC Server
 slug: drizzle-with-rpc-server
 description: Learning RPC server with Postgres and drizzle.
-imageUrl: /images/2.png
+imageUrl: /images/2.webp
 author: ozan
 date: 12.11.2024
 tags:

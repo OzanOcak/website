@@ -2,7 +2,7 @@
 title: "Understanding React Router: Complete Guide to createBrowserRouter"
 slug: react-router-v6
 description: Understanding React Router
-imageUrl: /images/4.png
+imageUrl: /images/4.webp
 author: o. ocak
 date: 12.10.2024
 tags:

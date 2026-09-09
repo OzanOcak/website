@@ -1,7 +1,8 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { ProjectCard } from "@/components/custom/projects/ProjectCard";
+import { useCallback, useEffect, useState } from "react";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
 
 // Main page component
 const Page = () => {
@@ -42,19 +43,79 @@ const Page = () => {
 export default Page;
 
 const BlackScreen = () => {
+  const particlesInit = useCallback(async (engine: any) => {
+    await loadSlim(engine);
+  }, []);
   return (
-    <div className="min-h-screen bg-gray-200 dark:bg-black/0 text-white flex items-center justify-center p-8">
+    <div className="relative min-h-screen bg-gray-200 dark:bg-black/0 text-white flex items-center justify-center p-8">
+      {/* Particles - Only inside this section */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Particles
+          id="tsparticles"
+          init={particlesInit}
+          options={{
+            fullScreen: {
+              enable: false, // THIS IS THE KEY
+            },
+            background: {
+              color: { value: "transparent" },
+            },
+            fpsLimit: 60,
+            interactivity: {
+              events: {
+                onHover: {
+                  enable: true,
+                  mode: "repulse",
+                },
+              },
+            },
+            particles: {
+              color: { value: "#a855f7" },
+              links: {
+                color: "#3b82f6",
+                distance: 150,
+                enable: true,
+                opacity: 0.2,
+                width: 1,
+              },
+              move: {
+                enable: true,
+                speed: 1.5,
+                direction: "none",
+                random: false,
+                straight: false,
+              },
+              number: {
+                density: {
+                  enable: true,
+                  area: 800,
+                },
+                value: 60,
+              },
+              opacity: {
+                value: 0.4,
+              },
+              size: {
+                value: { min: 1, max: 3 },
+              },
+            },
+            detectRetina: true,
+          }}
+          className="w-full h-full"
+        />
+      </div>
+
       <div className="max-w-4xl w-full">
         {/* Kicker */}
-        <div className="text-lg font-semibold text-gray-500 ">Master Plan</div>
+        <div className="text-lg font-semibold text-gray-500">Featured Work</div>
 
-        {/* Heading with Gradient Text */}
+        {/* Heading */}
         <h1 className="text-5xl md:text-6xl font-bold mb-6 mt-12 sm:mt-0">
-          <span className="text-gray-500 dark:text-white ">
-            Discover Your Path to Language Mastery
+          <span className="text-gray-900 dark:text-white">
+            Apps I've Built,
           </span>
-          <span className="text-lg md:text-xl bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            Powered by a passion for developing apps effortlessly.
+          <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            Shipped & Open-Sourced
           </span>
         </h1>
 
@@ -66,16 +127,11 @@ const BlackScreen = () => {
 
         {/* Description */}
         <p className="text-sm sm:text-md md:text-lg text-gray-700 dark:text-gray-300 mb-8">
-          Background: With a degree in Computer Engineering and over seven years
-          of experience in front-end web development, I have cultivated a strong
-          foundation in technology and design. My journey in the tech industry
-          has equipped me with the skills to create intuitive and user-friendly
-          applications. Driven by a desire to develop tools that not only serve
-          my personal needs but also benefit others, I am passionate about
-          leveraging my expertise to build applications that enhance learning
-          and improve everyday experiences. My goal is to create innovative
-          solutions that empower individuals to achieve their language mastery
-          and beyond.
+          I'm a front-end engineer who actually ships. Over the last 8 years,
+          I've built production apps across iOS, desktop, and web — with a focus
+          on offline-first architecture, React, React Native, Rust performance,
+          and clean UI. This page is a living catalog of everything I've built,
+          learned, and open-sourced.
         </p>
 
         {/* Gradient Arrow Button 
@@ -108,269 +164,173 @@ const BlackScreen = () => {
 const WhiteScreen = () => {
   return (
     <div
-      className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-gray-100 
+      className="min-h-screen bg-white text-black dark:bg-black dark:text-gray-100 
     flex flex-col md:flex-row p-8"
     >
       {/* Main Content - Full width on small screens, 60% width on medium and larger screens */}
       <div className="w-full order-2 md:order-1 md:max-w-4xl">
         {/* Article Content */}
         <article className="rich-text-area">
-          {/* The Company */}
-          <div className="py-8">
-            <h2 id="markle">
-              Welcome to <span className="font-bold">Markle</span>
-            </h2>
-            {/* Image Section using Next.js Image component */}
-            <div className="image-container p-0 md:p-4 lg:p-16 mb-4">
-              <Image
-                src="https://github.com/OzanOcak/merkle/blob/main/git-media/markle2.gif?raw=true"
-                alt="Markdown Editor Screenshot"
-                layout="responsive"
-                width={600} // Set the width according to your design
-                height={330} // Set the height according to your design
-                className="rounded-lg" // Optional: Add any additional classes for styling
-              />
-            </div>
-            <p>
-              Unlock your writing potential with Markle, a powerful and
-              user-friendly Markdown editor built with Electron. Designed for
-              writers, developers, and anyone who loves to create, our editor
-              combines the simplicity of Markdown with advanced features to
-              enhance your productivity.
-            </p>
-            <h2 className="my-2">Key Features:</h2>
-            <ul>
-              <li>
-                <strong>VSCode-like Explorer:</strong> Navigate your projects
-                effortlessly with an intuitive file explorer that keeps your
-                workspace organized.
-              </li>
-              <li>
-                <strong>Export Options:</strong> Seamlessly export your
-                documents in multiple formats, including HTML, Markdown, and
-                PDF, making it easy to share your work.
-              </li>
-              <li>
-                <strong>LaTeX Support:</strong> Perfect for academics and
-                technical writers, our editor supports LaTeX for typesetting
-                complex mathematical equations.
-              </li>
-              <li>
-                <strong>Mermaid Integration:</strong> Create beautiful diagrams
-                and flowcharts directly within your documents using Mermaid
-                syntax.
-              </li>
-              <li>
-                <strong>Code Snippets:</strong> Boost your coding efficiency
-                with customizable code snippets that save you time and effort.
-              </li>
-              <li>
-                <strong>User-Friendly UI:</strong> Enjoy a clean and modern
-                interface designed for a smooth writing experience, whether you
-                are drafting a blog post or coding documentation.
-              </li>
-              <li>
-                <strong>Front Matter Builder:</strong> Easily manage metadata
-                with our front matter builder, allowing you to add essential
-                information to your Markdown files.
-              </li>
-              <li>
-                <strong>SQLite Support:</strong> Utilize SQLite for efficient
-                data storage and management, making it easy to handle your notes
-                and documents.
-              </li>
-            </ul>
-            <div className="">
-              <h2 className="text-2xl font-bold my-4">Explore the System</h2>
-              <p className="">
-                You can also read about the system I built in order to develop a
-                VSCode-like explorer integrating UI - client and server-side
-                states in the link below.
-                <a
-                  href="https://github.com/OzanOcak/merkle/blob/main/git-media/explorer.md"
-                  className="text-sky-500 hover:underline transition duration-200 px-2"
-                >
-                  Read More
-                </a>
-              </p>
-            </div>
-            {/* Button to go to the project */}
-            <div className="button-container m-2 px-6 py-1 bg-sky-500 hover:bg-sky-700 rounded-md w-48">
-              <Link href="https://github.com/OzanOcak/merkle" passHref>
-                <button className="project-button w-full text-center font-extrabold">
-                  Go to Project
-                </button>
-              </Link>
-            </div>
+          <div
+            id="smart_words_dictionary"
+            className="py-8 border-t border-slate-200 dark:border-slate-800"
+          >
+            <ProjectCard
+              title="Smart Words Dictionary"
+              desc="Offline-first vocabulary engine featuring 30,000+ words, spaced-repetition memory tracking, and exam practice modules."
+              tag="iOS & Mobile"
+              icon="/app-icons/smart_words.webp"
+              metrics="30k+ Words • 200k Questions"
+              path="/apps/smartwords"
+              color="blue"
+            />
           </div>
-          {/* The Company */}
-          <div className="py-8">
-            <h2 id="auth">Authentication & Authorization</h2>
-            {/* Image Section using Next.js Image component */}
-            <div className="image-container p-0 md:p-4 lg:p-16 mb-4">
-              <Image
-                src="https://github.com/OzanOcak/merkle/blob/main/git-media/auth.gif?raw=true"
-                alt="Markdown Editor Screenshot"
-                layout="responsive"
-                width={600} // Set the width according to your design
-                height={330} // Set the height according to your design
-                className="rounded-lg" // Optional: Add any additional classes for styling
-              />
-            </div>
-            <p>
-              AuthFlow is a robust, self-contained authentication and
-              authorization system designed to handle modern security challenges
-              without relying on third-party libraries (except NodeMailer for
-              OTP delivery). Built from scratch with OWASP best practices, it
-              offers a modular, scalable solution for apps requiring
-              fine-grained user access control, multi-factor authentication
-              (MFA), and token-based security.
-            </p>
-            <h2 className="mt-4">Key Features:</h2>
-            <h3>🔒 End-to-End JWT Security</h3>
-            <ul>
-              <li>
-                Stateless authentication using access/refresh tokens with token
-                invalidation (token IDs).
-              </li>
-              <li>
-                Secure cookie handling and session management for server-side
-                validation.
-              </li>
-              <li>
-                Axios interceptor integration for seamless token renewal and
-                request retries.
-              </li>
-            </ul>
-            <h3 className="mt-4">🛡 Multi-Layered Authentication</h3>
-            <ul>
-              <li>OAuth2-style flows for third-party integrations.</li>
-              <li>
-                <strong>Code Snippets:</strong> Boost your coding efficiency
-                with customizable code snippets that save you time and effort.
-              </li>
-              <li>Time-based OTP (TOTP) and email-based 2FA.</li>
-              <li>
-                Customizable password policies and brute-force protection.
-              </li>
-            </ul>
-            <h3 className="mt-4">🔑 User-Centric Authorization</h3>
-            <ul>
-              <li>
-                Role and permission management inspired by OAuth’s scope logic,
-                enabling granular access control (e.g., user:read, admin:write).
-              </li>
-              <li>
-                Lightweight, library-free implementation for full transparency
-                and control.
-              </li>
-            </ul>
-            <h3 className="mt-4">⚡ Modern Tech Stack</h3>
-            <ul>
-              <li>
-                Frontend: React + TypeScript, React Query for state management,
-                Zod for schema validation.
-              </li>
-              <li>
-                Backend: Express.js with Node.js, Drizzle ORM, PostgreSQL.
-                TypeScript throughout for type safety.
-              </li>
-              <li>
-                DevOps-ready: Containerized deployment with Docker; easily
-                integrates into REST/gRPC APIs.{" "}
-              </li>
-            </ul>
-            <div className="">
-              <h2 className="text-2xl font-bold my-4">Explore the System</h2>
-              <p className="">
-                You can read about the website I built in order to self host api
-                and tunnel it via Clouflare and make it publicly available to
-                frontend is hosted by Vercel
-                <a
-                  href="https://github.com/OzanOcak/merkle/blob/main/git-media/architecture.md"
-                  className="text-sky-500 hover:underline transition duration-200 px-2"
-                >
-                  Read More
-                </a>
-              </p>
-              <p className="">
-                You can also read the article about the achitecture of my
-                website.
-                <a
-                  href="http://localhost:5173/blogpost/raspberry-pi-cloudflare-vercel-architecture"
-                  className="text-sky-500 hover:underline transition duration-200 px-2"
-                >
-                  Read More
-                </a>
-              </p>
-            </div>
+          <div
+            id="go_french"
+            className="py-8 border-t border-slate-200 dark:border-slate-800"
+          >
+            <ProjectCard
+              title="Go French"
+              desc="Interactive language acquisition suite focused on real-world conversational patterns, grammar drills, and spaced recall."
+              tag="iOS & Mobile"
+              icon="/app-icons/gofrench.webp"
+              metrics="Grammar • Active Recall"
+              path="/apps/gofrench"
+              color="amber"
+            />
           </div>
-          {/* The Present */}
-          <div className="py-8">
-            <h2 id="makeitenglish" className="text-3xl font-bold mb-6">
-              Mobile English Dictionary App
-            </h2>
-            <p className="text-lg mb-8">
-              Take your language learning on-the-go with our Mobile English
-              Dictionary App, a companion to our desktop version. Designed for
-              mobile devices, this app ensures that you have access to essential
-              vocabulary resources anywhere, anytime.
-            </p>
-            <ul>
-              <li>
-                Seamless Synchronization: Enjoy the convenience of syncing your
-                progress between devices. Start learning on your desktop and
-                continue effortlessly on your mobile.
-              </li>
-              <li>
-                Interactive Flashcards: Just like the desktop version, our
-                mobile app features dynamic flashcards that help reinforce your
-                vocabulary skills through quick reviews
-              </li>
-              <li>
-                Intuitive Exercises: Challenge yourself with multiple selection
-                exercises, specifically designed for mobile interaction. Stay
-                engaged with bite-sized quizzes that fit perfectly into your
-                busy schedule.
-              </li>
-              <li>
-                Pronunciation Practice: Hear and practice pronunciations with
-                ease. Use the built-in audio features to refine your speaking
-                skills, ensuring you are always prepared for real-life
-                conversations.
-              </li>
-            </ul>
-            <div className="button-container m-2 mt-4 px-6 py-2 bg-sky-500 hover:bg-sky-700 rounded-md w-72">
-              <Link href="https://oocak.com/apps/smartwords" passHref>
-                <button className="project-button w-full text-center font-extrabold">
-                  Go to SmartWords&apos;s Page
-                </button>
-              </Link>
-            </div>
+
+          <div
+            id="frontend_pro"
+            className="py-8 border-t border-slate-200 dark:border-slate-800"
+          >
+            <ProjectCard
+              title="Frontend Pro"
+              desc="Targeted technical interview practice engine and interactive quizzes for modern web developers."
+              tag="iOS & Mobile"
+              icon="/app-icons/frontend_pro.webp"
+              metrics="React • TypeScript • Web Architecture"
+              path="/apps/frontendpro"
+              color="green"
+            />
+          </div>
+          <div
+            id="pixel_shrink"
+            className="py-8 border-t border-slate-200 dark:border-slate-800"
+          >
+            <ProjectCard
+              title="PixelShrink"
+              desc="Visually lossless image compression with metadata purging and high-ratio quantization. Built with Rust and Tauri."
+              tag="Desktop App"
+              icon="/app-icons/pixel_shrink.webp"
+              metrics="Rust • Tauri • 80x Compression"
+              path="/apps/pixelshrink"
+              color="purple"
+            />
+          </div>
+
+          <div
+            id="mac_cleaner"
+            className="py-8 border-t border-slate-200 dark:border-slate-800"
+          >
+            <ProjectCard
+              title="Mac Cleaner for Devs"
+              desc="Scan and delete developer caches, build artifacts, simulator data, and dependency folders. Privacy first, no uploads."
+              tag="Desktop App"
+              icon="/app-icons/mac_cleaner.webp"
+              metrics="Rust • Tauri • React"
+              path="/apps/maccleaner"
+              color="blue"
+            />
+          </div>
+
+          {/* Markle Section */}
+          <div
+            id="markle"
+            className="py-8 border-t border-slate-200 dark:border-slate-800 first:border-t-0"
+          >
+            <ProjectCard
+              title="Markle"
+              desc="A powerful and user-friendly Markdown editor built with Electron. Combines the simplicity of Markdown with advanced features to enhance your productivity."
+              tag="Desktop Editor"
+              icon="/app-icons/markle.webp"
+              metrics="Electron • React • SQLite"
+              path="/apps/markle"
+              color="emerald"
+            />
+          </div>
+
+          <div
+            id="auth"
+            className="py-8 border-t border-slate-200 dark:border-slate-800"
+          >
+            <ProjectCard
+              title="AuthFlow"
+              desc="A complete authentication and authorization system built from scratch with JWT security, MFA, and role-based access control. Self-hosted on Raspberry Pi with Cloudflare Tunnels."
+              tag="Architecture & Security"
+              icon="/app-icons/authflow.webp"
+              metrics="JWT • MFA • Self-Hosted"
+              path="/apps/authflow"
+              color="indigo"
+            />
           </div>
         </article>
       </div>
 
-      {/* Side Navigation - Block on small screens, sidebar on medium and larger screens */}
-      <nav className="w-full capitalize font-bold  text-gray-700  dark:text-gray-100  order-1 md:order-2 md:w-64 mb-8 md:mb-0 md:ml-8 md:sticky md:top-8 md:self-start">
-        <div className="space-y-2">
+      {/* Side Navigation */}
+      <nav className="w-full capitalize font-medium text-gray-600 dark:text-gray-400 order-1 md:order-2 md:w-56 mb-8 md:mb-0 md:ml-8 md:sticky md:top-24 md:self-start">
+        <div className="space-y-1">
+          <div className="text-[10px] font-mono font-bold text-gray-400 dark:text-gray-600 uppercase tracking-wider px-3 py-2">
+            Projects
+          </div>
+
+          <a
+            href="#smart_words_dictionary"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-emerald-500 dark:hover:border-emerald-400"
+          >
+            Smart Words Dictionary
+          </a>
+
+          <a
+            href="#go_french"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-amber-500 dark:hover:border-amber-400"
+          >
+            Go French
+          </a>
+
+          <a
+            href="#frontend_pro"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-green-500 dark:hover:border-green-400"
+          >
+            Frontend Pro
+          </a>
+
+          <a
+            href="#pixel_shrink"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-purple-500 dark:hover:border-purple-400"
+          >
+            PixelShrink
+          </a>
+
+          <a
+            href="#mac_cleaner"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-blue-500 dark:hover:border-blue-400"
+          >
+            Mac Cleaner for Devs
+          </a>
+
           <a
             href="#markle"
-            className="block  hover:text-black dark:hover:text-gray-500"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-emerald-500 dark:hover:border-emerald-400"
           >
-            Markle Markdown Editor
+            Markle
           </a>
+
           <a
             href="#auth"
-            className="block  hover:text-black dark:hover:text-gray-500"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-indigo-500 dark:hover:border-indigo-400"
           >
-            Authentication and Authorization System
-          </a>
-          <a
-            href="#makeitenglish"
-            className="block hover:text-black dark:hover:text-gray-500"
-          >
-            Mobile English Dictionary App
+            AuthFlow
           </a>
         </div>
       </nav>

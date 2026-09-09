@@ -4,7 +4,7 @@ slug: jwt-authentication-system
 description: >-
   Building a Secure JWT Token-Based Authentication and Role-Based Authorization
   System
-imageUrl: /images/9.png
+imageUrl: /images/9.webp
 author: ozan
 date: 27.02.2025
 tags:

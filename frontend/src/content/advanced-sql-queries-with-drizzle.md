@@ -2,7 +2,7 @@
 title: Advanced Sql Queries With Drizzle
 slug: advanced-sql-queries-with-drizzle
 description: Comprehensive guide on learning SQL and drizzle.
-imageUrl: /images/1.png
+imageUrl: /images/1.webp
 author: ozan
 date: 12.09.2024
 tags:
@@ -89,7 +89,7 @@ export const productCategoriesRelations = relations(
       fields: [product_categories.category_id],
       references: [categories.id],
     }),
-  })
+  }),
 );
 
 export const productsRelations = relations(products, ({ many }) => ({
@@ -159,8 +159,8 @@ db.select()
   .where(
     and(
       eq(reviews.productId, "your-product-id"), //  UUID
-      eq(reviews.userId, "your-user-id") // UUID
-    )
+      eq(reviews.userId, "your-user-id"), // UUID
+    ),
   );
 ```
 
@@ -174,8 +174,8 @@ db.select()
   .where(
     or(
       eq(reviews.userId, "your-user-id"), // UUID
-      eq(reviews.rating, 5)
-    )
+      eq(reviews.rating, 5),
+    ),
   );
 ```
 
@@ -221,7 +221,7 @@ To select cart items and sort them first by quantity in ascending order and then
 ```js
 db.select().from(cartItems).orderBy(
   asc(cartItems.quantity), // Sort by quantity in ascending order
-  desc(cartItems.productId) // Then by productId in descending order
+  desc(cartItems.productId), // Then by productId in descending order
 );
 ```
 
@@ -384,8 +384,8 @@ db.select()
         .select({ productId: avg(reviews.rating) })
         .from(reviews)
         .groupBy(reviews.productId)
-        .having(gt(avg(reviews.rating), 4.0))
-    )
+        .having(gt(avg(reviews.rating), 4.0)),
+    ),
   );
 ```
 
@@ -409,10 +409,10 @@ db.select()
               .select({ productId: avg(reviews.rating) })
               .from(reviews)
               .groupBy(reviews.productId)
-              .having(gt(avg(reviews.rating), 4.0))
-          )
-        )
-    )
+              .having(gt(avg(reviews.rating), 4.0)),
+          ),
+        ),
+    ),
   );
 ```
 
@@ -437,7 +437,7 @@ To combine results from two different queries without removing duplicates (e.g.,
 db.select({ userId: reviews.userId })
   .from(reviews)
   .unionAll(
-    db.select({ userId: wishlists.userId }).from(wishlists) // get user IDs from wishlists
+    db.select({ userId: wishlists.userId }).from(wishlists), // get user IDs from wishlists
   );
 ```
 
@@ -449,7 +449,7 @@ To find user IDs that exist in both reviews and wishlists:
 db.select({ userId: reviews.userId })
   .from(reviews)
   .intersect(
-    db.select({ userId: wishlists.userId }).from(wishlists) //  get user IDs from wishlists
+    db.select({ userId: wishlists.userId }).from(wishlists), //  get user IDs from wishlists
   );
 ```
 
@@ -461,7 +461,7 @@ To find user IDs from reviews that do not exist in wishlists:
 db.select({ userId: reviews.userId })
   .from(reviews)
   .except(
-    db.select({ userId: wishlists.userId }).from(wishlists) // get user IDs from wishlists
+    db.select({ userId: wishlists.userId }).from(wishlists), // get user IDs from wishlists
   );
 ```
 
@@ -505,7 +505,7 @@ To delete a specific item from the wishlist_items table:
 
 ```js
 db.delete(wishlistItems).where(
-  eq(wishlistItems.id, "your-wishlist-item-id-here")
+  eq(wishlistItems.id, "your-wishlist-item-id-here"),
 ); // Replace with actual UUID
 ```
 

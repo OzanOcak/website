@@ -2,7 +2,7 @@
 title: Setting Up and Using Sqlx with SQLite in Tauri Rust
 slug: tauri-sqlx
 description: Setting Up and Using sqlx with SQLite in Tauri Rust
-imageUrl: /images/2.png
+imageUrl: /images/2.webp
 author: O. Ocak
 date: 18.03.2025
 tags:
