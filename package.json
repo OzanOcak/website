@@ -6,5 +6,8 @@
     "build": "npm run build --prefix frontend",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down"
+  },
+  "dependencies": {
+    "seinx-nn-canvas-animation": "^3.3.1"
   }
 }
