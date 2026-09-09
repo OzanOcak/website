@@ -1,8 +1,6 @@
 "use client";
 import { ProjectCard } from "@/components/custom/projects/ProjectCard";
 import { useCallback, useEffect, useState } from "react";
-import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
 
 // Main page component
 const Page = () => {
@@ -43,68 +41,8 @@ const Page = () => {
 export default Page;
 
 const BlackScreen = () => {
-  const particlesInit = useCallback(async (engine: any) => {
-    await loadSlim(engine);
-  }, []);
   return (
     <div className="relative min-h-screen bg-gray-200 dark:bg-black/0 text-white flex items-center justify-center p-8">
-      {/* Particles - Only inside this section */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Particles
-          id="tsparticles"
-          init={particlesInit}
-          options={{
-            fullScreen: {
-              enable: false, // THIS IS THE KEY
-            },
-            background: {
-              color: { value: "transparent" },
-            },
-            fpsLimit: 60,
-            interactivity: {
-              events: {
-                onHover: {
-                  enable: true,
-                  mode: "repulse",
-                },
-              },
-            },
-            particles: {
-              color: { value: "#a855f7" },
-              links: {
-                color: "#3b82f6",
-                distance: 150,
-                enable: true,
-                opacity: 0.2,
-                width: 1,
-              },
-              move: {
-                enable: true,
-                speed: 1.5,
-                direction: "none",
-                random: false,
-                straight: false,
-              },
-              number: {
-                density: {
-                  enable: true,
-                  area: 800,
-                },
-                value: 60,
-              },
-              opacity: {
-                value: 0.4,
-              },
-              size: {
-                value: { min: 1, max: 3 },
-              },
-            },
-            detectRetina: true,
-          }}
-          className="w-full h-full"
-        />
-      </div>
-
       <div className="max-w-4xl w-full">
         {/* Kicker */}
         <div className="text-lg font-semibold text-gray-500">Featured Work</div>

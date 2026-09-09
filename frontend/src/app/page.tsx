@@ -13,8 +13,6 @@ import {
   Shield,
 } from "lucide-react";
 import { AppIcon } from "@/components/icons/App-Icon";
-import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
 
 export default function Home() {
   const visited = useStore.getState().visited;
@@ -38,10 +36,6 @@ export default function Home() {
 
     trackVisit();
   }, [visited, setVisited, increaseVisitCount]);
-
-  const particlesInit = useCallback(async (engine: any) => {
-    await loadSlim(engine);
-  }, []);
 
   const appShowcase = {
     mobile: [
@@ -112,63 +106,6 @@ export default function Home() {
     <main className="relative min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased -mt-4">
       {/* Hero Section */}
       <section className="relative h-[85vh] flex items-center justify-center text-center px-4 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent overflow-hidden">
-        {" "}
-        {/* Particles - Only inside this section */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Particles
-            id="tsparticles"
-            init={particlesInit}
-            options={{
-              fullScreen: {
-                enable: false, // THIS IS THE KEY
-              },
-              background: {
-                color: { value: "transparent" },
-              },
-              fpsLimit: 60,
-              interactivity: {
-                events: {
-                  onHover: {
-                    enable: true,
-                    mode: "repulse",
-                  },
-                },
-              },
-              particles: {
-                color: { value: "#10b981" },
-                links: {
-                  color: "#10b981",
-                  distance: 150,
-                  enable: true,
-                  opacity: 0.2,
-                  width: 1,
-                },
-                move: {
-                  enable: true,
-                  speed: 1.5,
-                  direction: "none",
-                  random: false,
-                  straight: false,
-                },
-                number: {
-                  density: {
-                    enable: true,
-                    area: 800,
-                  },
-                  value: 60,
-                },
-                opacity: {
-                  value: 0.4,
-                },
-                size: {
-                  value: { min: 1, max: 3 },
-                },
-              },
-              detectRetina: true,
-            }}
-            className="w-full h-full"
-          />
-        </div>
         {/* Content - sits on top */}
         <div className="relative z-10 max-w-4xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-xs font-mono text-emerald-600 dark:text-emerald-400">
