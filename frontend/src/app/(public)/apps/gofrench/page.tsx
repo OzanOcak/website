@@ -162,7 +162,7 @@ const App = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a
-                href="#download"
+                href="https://apps.apple.com/ua/app/gofrench/id6802869115"
                 className="inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-amber-600/25"
               >
                 <Download className="w-5 h-5" />
