@@ -4,13 +4,11 @@
 import React, { useState } from "react";
 import {
   Trash2,
-  Scan,
   Shield,
   Download,
   Menu,
   X,
   CheckCircle2,
-  FolderOpen,
   HardDrive,
   Package,
   Box,
@@ -499,10 +497,13 @@ const App = () => {
             build artifacts and caches.
           </p>
           <div className="pt-4 flex flex-wrap justify-center gap-4">
-            <button className="bg-white hover:bg-zinc-100 text-zinc-900 font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3">
+            <a
+              href="https://github.com/OzanOcak/Mac-Cleaner-for-Devs/releases/download/v0.1.0-alpha/maccleaner_0.1.0_aarch64.dmg"
+              className="bg-white hover:bg-zinc-100 text-zinc-900 font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3"
+            >
               <Download className="w-5 h-5 text-blue-600" />
               Download for macOS
-            </button>
+            </a>
           </div>
           <p className="text-xs text-blue-300/70 font-mono mt-4">
             v1.0 • Requires macOS 12+ • Apple Silicon & Intel

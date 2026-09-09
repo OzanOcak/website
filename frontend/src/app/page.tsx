@@ -13,6 +13,7 @@ import {
   Shield,
 } from "lucide-react";
 import { AppIcon } from "@/components/icons/App-Icon";
+import { NeuralBackground } from "@/components/custom/neuralBackground";
 
 export default function Home() {
   const visited = useStore.getState().visited;
@@ -40,14 +41,6 @@ export default function Home() {
   const appShowcase = {
     mobile: [
       {
-        title: "Smart Words Dictionary",
-        desc: "Offline-first vocabulary engine featuring 30,000+ words, spaced-repetition memory tracking, and exam practice modules.",
-        path: "/apps/smartwords",
-        tag: "iOS & Mobile",
-        icon: "/app-icons/smart_words.webp",
-        metrics: "30k+ Words • 200k Questions",
-      },
-      {
         title: "Go French",
         desc: "Interactive language acquisition suite focused on real-world conversational patterns, grammar drills, and spaced recall.",
         path: "/apps/gofrench",
@@ -62,6 +55,14 @@ export default function Home() {
         tag: "iOS & Mobile",
         icon: "/app-icons/frontend_pro.webp",
         metrics: "React • TypeScript • Web Architecture",
+      },
+      {
+        title: "Smart Words Dictionary",
+        desc: "Offline-first vocabulary engine featuring 30,000+ words, spaced-repetition memory tracking, and exam practice modules.",
+        path: "/apps/smartwords",
+        tag: "iOS & Mobile",
+        icon: "/app-icons/smart_words.webp",
+        metrics: "30k+ Words • 200k Questions",
       },
     ],
     desktop: [
@@ -103,42 +104,43 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased -mt-4">
+    <main className="relative min-h-screen bg-slate-50/90 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased -mt-4">
       {/* Hero Section */}
-      <section className="relative h-[85vh] flex items-center justify-center text-center px-4 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent overflow-hidden">
-        {/* Content - sits on top */}
-        <div className="relative z-10 max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-xs font-mono text-emerald-600 dark:text-emerald-400">
-            <Cpu className="w-3.5 h-3.5 animate-pulse" /> Local-First &
-            Developer Ecosystem
+      <NeuralBackground>
+        <section className="relative h-[85vh] flex items-center justify-center text-center px-4 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent overflow-hidden">
+          <div className="relative z-10 max-w-4xl mx-auto space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/60 bg-emerald-500/60 text-xs font-mono text-emerald-900 dark:text-emerald-400">
+              <Cpu className="w-3.5 h-3.5 animate-pulse" /> Local-First &
+              Developer Ecosystem
+            </div>
+
+            <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight bg-white/80 dark:bg-black/40 text-slate-900 dark:text-white leading-[1.1]">
+              High-Performance Apps & <br />
+              <span className="text-emerald-500">Developer Tools</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-slate-600 bg-white/40 dark:bg-black/40 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Exploring software engineering, local-first architecture, offline
+              vocabulary engines, and modern frontend platforms.
+            </p>
+
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+              <a
+                href="#featured-apps"
+                className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3.5 px-8 rounded-xl shadow-lg shadow-emerald-500/20 transition duration-300"
+              >
+                Explore Applications
+              </a>
+              <button
+                onClick={() => router.push("/apps")}
+                className="w-full sm:w-auto bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-emerald-500 font-semibold py-3.5 px-8 rounded-xl transition duration-300"
+              >
+                All Software
+              </button>
+            </div>
           </div>
-
-          <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
-            High-Performance Apps & <br />
-            <span className="text-emerald-500">Developer Tools</span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Exploring software engineering, local-first architecture, offline
-            vocabulary engines, and modern frontend platforms.
-          </p>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
-            <a
-              href="#featured-apps"
-              className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3.5 px-8 rounded-xl shadow-lg shadow-emerald-500/20 transition duration-300"
-            >
-              Explore Applications
-            </a>
-            <button
-              onClick={() => router.push("/apps")}
-              className="w-full sm:w-auto bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-emerald-500 font-semibold py-3.5 px-8 rounded-xl transition duration-300"
-            >
-              All Software
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
+      </NeuralBackground>
 
       {/* Featured Apps Showcase Section */}
       <section id="featured-apps" className="py-20 max-w-6xl mx-auto px-6">

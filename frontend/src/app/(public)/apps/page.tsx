@@ -1,4 +1,5 @@
 "use client";
+import { NeuralBackground } from "@/components/custom/neuralBackground";
 import { ProjectCard } from "@/components/custom/projects/ProjectCard";
 import { useCallback, useEffect, useState } from "react";
 
@@ -42,37 +43,41 @@ export default Page;
 
 const BlackScreen = () => {
   return (
-    <div className="relative min-h-screen bg-gray-200 dark:bg-black/0 text-white flex items-center justify-center p-8">
-      <div className="max-w-4xl w-full">
-        {/* Kicker */}
-        <div className="text-lg font-semibold text-gray-500">Featured Work</div>
+    <NeuralBackground>
+      <div className="relative min-h-screen bg-gray-50/10 dark:bg-black/10 text-white flex items-center justify-center p-8">
+        <div className="max-w-4xl w-full">
+          {/* Kicker */}
+          <div className="text-lg font-semibold text-gray-500 dark:text-white">
+            Featured Work
+          </div>
+          <div className="bg-gray-200/50 dark:bg-black/80">
+            {/* Heading */}
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 mt-12 sm:mt-0">
+              <span className="text-gray-900 dark:text-white">
+                Apps I've Built,
+              </span>
+              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                Shipped & Open-Sourced
+              </span>
+            </h1>
 
-        {/* Heading */}
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 mt-12 sm:mt-0">
-          <span className="text-gray-900 dark:text-white">
-            Apps I've Built,
-          </span>
-          <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            Shipped & Open-Sourced
-          </span>
-        </h1>
+            {/* Meta Info */}
+            <div className="flex flex-col md:flex-row gap-4 text-gray-500 mb-8">
+              <address className="not-italic">By: O. Ocak</address>
+              <time dateTime="2022-05-20T00:00:00.000Z">Feb 27, 2025</time>
+            </div>
 
-        {/* Meta Info */}
-        <div className="flex flex-col md:flex-row gap-4 text-gray-500 mb-8">
-          <address className="not-italic">By: O. Ocak</address>
-          <time dateTime="2022-05-20T00:00:00.000Z">Feb 27, 2025</time>
-        </div>
+            {/* Description */}
+            <p className="text-sm sm:text-md md:text-lg text-gray-700 dark:text-gray-300 mb-8">
+              I'm a front-end engineer who actually ships. Over the last 8
+              years, I've built production apps across iOS, desktop, and web —
+              with a focus on offline-first architecture, React, React Native,
+              Rust performance, and clean UI. This page is a living catalog of
+              everything I've built, learned, and open-sourced.
+            </p>
+          </div>
 
-        {/* Description */}
-        <p className="text-sm sm:text-md md:text-lg text-gray-700 dark:text-gray-300 mb-8">
-          I'm a front-end engineer who actually ships. Over the last 8 years,
-          I've built production apps across iOS, desktop, and web — with a focus
-          on offline-first architecture, React, React Native, Rust performance,
-          and clean UI. This page is a living catalog of everything I've built,
-          learned, and open-sourced.
-        </p>
-
-        {/* Gradient Arrow Button 
+          {/* Gradient Arrow Button 
         <a
           href="/about-us"
           className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 
@@ -94,8 +99,9 @@ const BlackScreen = () => {
             />
           </svg>
         </a>*/}
+        </div>
       </div>
-    </div>
+    </NeuralBackground>
   );
 };
 

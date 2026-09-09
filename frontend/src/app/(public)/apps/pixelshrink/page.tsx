@@ -8,18 +8,12 @@ import {
   Cpu,
   Shield,
   Download,
-  Upload,
   Menu,
   X,
   CheckCircle2,
-  Terminal,
-  Monitor,
   Layers,
   Sparkles,
   Settings,
-  FolderOpen,
-  Save,
-  Trash2,
   Info,
 } from "lucide-react";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
@@ -366,10 +360,13 @@ const App = () => {
             performance with visually lossless compression.
           </p>
           <div className="pt-4 flex flex-wrap justify-center gap-4">
-            <button className="bg-white hover:bg-zinc-100 text-zinc-900 font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3">
+            <a
+              href="https://github.com/OzanOcak/Pixel-Shrink/releases/download/v0.1.0-alpha/Pixel.Shrink_0.1.0_aarch64.dmg"
+              className="bg-white hover:bg-zinc-100 text-zinc-900 font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3"
+            >
               <Download className="w-5 h-5 text-purple-600" />
               Download for macOS
-            </button>
+            </a>
           </div>
           <p className="text-xs text-purple-300/70 font-mono mt-4">
             Open source • Built with Rust, Tauri, React, TypeScript
