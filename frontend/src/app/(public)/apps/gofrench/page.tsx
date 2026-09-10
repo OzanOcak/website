@@ -319,7 +319,7 @@ const App = () => {
           </p>
           <div className="pt-2 flex justify-center">
             <a
-              href="https://apps.apple.com"
+              href="https://apps.apple.com/ua/app/gofrench/id6802869115"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-stone-900 hover:bg-black text-white font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3"

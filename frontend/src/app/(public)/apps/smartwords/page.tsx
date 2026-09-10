@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   BookOpen,
   Brain,
@@ -14,8 +14,6 @@ import {
   GraduationCap,
   WifiOff,
   ChevronRight,
-  Sun,
-  Moon,
 } from "lucide-react";
 
 const App = () => {
@@ -114,7 +112,7 @@ const App = () => {
             </a>
 
             <a
-              href="https://apps.apple.com/ca/app/smart-words-dictionary/id6748163293"
+              href="#download"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-xl font-semibold text-sm transition-all shadow-md shadow-indigo-600/20"

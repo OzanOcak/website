@@ -57,7 +57,7 @@ const App = () => {
               Stack
             </a>
             <a
-              href="https://apps.apple.com/ca/app/frontend-pro/id6754517273"
+              href="#download"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all shadow"
