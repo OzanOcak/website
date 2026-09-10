@@ -113,8 +113,6 @@ const App = () => {
 
             <a
               href="#download"
-              target="_blank"
-              rel="noopener noreferrer"
               className="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-xl font-semibold text-sm transition-all shadow-md shadow-indigo-600/20"
             >
               Get App
@@ -416,7 +414,10 @@ const App = () => {
       </section>
 
       {/* CTA Footer Section */}
-      <section className="py-24 max-w-6xl mx-auto px-6 text-center">
+      <section
+        id="download"
+        className="py-24 max-w-6xl mx-auto px-6 text-center"
+      >
         <div className="p-12 rounded-3xl bg-gradient-to-br from-indigo-600 to-indigo-800 text-white shadow-xl shadow-indigo-600/20 space-y-6">
           <h2 className="text-3xl md:text-5xl font-black">
             Build Your Mastery Today

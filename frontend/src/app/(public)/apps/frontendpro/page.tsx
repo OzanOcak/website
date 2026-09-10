@@ -58,8 +58,6 @@ const App = () => {
             </a>
             <a
               href="#download"
-              target="_blank"
-              rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all shadow"
             >
               Get App
@@ -295,7 +293,10 @@ const App = () => {
       </section>
 
       {/* CTA Section - Styled after your Web Security Text Block */}
-      <section className="bg-gradient-to-r from-green-600 to-gray-100 via-gray-100 py-32 dark:from-green-600 dark:to-gray-900 dark:via-gray-900">
+      <section
+        id="download"
+        className="bg-gradient-to-r from-green-600 to-gray-100 via-gray-100 py-32 dark:from-green-600 dark:to-gray-900 dark:via-gray-900"
+      >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100">
             Start Mastering Frontend Today
