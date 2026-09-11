@@ -35,6 +35,31 @@ export const NeuralBackground = ({
         );
 
         container.prepend(canvas);
+
+        // --- THE ROBUST LOGO REMOVAL ENGINE ---
+        const purgeLogo = () => {
+          // 1. Check for standard Light DOM link attached right next to or inside the canvas
+          const externalLink = container.querySelector('a[href*="seinx"]');
+          if (externalLink) externalLink.remove();
+
+          // 2. Check if the element uses a Shadow DOM wrapper
+          if (canvas.shadowRoot) {
+            // Find any branding links or watermark divs inside the shadow tree
+            const shadowLink =
+              canvas.shadowRoot.querySelector('a[href*="seinx"]');
+            if (shadowLink) shadowLink.remove();
+
+            const shadowLogo = canvas.shadowRoot.querySelector(
+              '[class*="logo"], [id*="logo"]',
+            );
+            if (shadowLogo) shadowLogo.remove();
+          }
+        };
+
+        // Run immediately, then execute a minor polling check for delayed internal rendering
+        purgeLogo();
+        const purgeInterval = setInterval(purgeLogo, 100);
+        setTimeout(() => clearInterval(purgeInterval), 2000);
       } catch (error) {
         console.error("Failed to load neural canvas:", error);
       }
@@ -54,14 +79,12 @@ export const NeuralBackground = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative overflow-hidden min-h-screen w-full ${className}`}
       style={{
         position: "relative",
-        width: "100%",
-        height: "100%",
       }}
     >
-      <div className="relative z-10 w-full h-full">{children}</div>
+      <div className="relative z-10 w-full min-h-screen">{children}</div>
     </div>
   );
 };

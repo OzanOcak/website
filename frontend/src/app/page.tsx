@@ -3,7 +3,7 @@
 import { useIncreaseVisitCount } from "@/hooks/roles/visitcount/useIncreaseVisitCount";
 import { useStore } from "@/stores/useAuthStore";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
