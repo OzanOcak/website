@@ -42,7 +42,7 @@ export const ProfileMenu = () => {
         </p>*/}
       </div>
     ),
-    [isLoading, isError, profile?.profilePicture]
+    [isLoading, isError, profile?.profilePicture],
   );
 
   const handleLogout = useCallback(() => {
@@ -69,7 +69,7 @@ export const ProfileMenu = () => {
 
   return (
     <div
-      className="relative h-16 flex items-center justify-center bg-gray-800/0 dark:bg-gray-900/0"
+      className="relative h-16 flex items-center justify-center z-50 bg-gray-800/0 dark:bg-gray-900/0"
       id="avatar"
     >
       <AvatarComponent />
