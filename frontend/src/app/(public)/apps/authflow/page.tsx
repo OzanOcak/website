@@ -163,7 +163,7 @@ const App = () => {
               Blog Posts
             </a>
             <a
-              href="https://github.com/yourusername/authflow"
+              href="https://github.com/OzanOcak/website"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center bg-gradient-to-r from-indigo-500 to-indigo-700 text-white font-semibold py-2.5 rounded-xl text-sm"

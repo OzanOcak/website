@@ -1,7 +1,7 @@
 import { useStore } from "@/stores/useAuthStore";
 //import { clearTokens } from "@/lib/clearTokens";
 import axiosInstance from "@/utils/AxiosInterceptor";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 // Function to handle user logout
@@ -10,9 +10,7 @@ const logoutUser = async (): Promise<void> => {
   // we cant use function call cz it is not react function which returns jsx
   // const refreshTokenId = localStorage.getItem("refreshTokenId");
 
-  if (!refreshTokenId) {
-    throw new Error("No refresh token ID found for logout.");
-  }
+  if (!refreshTokenId) return;
 
   // Attempt to log out
   try {
@@ -23,11 +21,10 @@ const logoutUser = async (): Promise<void> => {
         headers: {
           "refresh-token-id": refreshTokenId, // Send refreshTokenId in a custom header
         },
-      }
+      },
     );
   } catch (error) {
     console.error("Logout failed:", error);
-    throw new Error("Logout failed due to an unexpected error.");
   }
   //useStore.getState().clearToken();
 };
@@ -35,16 +32,17 @@ const logoutUser = async (): Promise<void> => {
 // Custom hook for logout
 export const useLogout = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const clearToken = useStore((state) => state.clearToken); //useStore.getState().clearToken;
   return useMutation({
     mutationFn: logoutUser,
     mutationKey: ["logout"],
-    onSuccess: async () => {
-      await clearToken(); // zustand items deleted
-      localStorage.removeItem("store");
-      // local storage key keeps zustand store object deleted
-      console.log("User logged out successfully.");
-      router.push("/login");
+    onSettled: () => {
+      clearToken(); // reset Zustand in-memory
+      useStore.persist.clearStorage(); // wipe persisted Zustand
+      queryClient.removeQueries({ queryKey: ["user"] }); // drop cached profile
+      localStorage.removeItem("store"); // legacy cleanup
+      router.push("/login"); // redirect
     },
     onError: (error: Error) => {
       console.error("Logout failed:", error.message);

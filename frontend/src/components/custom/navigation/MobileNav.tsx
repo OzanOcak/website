@@ -19,16 +19,17 @@ export const MobileNav: React.FC<MobileNavProps> = ({ onClose }) => {
 
   const handleLogout = useCallback(() => {
     logout();
-  }, [logout]);
+    onClose?.(); // close the sheet after logging out
+  }, [logout, onClose]);
 
   return (
     <div>
       <ul className="flex flex-col gap-4">
-        {accessToken ? (
+        {accessToken && (
           <Avatar className="ml-3">
             <AvatarImage src={profile?.profilePicture} />
           </Avatar>
-        ) : null}
+        )}
         <li>
           <SheetClose asChild>
             <Link
@@ -62,48 +63,57 @@ export const MobileNav: React.FC<MobileNavProps> = ({ onClose }) => {
             </Link>
           </SheetClose>
         </li>
-        <li>
-          <SheetClose asChild>
-            <div> {accessToken ? null : <SignIn onClose={onClose} />}</div>
-          </SheetClose>
-        </li>
-        {accessToken && <Separator />}
-        <li>
-          <SheetClose asChild>
-            {accessToken ? (
-              <Link
-                href="/profile"
-                className="block px-4 py-2 font-bold text-gray-700  dark:text-gray-100 hover:bg-gray-500 hover:font-extrabold transition duration-200"
-                onClick={onClose} // Optional: Call onClose if needed
-              >
-                Profile
-              </Link>
-            ) : null}
-          </SheetClose>
-        </li>
-        <li>
-          {profile && profile.role === "admin" ? (
+        {!accessToken && (
+          <li>
             <SheetClose asChild>
-              <Link
-                href={`/${profile.role}`} // Make the entire area clickable
-                className="block px-4 py-2 font-bold text-gray-700  dark:text-gray-100 hover:bg-gray-500 hover:font-extrabold transition duration-200"
-              >
-                <span className="w-full text-left">Admin Page</span>
-              </Link>
+              <div>
+                <SignIn onClose={onClose} />
+              </div>
             </SheetClose>
-          ) : null}
-        </li>
-        <li>
-          {accessToken ? (
-            <Link
-              href="/"
-              className="block px-4 py-2 font-bold text-red-700  dark:text-gray-100 hover:bg-gray-500 hover:font-extrabold transition duration-200"
-              onClick={handleLogout} // Optional: Call onClose if needed
-            >
-              <SheetClose>Sign Out</SheetClose>
-            </Link>
-          ) : null}
-        </li>
+          </li>
+        )}
+        {accessToken && (
+          <>
+            <Separator />
+
+            <li>
+              <SheetClose asChild>
+                <Link
+                  href="/profile"
+                  className="block px-4 py-2 font-bold text-gray-700 dark:text-gray-100 hover:bg-gray-500 hover:font-extrabold transition duration-200"
+                  onClick={onClose}
+                >
+                  Profile
+                </Link>
+              </SheetClose>
+            </li>
+
+            {profile?.role === "admin" && (
+              <li>
+                <SheetClose asChild>
+                  <Link
+                    href={`/${profile.role}`}
+                    className="block px-4 py-2 font-bold text-gray-700 dark:text-gray-100 hover:bg-gray-500 hover:font-extrabold transition duration-200"
+                  >
+                    Admin Page
+                  </Link>
+                </SheetClose>
+              </li>
+            )}
+
+            <li>
+              <SheetClose asChild>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="w-full text-left block px-4 py-2 font-bold text-red-700 dark:text-gray-100 hover:bg-gray-500 hover:font-extrabold transition duration-200"
+                >
+                  Sign Out
+                </button>
+              </SheetClose>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );
