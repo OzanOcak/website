@@ -199,7 +199,7 @@ const App = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a
-                href="https://github.com/yourusername/authflow"
+                href="https://github.com/OzanOcak/website"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-indigo-500/25"
