@@ -113,7 +113,7 @@ const App = () => {
               <Layers className="w-5 h-5 stroke-[2]" />
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-              TopDown{" "}
+              Fullscreen{" "}
               <span className="text-blue-500 dark:text-blue-400">Slider</span>
             </span>
             <span className="hidden md:inline-flex ml-3 px-2.5 py-0.5 rounded-md bg-blue-500/20 border border-blue-500/30 text-[10px] font-mono font-bold text-blue-600 dark:text-blue-400 tracking-widest">
@@ -135,7 +135,7 @@ const App = () => {
               Demo
             </a>
             <a
-              href="https://wordpress.org/plugins/topdown-slider/"
+              href="https://wordpress.org/plugins/oocak-fullscreen-slider/"
               className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white px-5 py-2 rounded-xl font-semibold text-sm transition-all shadow-md shadow-blue-500/20"
             >
               Install
@@ -171,7 +171,7 @@ const App = () => {
               Demo
             </a>
             <a
-              href="https://wordpress.org/plugins/topdown-slider/"
+              href="https://wordpress.org/plugins/oocak-fullscreen-slider/"
               className="block w-full text-center bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-2.5 rounded-xl text-sm"
             >
               Install
@@ -205,14 +205,14 @@ const App = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a
-                href="https://wordpress.org/plugins/topdown-slider/"
+                href="https://wordpress.org/plugins/oocak-fullscreen-slider/"
                 className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-blue-500/25 transition duration-300 inline-flex items-center justify-center gap-3"
               >
                 <Download className="w-5 h-5" />
                 Install Free
               </a>
               <a
-                href="https://github.com/OzanOcak/topdown-slider"
+                href="https://github.com/OzanOcak/oocak-fullscreen-slider"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center justify-center gap-3"
@@ -247,7 +247,7 @@ const App = () => {
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                   <span className="ml-2 text-xs text-slate-500 dark:text-zinc-500 font-mono">
-                    TopDown Slider — Live Preview
+                    Oocak Fullscreen Slider — Live Preview
                   </span>
                 </div>
               </div>
@@ -255,7 +255,7 @@ const App = () => {
               <div className="flex-1 flex items-center justify-center p-4">
                 <img
                   src="/gif-files/topdown-slider.gif"
-                  alt="TopDown Slider Demo"
+                  alt="oocak fullscreen slider demo"
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -396,19 +396,19 @@ const App = () => {
             Ship a Full-Screen Landing Page
           </h2>
           <p className="text-blue-200 max-w-xl mx-auto text-base">
-            Install TopDown Slider from WordPress.org, add your slides, and
-            paste one shortcode. That's the whole workflow.
+            Install oocak fullscreen slider from WordPress.org, add your slides,
+            and paste one shortcode. That's the whole workflow.
           </p>
           <div className="pt-4 flex flex-wrap justify-center gap-4">
             <a
-              href="https://wordpress.org/plugins/topdown-slider/"
+              href="https://wordpress.org/plugins/oocak-fullscreen-slider/"
               className="bg-white hover:bg-zinc-100 text-zinc-900 font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3"
             >
               <Download className="w-5 h-5 text-blue-600" />
               Install Free
             </a>
             <a
-              href="https://github.com/OzanOcak/topdown-slider"
+              href="https://github.com/OzanOcak/oocak-fullscreen-slider"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-transparent border border-white/30 hover:bg-white/10 text-white font-bold px-8 py-4 rounded-xl transition duration-300 inline-flex items-center gap-3"
@@ -429,19 +429,19 @@ const App = () => {
           <div className="flex items-center space-x-3">
             <Layers className="w-6 h-6 text-blue-500" />
             <span className="font-bold text-slate-900 dark:text-white">
-              TopDown Slider
+              oocak fullscreen slider
             </span>
           </div>
 
           <div className="flex gap-6 text-sm text-slate-500 dark:text-zinc-500">
             <a
-              href="https://github.com/OzanOcak/topdown-slider"
+              href="https://github.com/OzanOcak/oocak-fullscreen-slider"
               className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               GitHub
             </a>
             <a
-              href="https://wordpress.org/plugins/topdown-slider/"
+              href="https://wordpress.org/plugins/oocak-fullscreen-slider/"
               className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               WordPress.org
@@ -455,7 +455,8 @@ const App = () => {
           </div>
 
           <div className="text-xs font-mono text-slate-400 dark:text-zinc-600">
-            © {new Date().getFullYear()} TopDown Slider. Made by Ozan Ocak.
+            © {new Date().getFullYear()} oocak fullscreen slider. Made by Ozan
+            Ocak.
           </div>
         </div>
       </footer>
