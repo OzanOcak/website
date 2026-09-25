@@ -138,7 +138,7 @@ const App = () => {
               href="https://wordpress.org/plugins/oocak-fullscreen-slider/"
               className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white px-5 py-2 rounded-xl font-semibold text-sm transition-all shadow-md shadow-blue-500/20"
             >
-              Install
+              Get it from WordPress.org
             </a>
           </div>
 
@@ -174,7 +174,7 @@ const App = () => {
               href="https://wordpress.org/plugins/oocak-fullscreen-slider/"
               className="block w-full text-center bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-2.5 rounded-xl text-sm"
             >
-              Install
+              Get it from WordPress.org
             </a>
           </div>
         )}
@@ -209,7 +209,7 @@ const App = () => {
                 className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-blue-500/25 transition duration-300 inline-flex items-center justify-center gap-3"
               >
                 <Download className="w-5 h-5" />
-                Install Free
+                Get it from WordPress.org
               </a>
               <a
                 href="https://github.com/OzanOcak/oocak-fullscreen-slider"
@@ -405,7 +405,7 @@ const App = () => {
               className="bg-white hover:bg-zinc-100 text-zinc-900 font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3"
             >
               <Download className="w-5 h-5 text-blue-600" />
-              Install Free
+              Get it from WordPress.org
             </a>
             <a
               href="https://github.com/OzanOcak/oocak-fullscreen-slider"

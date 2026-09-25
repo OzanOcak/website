@@ -1,7 +1,7 @@
 "use client";
 import { NeuralBackground } from "@/components/custom/neuralBackground";
 import { ProjectCard } from "@/components/custom/projects/ProjectCard";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Main page component
 const Page = () => {
@@ -54,7 +54,7 @@ const BlackScreen = () => {
             {/* Heading */}
             <h1 className="text-5xl md:text-6xl font-bold mb-6 mt-12 sm:mt-0">
               <span className="text-gray-900 dark:text-white">
-                Apps I've Built,
+                Apps I&apos;ve Built,
               </span>
               <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
                 Shipped & Open-Sourced
@@ -69,11 +69,11 @@ const BlackScreen = () => {
 
             {/* Description */}
             <p className="text-sm sm:text-md md:text-lg text-gray-700 dark:text-gray-300 mb-8">
-              I'm a front-end engineer who actually ships. Over the last 8
-              years, I've built production apps across iOS, desktop, and web —
-              with a focus on offline-first architecture, React, React Native,
-              Rust performance, and clean UI. This page is a living catalog of
-              everything I've built, learned, and open-sourced.
+              I&apos;m a front-end engineer who actually ships. Over the last 8
+              years, I&apos;ve built production apps across iOS, desktop, and
+              web — with a focus on offline-first architecture, React, React
+              Native, Rust performance, and clean UI. This page is a living
+              catalog of everything I&apos;ve built, learned, and open-sourced.
             </p>
           </div>
 
@@ -218,6 +218,20 @@ const WhiteScreen = () => {
               color="indigo"
             />
           </div>
+          <div
+            id="wp_1"
+            className="py-8 border-t border-slate-200 dark:border-slate-800"
+          >
+            <ProjectCard
+              title="WordPress Plugin - FullScreen Slider"
+              desc="Full-screen vertical slider for WordPress. React admin, REST API, per-slide animations and positioning."
+              tag="WordPress Plugin"
+              icon="/app-icons/fullscreen-slider.webp"
+              metrics="WordPress • Plugin • React • PHP • REST API • Admin Dashboard "
+              path="/apps/oocak-fullscreen-slider"
+              color="indigo"
+            />
+          </div>
         </article>
       </div>
 
@@ -275,6 +289,12 @@ const WhiteScreen = () => {
             className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-indigo-500 dark:hover:border-indigo-400"
           >
             AuthFlow
+          </a>
+          <a
+            href="#wp_1"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-indigo-500 dark:hover:border-indigo-400"
+          >
+            WP Plugin - FS Slider
           </a>
         </div>
       </nav>
