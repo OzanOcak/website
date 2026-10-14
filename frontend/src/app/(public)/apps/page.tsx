@@ -292,7 +292,7 @@ const WhiteScreen = () => {
           </a>
           <a
             href="#wp_1"
-            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-indigo-500 dark:hover:border-indigo-400"
+            className="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 border-l-2 border-transparent hover:border-green-500 dark:hover:border-green-400"
           >
             WP Plugin - FS Slider
           </a>

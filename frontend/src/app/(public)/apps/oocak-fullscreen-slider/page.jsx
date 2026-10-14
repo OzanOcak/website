@@ -186,7 +186,7 @@ const App = () => {
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-xs font-mono text-blue-600 dark:text-blue-400">
               <Shield className="w-3.5 h-3.5" />
-              Free · GPL-2.0 · No Tracking
+              Free · GPL-2.0
             </div>
 
             <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1] text-slate-900 dark:text-white">

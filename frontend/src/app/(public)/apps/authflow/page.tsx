@@ -117,9 +117,7 @@ const App = () => {
               Blog Posts
             </a>
             <a
-              href="https://github.com/OzanOcak/website"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#github"
               className="bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white px-5 py-2 rounded-xl font-semibold text-sm transition-all shadow-md shadow-indigo-500/20"
             >
               View on GitHub
@@ -469,7 +467,7 @@ const App = () => {
           </p>
           <div className="pt-4 flex flex-wrap justify-center gap-4">
             <a
-              href="https://github.com/yourusername/authflow"
+              href="https://github.com/OzanOcak/website"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white hover:bg-zinc-100 text-zinc-900 font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3"
@@ -478,7 +476,7 @@ const App = () => {
               View on GitHub
             </a>
             <a
-              href="/blog/secure-scalable-architecture-raspberry-pi-cloudflare-vercel"
+              href="https://oocak.com/blogpost/raspberry-pi-cloudflare-vercel-architecture"
               className="bg-zinc-900 hover:bg-black text-white font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 inline-flex items-center gap-3 border border-zinc-700"
             >
               <BookOpen className="w-5 h-5 text-indigo-400" />
