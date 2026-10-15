@@ -4,7 +4,7 @@ slug: custom-jwt-authentication
 description: How I built a custom authentication system for my Next.js application using JWTs, database-backed refresh tokens, OAuth2 with PKCE, email OTP, TOTP, and role-based access control.
 imageUrl: /images/9.webp
 author: O. Ocak
-date: 10.15.2026
+date: 15.10.2026
 tags:
   - Authentication
   - JWT
@@ -24,7 +24,7 @@ Rather than relying on a complete authentication framework, I implemented the au
 
 In this article, I'll explain why I chose this approach, how the token architecture works, and the security measures I implemented along the way.
 
-## 1. Why I Chose Client-Side Authentication
+## Why I Chose Client-Side Authentication
 
 I chose to manage the authentication experience primarily in the client application rather than building the entire experience around server-managed sessions.
 
@@ -41,7 +41,7 @@ My main reasons for choosing this approach were:
 
 This approach introduced additional complexity. I had to consider expired tokens, concurrent requests, refresh failures, logout behavior, and how to prevent a compromised token from remaining useful indefinitely.
 
-## 2. Understanding My Token Architecture
+## Understanding My Token Architecture
 
 The central part of my implementation is the relationship between the access token, the refresh token, and the server-side record associated with the refresh session.
 
@@ -85,7 +85,7 @@ At a high level, the authentication lifecycle looks like this:
 
 The goal is to separate frequent API authentication from the longer-lived process of maintaining a session.
 
-## 3. Refresh-Token Rotation and Session Management
+## Refresh-Token Rotation and Session Management
 
 Refresh tokens require particular care because they can be used to obtain new access tokens.
 
@@ -109,7 +109,7 @@ For a robust implementation, rotation should be atomic where possible, and the a
 
 A database record does not automatically make a token system secure. The actual security depends on how credentials are generated, stored, validated, rotated, expired, and revoked.
 
-## 4. Protecting the Authentication Flow
+## Protecting the Authentication Flow
 
 Building the authentication system myself meant I needed to think about security across the entire request lifecycle, not just the login endpoint.
 
@@ -149,7 +149,7 @@ I use Zod to validate application data at appropriate boundaries.
 
 Validation helps ensure that incoming data has the expected shape and types. It does not replace authorization checks, parameterized database queries, or context-specific security controls.
 
-## 5. Supporting Multiple Authentication Methods
+## Supporting Multiple Authentication Methods
 
 I wanted the system to support different ways of authenticating without creating an entirely separate authorization model for each method.
 
@@ -177,7 +177,7 @@ TOTP generates time-based one-time codes from a shared secret. It can add a veri
 
 Adding multiple authentication methods made the system more flexible, but it also increased the number of security-sensitive flows I needed to test.
 
-## 6. Managing Authentication in the Frontend
+## Managing Authentication in the Frontend
 
 The frontend is responsible for coordinating authentication state and making requests to the backend, but it must never be treated as the final security boundary.
 
@@ -197,7 +197,7 @@ Concurrent requests are particularly important. If several API calls fail becaus
 
 The frontend can improve the user experience by handling these cases cleanly, but the backend must independently validate every protected request.
 
-## 7. Testing Beyond the Happy Path
+## Testing Beyond the Happy Path
 
 An authentication system can appear to work correctly when testing only successful logins. The more revealing cases involve expiration, invalid credentials, interrupted requests, and unexpected sequences of operations.
 
