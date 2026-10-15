@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { google } from "googleapis";
 import { CodeChallengeMethod } from "google-auth-library";
+import { randomBytes } from "crypto";
 
 // Temporary storage for code verifiers (in-memory)
 export const codeVerifiers: Record<string, string> = {};
@@ -8,7 +9,7 @@ export const codeVerifiers: Record<string, string> = {};
 export const getGoogleOAuthUrl = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const { code_challenge, code_verifier } = req.query; // Get the code challenge from the client
@@ -26,27 +27,27 @@ export const getGoogleOAuthUrl = async (
     }
 
     // Log environment variables
-    console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
-    console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);
-    console.log("Google Redirect URI:", process.env.GOOGLE_REDIRECT_URI);
+    //console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
+    //console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);
+    //console.log("Google Redirect URI:", process.env.GOOGLE_REDIRECT_URI);
 
     // create an instance of OAuth2Client using the google.auth.OAuth2 constructor,
     const oauth2Client = new google.auth.OAuth2(
       process.env.GOOGLE_CLIENT_ID,
       process.env.GOOGLE_CLIENT_SECRET,
-      process.env.GOOGLE_REDIRECT_URI
+      process.env.GOOGLE_REDIRECT_URI,
     );
 
-    console.log(process.env.GOOGLE_REDIRECT_URI);
+    //console.log(process.env.GOOGLE_REDIRECT_URI);
 
     // generates the URL to which the user will be redirected to grant permission.
-    const state = "some_random_state_string";
+    const state = randomBytes(32).toString("hex");
     //(req.session as any).oauthState = state;
 
     // Store the code verifier linked to the state
     codeVerifiers[state] = code_verifier;
 
-    console.log("State for CSRF protection:", state);
+    //console.log("State for CSRF protection:", state);
 
     // use the generateAuthUrl method to generate the authentication URL
     const url = oauth2Client.generateAuthUrl({
@@ -60,12 +61,20 @@ export const getGoogleOAuthUrl = async (
 
     // cast the req object to any to avoid the TypeScript error
     // (req as { googleOauthUrl?: string }).googleOauthUrl = url;
-    console.log("Generated Google OAuth URL:", url);
+    //console.log("Generated Google OAuth URL:", url);
+
+    res.cookie("oauth_state", state, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 5 * 60 * 1000,
+      path: "/",
+    });
 
     res.json({ url, state });
     //  next();
   } catch (error) {
-    console.error(error);
+    //console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
