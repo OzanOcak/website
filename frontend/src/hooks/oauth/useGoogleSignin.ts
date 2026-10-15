@@ -22,7 +22,7 @@ export const useGoogleSignInUrl = (enabled: boolean) => {
         params: { code_challenge: challenge, code_verifier: verifier },
       });
 
-      console.log(codeVerifier);
+      //console.log(codeVerifier);
       return response.data; // {url,state} -> to client to use in a tag
     },
     enabled: enabled, // Fetch only if this is true
