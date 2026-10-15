@@ -8,29 +8,32 @@ import { memory } from "./oauth-callback";
 
 export const loginOauth = async (
   req: Request,
-  res: Response
+  res: Response,
 ): Promise<void> => {
   // 1. Read the access token from cookies
   const refreshTokenId = randomUUID(); // Generate a unique ID for the refresh token
 
   // Read the accessToken from the cookie
-  const accessTokenFromCallback = req.cookies.accessToken;
-
-  const { username } = req.body; // Destructure username and password from the request body
-  const { provider } = req.query; // Extract provider from the query parameters
+  const accessTokenFromCallback = req.cookies?.accessToken;
 
   //console.log("Username from request:", username);
 
-  if (!accessTokenFromCallback || typeof accessTokenFromCallback !== "string") {
-    res.status(400).json({ message: "Invalid or missing access token" });
+  if (
+    typeof accessTokenFromCallback !== "string" ||
+    !process.env.ACCESS_JWT_SECRET
+  ) {
+    res.status(401).json({ message: "Invalid or missing access token" });
     return;
   }
+
+  //const { username } = req.body; // Destructure username and password from the request body
+  //const { provider } = req.query; // Extract provider from the query parameters
 
   try {
     // Verify the access token
     const decoded = jwt.verify(
       accessTokenFromCallback,
-      process.env.ACCESS_JWT_SECRET as string
+      process.env.ACCESS_JWT_SECRET as string,
     ) as {
       id: string;
     };
@@ -55,7 +58,7 @@ export const loginOauth = async (
 
       if (user.length === 0) {
         // 7. If the user doesn't exist, create a new user
-        const newUser = await db
+        const newUser = await tx
           .insert(users)
           .values({
             username: profile.name || profile.email.split("@")[0],
@@ -78,7 +81,7 @@ export const loginOauth = async (
         await tx
           .insert(oauth_identities)
           .values({
-            provider: provider as string,
+            provider: "google", // provider as string, when have more than more
             providerId: profile.id,
             profilePicture: profile.picture,
             userId: newUser[0].id,
@@ -106,17 +109,21 @@ export const loginOauth = async (
         }
       }
 
+      if (!process.env.REFRESH_JWT_SECRET) {
+        throw new Error("REFRESH_JWT_SECRET is not configured");
+      }
+
       // 9. Generate your application's tokens
       const accessToken = jwt.sign(
         { id: user[0].id, role: user[0].role }, // Payload
         process.env.ACCESS_JWT_SECRET as string, // Secret key
-        { expiresIn: "2m" } // Expiration time
+        { expiresIn: "2m" }, // Expiration time
       );
 
       const refreshToken = jwt.sign(
         { id: user[0].id, role: user[0].role },
         process.env.REFRESH_JWT_SECRET!,
-        { expiresIn: "5d" } // Longer expiration time
+        { expiresIn: "5d" }, // Longer expiration time
       );
 
       // Store the refresh token in the tokens table
@@ -131,6 +138,7 @@ export const loginOauth = async (
         secure: process.env.NODE_ENV !== "development",
         sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
         maxAge: 5 * 24 * 60 * 60 * 1000, // 5 days
+        path: "/",
       });
 
       //console.log("Setting Refresh-Token-ID header:", refreshTokenId);
