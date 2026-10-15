@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { google } from "googleapis";
 import { CodeChallengeMethod } from "google-auth-library";
 import { randomBytes } from "crypto";
@@ -6,11 +6,7 @@ import { randomBytes } from "crypto";
 // Temporary storage for code verifiers (in-memory)
 export const codeVerifiers: Record<string, string> = {};
 
-export const getGoogleOAuthUrl = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+export const getGoogleOAuthUrl = async (req: Request, res: Response) => {
   try {
     const { code_challenge, code_verifier } = req.query; // Get the code challenge from the client
     // console.log("Session:", req.session); // Debug log
@@ -18,11 +14,13 @@ export const getGoogleOAuthUrl = async (
     // Validate the code challenge and code verifier
     if (
       typeof code_challenge !== "string" ||
-      typeof code_verifier !== "string"
+      !/^[A-Za-z0-9_-]{43}$/.test(code_challenge) ||
+      typeof code_verifier !== "string" ||
+      !/^[A-Za-z0-9\-._~]{43,128}$/.test(code_verifier)
     ) {
-      res
-        .status(400)
-        .json({ error: "Invalid code challenge or code verifier" });
+      res.status(400).json({
+        error: "Invalid code challenge or code verifier",
+      });
       return;
     }
 
