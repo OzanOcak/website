@@ -1,7 +1,7 @@
 ---
 title: Building Custom Authentication with JWT, Refresh Tokens, and MFA
-slug: custom-jwt-authentication-refresh-token-rotation
-description: How I built a custom authentication system for my Next.js application using JWTs, database-backed refresh tokens, Google OAuth with PKCE, email OTP, TOTP, and role-based access control.
+slug: custom-jwt-authentication
+description: How I built a custom authentication system for my Next.js application using JWTs, database-backed refresh tokens, OAuth2 with PKCE, email OTP, TOTP, and role-based access control.
 imageUrl: /images/9.webp
 author: O. Ocak
 date: 10.15.2026
