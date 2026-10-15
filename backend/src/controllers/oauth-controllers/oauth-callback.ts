@@ -11,12 +11,12 @@ export const memory: Record<
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
-  process.env.GOOGLE_REDIRECT_URI
+  process.env.GOOGLE_REDIRECT_URI,
 );
 
 export const oauthCallback: RequestHandler = async (
   req: Request,
-  res: Response
+  res: Response,
 ): Promise<void> => {
   const { code, state, error } = req.query;
 
@@ -25,6 +25,36 @@ export const oauthCallback: RequestHandler = async (
     process.env.NODE_ENV === "production"
       ? "https://oocak.com" // Production URL
       : "http://localhost:5173"; // Development URL
+
+  // Clear the state cookie using the same options used when setting it.
+  const clearOAuthStateCookie = () => {
+    res.clearCookie("oauth_state", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+    });
+  };
+
+  // Validate the returned state against the browser's cookie.
+  const cookieState = req.cookies?.oauth_state;
+
+  if (
+    typeof state !== "string" ||
+    typeof cookieState !== "string" ||
+    state !== cookieState
+  ) {
+    clearOAuthStateCookie();
+    const message = encodeURIComponent("Invalid or expired OAuth state");
+    res.redirect(`${baseUrl}/error?message=${message}`);
+    return;
+  }
+
+  // State is valid. Clear the cookie and consume the verifier.
+  clearOAuthStateCookie();
+
+  const codeVerifier = codeVerifiers[state];
+  delete codeVerifiers[state];
 
   //console.log("code :", code);
   //console.log("state :", state);
@@ -36,13 +66,10 @@ export const oauthCallback: RequestHandler = async (
   }
 
   // Validate the code and state
-  if (typeof code !== "string" || typeof state !== "string") {
+  if (typeof code !== "string") {
     const errorMessage = encodeURIComponent("Invalid code or state");
     return res.redirect(`${baseUrl}/error?message=${errorMessage}`);
   }
-
-  // Retrieve the code verifier using the state
-  const codeVerifier = codeVerifiers[state];
 
   if (!codeVerifier) {
     const errorMessage = encodeURIComponent("Missing code verifier");
@@ -73,28 +100,32 @@ export const oauthCallback: RequestHandler = async (
     memory[profile.id!] = {
       id: profile.id!,
       email: profile.email!,
-      name: profile.name!,
-      picture: profile.picture!,
+      name: profile.name ?? "",
+      picture: profile.picture ?? "",
     };
 
+    if (!process.env.ACCESS_JWT_SECRET) {
+      throw new Error("ACCESS_JWT_SECRET is not configured");
+    }
     // Generate a short-lived access token
     const accessToken = jwt.sign(
       { id: profile.id }, // Payload
       process.env.ACCESS_JWT_SECRET as string, // Secret key
-      { expiresIn: "30s" } // Short expiration time
+      { expiresIn: "30s" }, // Short expiration time
     );
 
     // Set the token in a secure, HTTP-only cookie
     res.cookie("accessToken", accessToken, {
-      httpOnly: process.env.NODE_ENV !== "development", // Prevent client-side JavaScript access
-      secure: true, // Only send over HTTPS
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Only send over HTTPS
       sameSite: "strict", // Prevent CSRF attacks
       maxAge: 30000, // 30 seconds
+      path: "/",
     });
 
     // Redirect to the username page with the username as a query parameter
     const redirectUrl = `${baseUrl}/username?xyz=${encodeURIComponent(
-      profile.name!
+      profile.name!,
     )}`;
     res.redirect(redirectUrl);
   } catch (error) {
