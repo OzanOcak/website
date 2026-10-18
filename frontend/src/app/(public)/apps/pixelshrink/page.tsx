@@ -20,8 +20,8 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
+  //const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  //const [isProcessing, setIsProcessing] = useState(false);
 
   const stats = [
     { label: "Total Images Optimized", value: "2,847" },
