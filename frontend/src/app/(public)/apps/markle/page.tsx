@@ -12,15 +12,12 @@ import {
   FileCode,
   FileJson,
   File,
-  BookOpen,
   Code,
   Database,
   Sparkles,
   Layout,
-  Paintbrush,
   Share2,
   Zap,
-  Layers,
   Image,
 } from "lucide-react";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";

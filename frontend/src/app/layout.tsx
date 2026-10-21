@@ -39,7 +39,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Providers>
@@ -50,7 +50,7 @@ export default function RootLayout({
           {/* Footer */}
           <footer className=" dark:bg-gray-900 pt-8 text-center">
             <p className="dark:text-gray-400">
-              © 2025 OOApps Blog. All rights reserved.
+              © 2026 OOApps Blog. All rights reserved.
             </p>
           </footer>
         </Providers>
