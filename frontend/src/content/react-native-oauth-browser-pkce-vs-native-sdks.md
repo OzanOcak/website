@@ -4,7 +4,7 @@ slug: react-native-oauth-browser-pkce-vs-native-sdks
 description: >-
   Comparing browser-based OAuth 2.0 with PKCE and native SDK integrations in
   React Native, including authentication flows, security, and implementation trade-offs.
-imageUrl: /images/9.webp
+imageUrl: /images/1.webp
 author: ozan
 date: 22.10.2026
 tags:

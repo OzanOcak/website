@@ -1,8 +1,8 @@
 ---
-title: JavaScript Beyond the Browser with Node.js and React Native
+title: "JavaScript: Beyond the Browser with Node.js and React Native"
 slug: javascript-beyond-browser-nodejs-react-native
 description: Understand how Node.js and legacy React Native embed JavaScript engines to execute JavaScript outside the browser, and explore how React Native connected JavaScript to native mobile functionality through its original Bridge architecture.
-imageUrl: /images/3.webp
+imageUrl: /images/4.webp
 author: O. Ocak
 date: 17.10.2026
 tags:

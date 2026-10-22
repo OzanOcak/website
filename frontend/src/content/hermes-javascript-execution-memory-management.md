@@ -1,5 +1,5 @@
 ---
-title: "Hermes, JavaScript Execution and Memory Management in React Native"
+title: "Hermes: JavaScript Execution and Memory Management in React Native"
 slug: hermes-javascript-execution-memory-management
 description: Understand how Hermes executes JavaScript in React Native, manages its own heap, and works alongside native C++ memory and the operating system.
 imageUrl: /images/2.webp

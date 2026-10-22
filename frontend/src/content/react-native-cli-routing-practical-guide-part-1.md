@@ -1,8 +1,8 @@
 ---
-title: Routing in React Native CLI, A Practical Guide (Part 1)
+title: "Routing in React Native CLI: A Practical Guide (Part 1)"
 slug: react-native-cli-routing-practical-guide-part-1
 description: Learn how to structure navigation in a bare React Native CLI application using React Navigation, nested stack and tab navigators, authentication flows, TypeScript route parameters, and deep linking.
-imageUrl: /images/9.webp
+imageUrl: /images/8.webp
 author: O. Ocak
 date: 21.10.2026
 tags:

@@ -1,5 +1,5 @@
 ---
-title: Building Custom Authentication with JWT, Refresh Tokens, and MFA
+title: "Building Custom Authentication with JWT: Refresh Tokens, and MFA"
 slug: custom-jwt-authentication
 description: How I built a custom authentication system for my Next.js application using JWTs, HttpOnly refresh-token cookies, rotating refresh-token IDs, Google OAuth 2.0 with PKCE, email OTP, TOTP, and role-based access control.
 imageUrl: /images/9.webp

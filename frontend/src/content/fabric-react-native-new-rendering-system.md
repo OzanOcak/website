@@ -1,8 +1,8 @@
 ---
-title: "Fabric, React Native's New Rendering System"
+title: "Fabric: React Native's New Rendering System"
 slug: fabric-react-native-new-rendering-system
 description: Explore how Fabric transforms React Native rendering through the Shadow Tree, Yoga layout, native view mounting, and improved coordination between JavaScript and native threads.
-imageUrl: /images/5.webp
+imageUrl: /images/7.webp
 author: O. Ocak
 date: 19.10.2026
 tags:
