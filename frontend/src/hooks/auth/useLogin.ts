@@ -61,7 +61,7 @@ const loginUser = async (data: LoginData): Promise<void> => {
 
 // Custom hook for login
 export const useLogin = (
-  setErrorMessage: React.Dispatch<React.SetStateAction<string | null>>
+  setErrorMessage: React.Dispatch<React.SetStateAction<string | null>>,
 ) => {
   const router = useRouter();
   const role = useStore((state) => state.role);
