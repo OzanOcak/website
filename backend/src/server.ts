@@ -6,6 +6,7 @@ import oauthRoutes from "./routes/oauthRoutes";
 import commentRoutes from "./routes/commentRoutes";
 import likeblogRoutes from "./routes/likeblogRoutes";
 import visitRoutes from "./routes/visitRoutes";
+import oauthMobileRoutes from "./routes/oauthmobileRoutes";
 
 import cors from "cors";
 import dotenv from "dotenv";
@@ -16,7 +17,7 @@ import helmet from "helmet";
 dotenv.config({
   path: path.resolve(
     __dirname,
-    `.env.${process.env.NODE_ENV || "development"}`
+    `.env.${process.env.NODE_ENV || "development"}`,
   ),
 }); // If process.env.NODE_ENV is undefined, it defaults to development and loads
 // .env.development (or .env if .env.development doesn't exist).
@@ -47,7 +48,7 @@ const startServer = async () => {
     const corsOptions = {
       origin: (
         origin: string | undefined,
-        callback: (err: Error | null, allow?: boolean) => void
+        callback: (err: Error | null, allow?: boolean) => void,
       ) => {
         if (!origin || allowedOrigins.includes(origin)) {
           callback(null, true); // Allow the request
@@ -69,6 +70,7 @@ const startServer = async () => {
     app.use("/api", authRoutes);
     app.use("/api", roleRoutes);
     app.use("/api", oauthRoutes);
+    app.use("/api/oauth-mobile", oauthMobileRoutes);
     app.use("/api", commentRoutes);
     app.use("/api", likeblogRoutes);
     app.use("/api", visitRoutes);
