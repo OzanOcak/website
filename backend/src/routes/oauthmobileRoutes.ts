@@ -3,6 +3,7 @@ import { getMobileOAuthUrl } from "../controllers/oauth-mobile-controllers/mobil
 import { mobileOAuthCallback } from "../controllers/oauth-mobile-controllers/mobile-oauth-callback";
 import { mobileOAuthExchange } from "../controllers/oauth-mobile-controllers/mobile-oauth-exchange";
 import { ipRateLimiter } from "../middleware/ip-rate-limiter";
+import { mobileOAuthRefresh } from "../controllers/oauth-mobile-controllers/mobile-oauth-refresh";
 
 const router = Router();
 
@@ -19,4 +20,15 @@ router.get("/callback", mobileOAuthCallback as RequestHandler);
 // Rate-limited to prevent brute-force of the single-use code
 router.post("/exchange", ipRateLimiter, mobileOAuthExchange);
 
+// Step 4 — Validate and rotate refresh credentials to issue new JWTs.
+router.post("/refresh", ipRateLimiter, mobileOAuthRefresh);
+
 export default router;
+
+/**
+ * Architecture:
+ *  React Native → PKCE → system browser → Google
+ *   →  backend callback → app deep link → token exchange
+ *      → secure Keychain storage → API requests
+ *          → refresh and token rotation when needed.
+ */

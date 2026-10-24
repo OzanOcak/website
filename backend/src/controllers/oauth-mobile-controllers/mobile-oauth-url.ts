@@ -42,7 +42,10 @@ export const getMobileOAuthUrl = async (
       throw new Error("GOOGLE_MOBILE_REDIRECT_URI is not configured");
     }
 
-    if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    if (
+      !process.env.GOOGLE_IOS_CLIENT_ID ||
+      !process.env.GOOGLE_IOS_CLIENT_SECRET
+    ) {
       throw new Error("Google OAuth credentials are not configured");
     }
 
@@ -63,10 +66,16 @@ export const getMobileOAuthUrl = async (
       expiresAt: now + CHALLENGE_TTL_MS,
     };
 
+    /*console.log("Mobile OAuth client:", process.env.GOOGLE_CLIENT_ID);
+    console.log(
+      "Mobile OAuth redirect:",
+      process.env.GOOGLE_MOBILE_REDIRECT_URI,
+    );*/
+
     // ═══ Build Google OAuth client with mobile redirect URI ═══
     const mobileOAuth2Client = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
+      process.env.GOOGLE_IOS_CLIENT_ID,
+      process.env.GOOGLE_IOS_CLIENT_SECRET,
       process.env.GOOGLE_MOBILE_REDIRECT_URI,
     );
 
@@ -78,6 +87,11 @@ export const getMobileOAuthUrl = async (
       code_challenge,
       code_challenge_method: "S256" as CodeChallengeMethod,
     });
+
+    console.log(
+      "Generated redirect_uri:",
+      new URL(url).searchParams.get("redirect_uri"),
+    );
 
     // ═══ No cookies — mobile client can't receive them ═══
     res.json({ url, state });

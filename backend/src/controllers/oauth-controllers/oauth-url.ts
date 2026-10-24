@@ -25,14 +25,14 @@ export const getGoogleOAuthUrl = async (req: Request, res: Response) => {
     }
 
     // Log environment variables
-    //console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
-    //console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);
+    //console.log("Google Client ID:", process.env.GOOGLE_WEB_CLIENT_ID);
+    //console.log("Google Client Secret:", process.env.GOOGLE_WEB_CLIENT_SECRET);
     //console.log("Google Redirect URI:", process.env.GOOGLE_REDIRECT_URI);
 
     // create an instance of OAuth2Client using the google.auth.OAuth2 constructor,
     const oauth2Client = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
+      process.env.GOOGLE_WEB_CLIENT_ID,
+      process.env.GOOGLE_WEB_CLIENT_SECRET,
       process.env.GOOGLE_REDIRECT_URI,
     );
 

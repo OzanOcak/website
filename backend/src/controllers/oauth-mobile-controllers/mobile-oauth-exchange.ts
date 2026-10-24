@@ -57,8 +57,8 @@ export const mobileOAuthExchange = async (
 
   if (
     !process.env.GOOGLE_MOBILE_REDIRECT_URI ||
-    !process.env.GOOGLE_CLIENT_ID ||
-    !process.env.GOOGLE_CLIENT_SECRET
+    !process.env.GOOGLE_IOS_CLIENT_ID ||
+    !process.env.GOOGLE_IOS_CLIENT_SECRET
   ) {
     res.status(500).json({ message: "Server misconfigured" });
     return;
@@ -67,8 +67,8 @@ export const mobileOAuthExchange = async (
   try {
     // ═══ EXCHANGE GOOGLE CODE WITH VERIFIER ═══
     const mobileOAuth2Client = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
+      process.env.GOOGLE_IOS_CLIENT_ID,
+      process.env.GOOGLE_IOS_CLIENT_SECRET,
       process.env.GOOGLE_MOBILE_REDIRECT_URI,
     );
 
@@ -184,7 +184,7 @@ export const mobileOAuthExchange = async (
       );
 
       const refreshToken = jwt.sign(
-        { id: resolvedUser.id, role: resolvedUser.role },
+        { id: resolvedUser.id, role: resolvedUser.role, jti: refreshTokenId },
         process.env.REFRESH_JWT_SECRET as string,
         { expiresIn: "5d" },
       );
