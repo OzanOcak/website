@@ -23,7 +23,7 @@ router.post(
   authenticate,
   checkPermissionsToAuthorize("create_comment"), // Only signed-in users can comment
   commentRateLimiter, // Apply rate limiter
-  createComment
+  createComment,
 );
 
 router.get("/posts/:postId/comments", getCommentsByBlogId); // Public route
@@ -33,7 +33,7 @@ router.post(
   authenticate,
   checkPermissionsToAuthorize("like_comment"), // Only signed-in users can like comments
   commentRateLimiter, // Apply rate limiter
-  likeComment
+  likeComment,
 );
 
 router.post(
@@ -41,7 +41,7 @@ router.post(
   authenticate,
   checkPermissionsToAuthorize("like_comment"), // Only signed-in users can unlike comments
   commentRateLimiter, // Apply rate limiter
-  unlikeComment
+  unlikeComment,
 );
 
 router.post(
@@ -49,20 +49,20 @@ router.post(
   authenticate,
   checkPermissionsToAuthorize("create_comment"), // Only signed-in users can reply
   commentRateLimiter, // Apply rate limiter
-  createComment
+  createComment,
 );
 
 router.delete(
   "/comments/:commentId",
   authenticate,
   checkPermissionsToAuthorize("delete_comment"), // Only signed-in users can delete their own comments
-  deleteCommentById
+  deleteCommentById,
 );
 
 router.patch(
   "/comments/:commentId",
   authenticate,
   checkPermissionsToAuthorize("edit_comment"), // Only signed-in users can edit their own comments
-  editComment
+  editComment,
 );
 export default router;

@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { google } from "googleapis";
 import jwt from "jsonwebtoken";
 import { createHash, randomUUID } from "crypto";
-import { db } from "../../db/db-conn";
-import { oauth_identities, tokens, users } from "../../db/schema";
+import { db } from "../../../db/db-conn";
+import { oauth_identities, tokens, users } from "../../../db/schema";
 import { eq, and } from "drizzle-orm";
 import { mobilePendingCodes } from "./mobile-oauth-callback";
 

@@ -6,7 +6,7 @@ import oauthRoutes from "./routes/oauthRoutes";
 import commentRoutes from "./routes/commentRoutes";
 import likeblogRoutes from "./routes/likeblogRoutes";
 import visitRoutes from "./routes/visitRoutes";
-import oauthMobileRoutes from "./routes/oauthmobileRoutes";
+import mobileRoutes from "./routes/mobileRoutes";
 
 import cors from "cors";
 import dotenv from "dotenv";
@@ -70,7 +70,7 @@ const startServer = async () => {
     app.use("/api", authRoutes);
     app.use("/api", roleRoutes);
     app.use("/api", oauthRoutes);
-    app.use("/api/oauth-mobile", oauthMobileRoutes);
+    app.use("/api/mobile", mobileRoutes);
     app.use("/api", commentRoutes);
     app.use("/api", likeblogRoutes);
     app.use("/api", visitRoutes);

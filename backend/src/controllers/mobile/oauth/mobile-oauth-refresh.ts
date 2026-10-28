@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { randomUUID } from "crypto";
-import { db } from "../../db/db-conn";
-import { tokens } from "../../db/schema";
+import { db } from "../../../db/db-conn";
+import { tokens } from "../../../db/schema";
 import { eq, and } from "drizzle-orm";
 
 export const mobileOAuthRefresh = async (

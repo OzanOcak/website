@@ -22,7 +22,7 @@ router.get(
   "/profile",
   authenticate,
   checkPermissionsToAuthorize("view_profile"),
-  user
+  user,
 );
 
 // admin routes
@@ -33,9 +33,9 @@ router.get(
     "view_profile",
     "view_users",
     "edit_user_role",
-    "delete_user"
+    "delete_user",
   ),
-  admin
+  admin,
 );
 
 // admin's user profile routes for editing
@@ -46,37 +46,37 @@ router.get(
     "view_profile",
     "view_users",
     "edit_user_role",
-    "delete_user"
+    "delete_user",
   ),
-  adminEdit
+  adminEdit,
 );
 
 router.delete(
   "/admin/:userId",
   authenticate,
   checkPermissionsToAuthorize("delete_user"),
-  deleteUserProfile
+  deleteUserProfile,
 );
 
 router.patch(
   "/admin/:userId/role",
   authenticate,
   checkPermissionsToAuthorize("edit_user_role"),
-  updateUserRole
+  updateUserRole,
 );
 
 router.post(
   "/admin/blog/:slug/publish",
   authenticate,
   checkPermissionsToAuthorize("publish_post"), // Only admins can publish posts
-  publishPost
+  publishPost,
 );
 
 router.post(
   "/admin/blog/:slug/unpublish",
   authenticate,
   checkPermissionsToAuthorize("unpublish_post"), // Only admins can unpublish posts
-  unpublishPost
+  unpublishPost,
 );
 
 router.patch(
@@ -84,21 +84,21 @@ router.patch(
   emailRateLimiter,
   authenticate,
   checkPermissionsToAuthorize("edit_self_user_name"),
-  updateUserSelfName
+  updateUserSelfName,
 );
 
 router.delete(
   "/profile/:userId",
   authenticate,
   checkPermissionsToAuthorize("delete_self_user"),
-  deleteSelfUserProfile
+  deleteSelfUserProfile,
 );
 
 router.patch(
   "/users/:userId/password",
   authenticate, // Ensure user is authenticated
   checkPermissionsToAuthorize("edit_self_user_name"), // Allow users to change their own password
-  updatePassword
+  updatePassword,
 );
 
 export default router;
