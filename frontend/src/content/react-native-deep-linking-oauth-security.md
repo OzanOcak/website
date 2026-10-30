@@ -2,7 +2,7 @@
 title: "Deep Linking in React Native: Routing, OAuth Callbacks, and Security"
 slug: react-native-deep-linking-oauth-security
 description: "Understanding React Native deep linking, app routing, OAuth callbacks, PKCE, and security considerations for custom URL schemes, Universal Links, and Android App Links."
-imageUrl: /images/9.webp
+imageUrl: /images/7.webp
 author: ozan
 date: 22.10.2026
 tags:
