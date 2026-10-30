@@ -7,6 +7,10 @@ import { mobileOAuthExchange } from "../controllers/mobile/oauth/mobile-oauth-ex
 import { mobileOAuthRefresh } from "../controllers/mobile/oauth/mobile-oauth-refresh";
 import { mobileEmailLogin } from "../controllers/mobile/auth/mobile-login";
 import { mobileLogout } from "../controllers/mobile/auth/mobile-logout";
+import { deviceLogin } from "../controllers/mobile/faceid-auth/device-login";
+import { registerDeviceToken } from "../controllers/mobile/faceid-auth/device-token";
+import { revokeDeviceToken } from "../controllers/mobile/faceid-auth/device-revoke";
+import { authenticate } from "../middleware/authenticate-user";
 
 const router = Router();
 
@@ -29,6 +33,16 @@ router.post("/oauth/refresh", ipRateLimiter, mobileOAuthRefresh);
 // ═══ Email/password auth ═══
 router.post("/auth/login", ipRateLimiter, mobileEmailLogin);
 router.post("/auth/logout", ipRateLimiter, mobileLogout);
+
+// ═══ Face ID Auth ═══
+// Face ID login (Public)
+router.post("/faceid-auth/device-login", ipRateLimiter, deviceLogin);
+
+// Enable Face ID (Protected by your authenticate middleware)
+router.post("/faceid-auth/device-token", authenticate, registerDeviceToken);
+
+// Disable Face ID (Protected by your authenticate middleware)
+router.delete("/faceid-auth/device-token", authenticate, revokeDeviceToken);
 
 export default router;
 

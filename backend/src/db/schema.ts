@@ -55,6 +55,7 @@ export const tokens = pgTable("tokens", {
   userId: integer("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
+  type: varchar("type", { length: 20 }).default("session").notNull(), // 'session' or 'device'
 });
 
 export const usersRelations = relations(users, ({ many }) => ({

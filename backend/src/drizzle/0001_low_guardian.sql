@@ -1,0 +1,1 @@
+ALTER TABLE "tokens" ADD COLUMN "type" varchar(20) DEFAULT 'session' NOT NULL;
