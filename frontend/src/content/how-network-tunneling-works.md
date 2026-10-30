@@ -15,7 +15,7 @@ tags:
 published: true
 ---
 
-## 1. The problem: making a local service reachable from the Internet
+## The problem: making a local service reachable from the Internet
 
 Imagine a Node.js backend running on your Mac:
 
@@ -71,7 +71,7 @@ Before examining Cloudflare, let's understand the networking mechanisms that mak
 
 ---
 
-## 2. IP addresses, ports, and sockets
+## IP addresses, ports, and sockets
 
 An IP address identifies a network interface or endpoint within an IP network.
 
@@ -135,7 +135,7 @@ close()
 
 These are real POSIX APIs, not networking pseudocode.
 
-### 2.1 Creating a TCP server in C
+### Creating a TCP server in C
 
 The following is a working minimal TCP server for macOS or Linux.
 
@@ -349,7 +349,7 @@ This demonstrates the basic mechanics behind a local HTTP service.
 
 A production HTTP server needs considerably more: request parsing, partial reads and writes, concurrency, connection timeouts, HTTP framing, and proper error handling. The example intentionally handles only one request at a time.
 
-### 2.2 What does `bind()` actually do?
+### What does `bind()` actually do?
 
 The `bind()` system call associates a socket with a local address and port.
 
@@ -391,7 +391,7 @@ This is important because thousands of connections can use the same destination 
 
 ---
 
-## 3. DNS: how a hostname becomes an IP address
+## DNS: how a hostname becomes an IP address
 
 When you access:
 
@@ -435,7 +435,7 @@ IP address returned
 
 The resolver may use cached information, so a DNS query does not necessarily travel all the way through the DNS hierarchy every time.
 
-### 3.1 DNS lookup using actual C APIs
+### DNS lookup using actual C APIs
 
 POSIX-compatible systems provide `getaddrinfo()`.
 
@@ -559,7 +559,7 @@ cc dns.c -o dns
 
 You may receive multiple IP addresses because a hostname can resolve to multiple IPv4 or IPv6 endpoints.
 
-### 3.2 DNS in Cloudflare Tunnel
+### DNS in Cloudflare Tunnel
 
 When `cloudflared` starts, it needs to resolve Cloudflare's infrastructure hostnames.
 
@@ -585,13 +585,13 @@ DNS resolution is only one step in establishing connectivity.
 
 ---
 
-## 4. TCP: reliable communication between two endpoints
+## TCP: reliable communication between two endpoints
 
 TCP is a connection-oriented transport protocol.
 
 Before application data can be exchanged, TCP establishes a connection.
 
-### 4.1 The TCP three-way handshake
+### The TCP three-way handshake
 
 The connection establishment process normally consists of three messages:
 
@@ -637,7 +637,7 @@ Important characteristics:
 
 TCP does not understand HTTP requests, JSON, OAuth, or application-level messages. It transports bytes.
 
-### 4.2 Establishing a TCP connection in C
+### Establishing a TCP connection in C
 
 The following example uses actual socket APIs to connect to an HTTP server.
 
@@ -783,7 +783,7 @@ This distinction becomes important when understanding reverse tunneling.
 
 ---
 
-## 5. UDP: datagram-based communication
+## UDP: datagram-based communication
 
 UDP is another transport protocol.
 
@@ -805,7 +805,7 @@ UDP itself does not guarantee:
 
 These properties can be implemented by a higher-level protocol.
 
-### 5.1 UDP server in C
+### UDP server in C
 
 ```c
 
@@ -929,7 +929,7 @@ This server receives UDP datagrams and sends the same datagram back to the sende
 
 Unlike the TCP server, it does not call `listen()` or `accept()`.
 
-### 5.2 Why Cloudflare uses QUIC
+### Why Cloudflare uses QUIC
 
 QUIC is a transport protocol built on top of UDP.
 
@@ -983,7 +983,7 @@ Cloudflare Tunnel can use QUIC as its transport protocol.
 
 ---
 
-## 6. HTTP/2, HTTP/3, and TLS
+## HTTP/2, HTTP/3, and TLS
 
 Transport protocols are not the same as application protocols.
 
@@ -1051,7 +1051,7 @@ IP
 
 ```
 
-### 6.1 TLS and certificate validation
+### TLS and certificate validation
 
 When your browser accesses:
 
@@ -1103,7 +1103,7 @@ This is why you can use an HTTPS public endpoint while your local Node.js server
 
 ---
 
-## 7. Reverse tunneling: the important architectural concept
+## Reverse tunneling: the important architectural concept
 
 Now we can get to the central idea.
 
@@ -1157,7 +1157,7 @@ The important property is that the connection was initiated from your machine.
 
 NAT and stateful firewalls generally maintain connection-tracking information for established outbound connections. Return traffic associated with that connection can pass back through the network.
 
-### 7.1 Simplified reverse proxy architecture
+### Simplified reverse proxy architecture
 
 Imagine a remote system has a request to forward to your backend.
 
@@ -1257,7 +1257,7 @@ connect(
 
 This illustrates the local-origin connection, but not Cloudflare's actual tunnel protocol.
 
-### 7.2 A real TCP relay using POSIX APIs
+### A real TCP relay using POSIX APIs
 
 The following example demonstrates a TCP relay between an accepted connection and a local service.
 
@@ -1565,7 +1565,7 @@ The request reaches port `9000`, is forwarded to `localhost:3000`, and the respo
 
 **Production caveats:** This example does not correctly implement all TCP half-close semantics, buffering, backpressure, nonblocking writes, or concurrent clients. It is a learning model for bidirectional byte forwarding, not production proxy code.
 
-### 7.3 How Cloudflare differs from this relay
+### How Cloudflare differs from this relay
 
 Cloudflare Tunnel is not simply a TCP relay that opens one local connection for every remote TCP connection.
 
@@ -1589,7 +1589,7 @@ The important architectural principle is the outbound-established connection and
 
 ---
 
-## 8. Understanding the Cloudflare connectivity pre-checks
+## Understanding the Cloudflare connectivity pre-checks
 
 When you ran:
 
@@ -1623,7 +1623,7 @@ Cloudflare API     api.cloudflare.com:443     PASS
 
 Let's interpret this using the networking concepts above.
 
-### 8.1 DNS Resolution
+### DNS Resolution
 
 ```text
 
@@ -1637,7 +1637,7 @@ region2.v2.argotunnel.com
 
 The DNS checks succeeded.
 
-### 8.2 UDP Connectivity
+### UDP Connectivity
 
 ```text
 
@@ -1649,7 +1649,7 @@ This confirms that the tested QUIC connectivity was successful.
 
 The machine can communicate with Cloudflare using the UDP-based QUIC transport.
 
-### 8.3 TCP Connectivity
+### TCP Connectivity
 
 ```text
 
@@ -1661,7 +1661,7 @@ This confirms that the tested TCP-based HTTP/2 connectivity was successful.
 
 TCP provides another available transport option.
 
-### 8.4 Cloudflare API
+### Cloudflare API
 
 ```text
 
@@ -1673,7 +1673,7 @@ This checks HTTPS connectivity to Cloudflare's API endpoint.
 
 It is separate from the tunnel's data transport.
 
-### 8.5 Why QUIC was selected
+### Why QUIC was selected
 
 Your terminal printed:
 
@@ -1693,11 +1693,11 @@ This does not mean TCP is broken or that QUIC is universally faster in every net
 
 ---
 
-## 9. Installing and configuring Cloudflare Tunnel on macOS
+## Installing and configuring Cloudflare Tunnel on macOS
 
 Now that the networking concepts are clearer, let's apply them.
 
-### 9.1 Install cloudflared
+### Install cloudflared
 
 Install using Homebrew:
 
@@ -1717,7 +1717,7 @@ cloudflared --version
 
 Homebrew installs the Cloudflare Tunnel client, which establishes and maintains the tunnel connection.
 
-### 9.2 Start your Node.js backend
+### Start your Node.js backend
 
 Start your backend:
 
@@ -1745,7 +1745,7 @@ curl -i http://localhost:3000
 
 If the connection fails, fix the backend before testing the tunnel.
 
-### 9.3 Generate a public URL
+### Generate a public URL
 
 Open another terminal and run:
 
@@ -1801,7 +1801,7 @@ Keep the terminal running.
 
 A Quick Tunnel is temporary. If you stop and restart the process, the generated hostname may change.
 
-### 9.4 Test the public endpoint
+### Test the public endpoint
 
 ```bash
 
@@ -1823,7 +1823,7 @@ A `404` response can still confirm that traffic reached your backend. It may sim
 
 A `502 Bad Gateway` generally indicates that Cloudflare cannot successfully reach the configured origin.
 
-### 9.5 Create a named tunnel with a stable hostname
+### Create a named tunnel with a stable hostname
 
 A Quick Tunnel is useful for a short experiment, but its generated hostname is temporary. For repeated development work, a named tunnel can use a hostname under a domain you control.
 
@@ -1860,7 +1860,7 @@ A named tunnel is also not automatically a production deployment. It is a stable
 
 ---
 
-## 10. Using Cloudflare Tunnel for Google OAuth
+## Using Cloudflare Tunnel for Google OAuth
 
 The practical reason for creating the tunnel is to let an external browser reach the OAuth callback handled by the Node.js backend running locally on the Mac.
 
@@ -1958,7 +1958,7 @@ There are two separate authorization-code exchanges in this architecture:
 
 ---
 
-## 11. Troubleshooting by network layer
+## Troubleshooting by network layer
 
 Understanding the layers helps identify where a failure occurs.
 
@@ -2006,7 +2006,7 @@ The third request may return an application error because it lacks OAuth paramet
 
 ---
 
-## 12. Development versus production
+## Development versus production
 
 Cloudflare Quick Tunnels are designed for testing and development.
 
