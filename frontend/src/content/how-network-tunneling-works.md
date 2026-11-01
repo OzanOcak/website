@@ -1872,7 +1872,7 @@ The local origin remains:
 http://localhost:3000
 Cloudflare terminates the public HTTPS connection and forwards the request through the established tunnel to the local HTTP service.
 
-### 10.1 Configure the backend callback URL
+### Configure the backend callback URL
 
 Set the mobile callback environment variable to the public hostname and exact callback path:
 GOOGLE_MOBILE_REDIRECT_URI=https://oauth-dev.oocak.com/api/mobile/oauth/callback
@@ -1880,7 +1880,7 @@ Restart the Node.js backend after changing .env. Environment-variable changes ar
 
 When the backend generates the Google authorization URL, inspect its redirect_uri parameter. It should contain the exact public callback URL above, rather than localhost or 127.0.0.1.
 
-### 10.2 Register the redirect URI with the matching Google OAuth client
+### Register the redirect URI with the matching Google OAuth client
 
 In Google Cloud Console, open the OAuth 2.0 client configuration used by this authorization-code flow and register the exact redirect URI where that client type supports authorized redirect URIs:
 https://oauth-dev.oocak.com/api/mobile/oauth/callback
@@ -1888,7 +1888,7 @@ The redirect_uri sent in the authorization request must match the URI used durin
 
 For a backend-handled callback, verify the requirements for the specific Google OAuth client type being used. The tunnel itself does not determine which client ID or client secret should be used.
 
-### 10.3 Verify the tunnel before testing OAuth
+### Verify the tunnel before testing OAuth
 
 First, verify that the local backend is running:
 curl -i http://localhost:3000
@@ -1906,7 +1906,7 @@ These checks separate tunnel connectivity from application behavior:
 - A callback response such as no_state shows that the callback handler ran but did not receive the expected OAuth state.
 - A 502 Bad Gateway points to a problem reaching the configured origin through the tunnel and should be investigated separately.
 
-### 10.4 Follow the complete OAuth flow
+### Follow the complete OAuth flow
 
 The resulting flow is:
 React Native

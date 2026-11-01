@@ -30,7 +30,7 @@ To answer these questions, I separated authentication into two independent mecha
 
 This separation made the implementation easier to reason about and gave each credential a distinct purpose and lifecycle.
 
-## 1. Separating session credentials from device credentials
+## Separating session credentials from device credentials
 
 The first architectural decision was not to reuse the normal refresh token for Face ID login.
 
@@ -106,7 +106,7 @@ The backend must enforce this distinction during token validation, not merely re
 
 A device credential should also have its own expiration, revocation status, and user/device association. It should be stored hashed in the database rather than as a reusable plaintext credential.
 
-## 2. Protecting credentials with iOS Keychain
+## Protecting credentials with iOS Keychain
 
 On the React Native side, I used `react-native-keychain` to access the iOS Keychain.
 
@@ -147,7 +147,7 @@ Keychain uses the iOS Security framework to protect stored credentials. Dependin
 
 The application only receives the device credential after the operating system grants access.
 
-## 3. Zustand persistence and asynchronous hydration
+## Zustand persistence and asynchronous hydration
 
 I use Zustand to manage application authentication state.
 
@@ -220,7 +220,7 @@ I also avoid persisting sensitive session data unnecessarily. My intended storag
 
 The Face ID flag is only a UI indicator. It is not an authentication credential and must not be trusted as proof that the Keychain item is still available.
 
-## 4. Avoiding unexpected biometric prompts
+## Avoiding unexpected biometric prompts
 
 Another issue appeared when I visited the Profile screen.
 
@@ -264,7 +264,7 @@ The device credential is only retrieved when the user explicitly presses the Fac
 
 This is an important design principle: **checking whether a feature is configured should not require exercising the protected credential.**
 
-## 5. Restoring a session after application termination
+## Restoring a session after application termination
 
 Another important distinction is the difference between closing an application and logging out.
 
@@ -348,7 +348,7 @@ The navigation layer should wait until restoration finishes before deciding whet
 
 This gives the user a persistent session without having to authenticate with Face ID every time they reopen the application.
 
-## 6. The actual Face ID login flow
+## The actual Face ID login flow
 
 Session restoration and biometric login are separate processes.
 
@@ -398,7 +398,7 @@ The backend then validates the credential and issues a normal session.
 
 A production implementation should rotate the device credential after successful authentication, update the protected Keychain item, and reject replayed or revoked credentials. The frontend should also handle biometric cancellation, failed authentication, unavailable biometrics, and invalidated Keychain items separately.
 
-## 7. Fixing the OAuth invalid-state issue
+## Fixing the OAuth invalid-state issue
 
 I also encountered an OAuth issue when signing in with Google for a second time after logging out.
 
@@ -421,7 +421,7 @@ The timestamp makes each query key unique, preventing the previous URL from bein
 
 For this particular operation, the important requirement is that every sign-in attempt obtains a fresh OAuth state and that the backend validates the returned state against the original authentication transaction.
 
-## 8. Putting the authentication lifecycle together
+## Putting the authentication lifecycle together
 
 The final architecture has three distinct operations.
 
@@ -451,7 +451,7 @@ The final architecture has three distinct operations.
 
 This separation also makes logout behavior clearer. Logging out revokes the normal session, while the device credential can remain registered if the user wants to use Face ID again later. Disabling Face ID is a separate operation that revokes the device credential and removes its Keychain item.
 
-## 9. Moving closer to native authentication
+## Moving closer to native authentication
 
 Implementing this flow also made me more interested in the boundary between React Native and native iOS functionality.
 
