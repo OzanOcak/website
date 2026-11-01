@@ -11,6 +11,9 @@ import { deviceLogin } from "../controllers/mobile/faceid-auth/device-login";
 import { registerDeviceToken } from "../controllers/mobile/faceid-auth/device-token";
 import { revokeDeviceToken } from "../controllers/mobile/faceid-auth/device-revoke";
 import { authenticate } from "../middleware/authenticate-user";
+import { registerEnclaveKey } from "../controllers/mobile/enclave/enclave-register";
+import { getEnclaveChallenge } from "../controllers/mobile/enclave/enclave-challenge";
+import { verifyEnclaveSignature } from "../controllers/mobile/enclave/enclave-verify";
 
 const router = Router();
 
@@ -43,6 +46,11 @@ router.post("/faceid-auth/device-token", authenticate, registerDeviceToken);
 
 // Disable Face ID (Protected by your authenticate middleware)
 router.delete("/faceid-auth/device-token", authenticate, revokeDeviceToken);
+
+// Secure Enclave Routes
+router.post("/enclave/register", authenticate, registerEnclaveKey);
+router.post("/enclave/challenge", getEnclaveChallenge);
+router.post("/enclave/verify", verifyEnclaveSignature);
 
 export default router;
 

@@ -65,4 +65,14 @@ export const usersRelations = relations(users, ({ many }) => ({
   comments: many(comments),
 }));
 
+export const deviceKeys = pgTable("device_keys", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  publicKey: text("public_key").notNull(),
+  deviceId: varchar("device_id", { length: 255 }).notNull(), // To identify this specific phone
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // While cascading deletes do not reduce the number of queries, they can improve performance in some cases:
