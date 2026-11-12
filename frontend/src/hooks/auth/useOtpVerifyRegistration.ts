@@ -9,13 +9,13 @@ interface VerifyOtpResponse {
 }
 
 export const verifyOtpRegistration = async (
-  otp: string
+  otp: string,
 ): Promise<VerifyOtpResponse> => {
   console.log("Verifying OTP:", otp);
 
   // Retrieve the access token from local storage
   const accessToken = localStorage.getItem("xg8a");
-  console.log("access-token", accessToken);
+  //console.log("access-token", accessToken);
 
   try {
     //  console.log("Sending request to verify OTP...");
@@ -26,7 +26,7 @@ export const verifyOtpRegistration = async (
         headers: {
           Authorization: `Bearer ${accessToken}`, // Include the access token in headers
         },
-      }
+      },
     );
     //  console.log("Received response from verify OTP request:", response);
 
