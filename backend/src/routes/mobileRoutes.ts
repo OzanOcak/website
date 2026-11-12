@@ -16,6 +16,9 @@ import { getEnclaveChallenge } from "../controllers/mobile/enclave/enclave-chall
 import { verifyEnclaveSignature } from "../controllers/mobile/enclave/enclave-verify";
 import { mobileVerifyEmail } from "../controllers/mobile/auth/mobile-verify-email";
 import { mobileSignup } from "../controllers/mobile/auth/mobile-signup";
+import { mobileVerifyResetOtp } from "../controllers/mobile/auth/mobile-verify-reset-otp";
+import { mobileForgotPassword } from "../controllers/mobile/auth/mobile-forgot-password";
+import { mobileResetPassword } from "../controllers/mobile/auth/mobile-reset-password";
 
 const router = Router();
 
@@ -45,6 +48,10 @@ router.post("/auth/signup", ipRateLimiter, mobileSignup);
 // user, and returns { accessToken, refreshToken, refreshTokenId, username }
 // — same body shape as /auth/login and /oauth/exchange.
 router.post("/auth/verify-email", ipRateLimiter, mobileVerifyEmail);
+
+router.post("/auth/forgot-password", ipRateLimiter, mobileForgotPassword);
+router.post("/auth/verify-reset-otp", ipRateLimiter, mobileVerifyResetOtp);
+router.post("/auth/reset-password", ipRateLimiter, mobileResetPassword);
 
 // ═══ Face ID Auth ═══
 // Face ID login (Public)

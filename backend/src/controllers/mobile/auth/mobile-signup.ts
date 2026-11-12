@@ -38,7 +38,7 @@ export const mobileSignup = async (
 
     // 3. Generate 6-digit OTP
     const otp = randomInt(0, 1_000_000).toString().padStart(6, "0");
-    console.log("[mobile-signup] OTP for", email, "=", otp);
+    // console.log("[mobile-signup] OTP for", email, "=", otp);
 
     // 4. Send email (awaited so failures are logged)
     try {
@@ -48,7 +48,7 @@ export const mobileSignup = async (
         subject: "Your verification code",
         html: `<p>Hello ${username},</p><p>Your verification code is: <strong>${otp}</strong>.</p><p>It is valid for 5 minutes.</p>`,
       });
-      console.log("[mobile-signup] email sent OK to:", email);
+      // console.log("[mobile-signup] email sent OK to:", email);
     } catch (mailErr: any) {
       console.error(
         "[mobile-signup] email FAILED:",
