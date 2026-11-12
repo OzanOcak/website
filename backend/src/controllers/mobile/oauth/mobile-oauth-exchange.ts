@@ -142,40 +142,44 @@ export const mobileOAuthExchange = async (
           .execute();
 
         if (userByEmail.length > 0) {
-          // ═══ FAIL SAFELY ═══
-          // Email exists but this Google account was never linked.
-          // Do NOT auto-link — this could hand an attacker control
-          // of an existing account.
-          throw new Error(
-            "An account already exists with this email. Please sign in with your original method first, then link Google from account settings.",
-          );
+          // ═══ AUTO-LINK to existing user (matches web behavior) ═══
+          await tx
+            .insert(oauth_identities)
+            .values({
+              provider: "google",
+              providerId: profile.id!,
+              profilePicture: profile.picture ?? "",
+              userId: userByEmail[0].id,
+            })
+            .execute();
+
+          resolvedUser = userByEmail[0];
+        } else {
+          // ─── New user ───
+          const newUser = await tx
+            .insert(users)
+            .values({
+              username: profile.name || profile.email!.split("@")[0],
+              email: profile.email!,
+              password: "oauth_user_no_password",
+              role: "user",
+            })
+            .returning()
+            .execute();
+
+          await tx
+            .insert(oauth_identities)
+            .values({
+              provider: "google",
+              providerId: profile.id!,
+              profilePicture: profile.picture ?? "",
+              userId: newUser[0].id,
+            })
+            .execute();
+
+          resolvedUser = newUser[0];
         }
-
-        // ─── New user ───
-        const newUser = await tx
-          .insert(users)
-          .values({
-            username: profile.name || profile.email!.split("@")[0],
-            email: profile.email!,
-            password: "oauth_user_no_password",
-            role: "user",
-          })
-          .returning()
-          .execute();
-
-        await tx
-          .insert(oauth_identities)
-          .values({
-            provider: "google",
-            providerId: profile.id!,
-            profilePicture: profile.picture ?? "",
-            userId: newUser[0].id,
-          })
-          .execute();
-
-        resolvedUser = newUser[0];
       }
-
       // ─── Issue tokens ───
       const accessToken = jwt.sign(
         { id: resolvedUser.id, role: resolvedUser.role },

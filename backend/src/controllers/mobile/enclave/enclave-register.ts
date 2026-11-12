@@ -5,7 +5,7 @@ import { deviceKeys } from "../../../db/schema";
 
 export const registerEnclaveKey: RequestHandler = async (req, res) => {
   try {
-    const userId = (req as any).userId; // From your authenticate middleware
+    const userId = (req as any).userId; // From authenticate middleware
     const { publicKey } = req.body;
 
     if (!userId || !publicKey) {

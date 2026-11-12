@@ -5,7 +5,7 @@ import { eq, and } from "drizzle-orm";
 
 export const revokeDeviceToken: RequestHandler = async (req, res) => {
   const { deviceTokenId } = req.body;
-  const userId = (req as any).userId; // <--- From your authenticate middleware
+  const userId = (req as any).userId; // <--- From authenticate middleware
 
   if (!deviceTokenId) {
     res.status(400).json({ message: "Device token ID required" });

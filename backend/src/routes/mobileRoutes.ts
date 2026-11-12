@@ -14,6 +14,8 @@ import { authenticate } from "../middleware/authenticate-user";
 import { registerEnclaveKey } from "../controllers/mobile/enclave/enclave-register";
 import { getEnclaveChallenge } from "../controllers/mobile/enclave/enclave-challenge";
 import { verifyEnclaveSignature } from "../controllers/mobile/enclave/enclave-verify";
+import { mobileVerifyEmail } from "../controllers/mobile/auth/mobile-verify-email";
+import { mobileSignup } from "../controllers/mobile/auth/mobile-signup";
 
 const router = Router();
 
@@ -36,6 +38,13 @@ router.post("/oauth/refresh", ipRateLimiter, mobileOAuthRefresh);
 // ═══ Email/password auth ═══
 router.post("/auth/login", ipRateLimiter, mobileEmailLogin);
 router.post("/auth/logout", ipRateLimiter, mobileLogout);
+router.post("/auth/signup", ipRateLimiter, mobileSignup);
+
+// ═══ Email OTP signup verification ═══
+// Client POSTs { otp }. Server verifies the pending signup, creates the
+// user, and returns { accessToken, refreshToken, refreshTokenId, username }
+// — same body shape as /auth/login and /oauth/exchange.
+router.post("/auth/verify-email", ipRateLimiter, mobileVerifyEmail);
 
 // ═══ Face ID Auth ═══
 // Face ID login (Public)

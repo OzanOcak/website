@@ -6,8 +6,8 @@ import { tokens } from "../../../db/schema";
 
 export const registerDeviceToken: RequestHandler = async (req, res) => {
   try {
-    const userId = (req as any).userId; // <--- From your authenticate middleware
-    const role = (req as any).role; // <--- From your authenticate middleware
+    const userId = (req as any).userId; // <--- From authenticate middleware
+    const role = (req as any).role; // <--- From authenticate middleware
 
     if (!userId) {
       res.status(401).json({ message: "Unauthorized" });
