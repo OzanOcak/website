@@ -13,7 +13,7 @@ const UserSchema = z.object({
 export const validateUser = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     UserSchema.parse(req.body); // This will throw if the validation fails
@@ -22,7 +22,7 @@ export const validateUser = (
     if (error instanceof ZodError) {
       res.status(400).json({
         message: "Validation Error",
-        issues: error.errors,
+        issues: error.issues,
       });
       return;
     }
