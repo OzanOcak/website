@@ -122,7 +122,7 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
                             <button
                               onClick={() => handlePublish(blog.slug)}
                               disabled={loadingStates[blog.slug]}
-                              className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                              className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 "
                             >
                               {/*loadingStates[blog.slug]
                                 ? "Publishing..."
@@ -133,7 +133,7 @@ const BlogPostTable: React.FC<BlogPostTableProps> = ({ blogs }) => {
                         </>
                       ) : (
                         <Link href={`/blogpost/${blog.slug}`}>
-                          <div className="bg-green-800 hover:bg-green-700 px-2 py-1 rounded-md">
+                          <div className="bg-green-200 dark:bg-green-500 hover:bg-green-600 dark:hover:bg-green-700 hover:text-white px-2 py-1 rounded-md">
                             READ
                           </div>
                         </Link>
