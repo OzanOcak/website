@@ -18,20 +18,10 @@ const pool = new Pool({
 const db = drizzle(pool, { schema });
 
 // Connection state
-let isConnected = false;
-// Function to connect the database
+// Verify database connectivity before starting the server
 export async function connectDatabase() {
-  if (!isConnected) {
-    try {
-      await pool.connect(); // Connect to the database
-      isConnected = true; // Update the connection state
-      console.log("Connected to PostgreSQL database!!!!");
-    } catch (err) {
-      console.error("Connection error", err);
-    }
-  } else {
-    console.log("Connected to PostgreSQL database:", process.env.DB_HOST);
-  }
+  await pool.query("SELECT 1");
+  console.log("Connected to PostgreSQL database.");
 }
 
 // Export the client and db for use in other parts of your application

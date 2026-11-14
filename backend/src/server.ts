@@ -84,6 +84,7 @@ const startServer = async () => {
     });
   } catch (error) {
     console.error("Error starting the server:", error);
+    process.exitCode = 1; //startup error handler to explicitly report a failed process startup
   }
 };
 
