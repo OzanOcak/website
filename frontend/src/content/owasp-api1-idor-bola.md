@@ -4,7 +4,7 @@ slug: owasp-api1-idor-bola
 description: A practical investigation of Broken Object Level Authorization (BOLA), demonstrating how authenticated users can modify other users' resources through insecure API endpoints. Covers IDOR, horizontal privilege escalation, multi-account testing with curl, PostgreSQL verification, production validation, and server-side authorization fixes.
 imageUrl: /images/6.webp
 author: o. ocak
-date: 23.11.2026
+date: 20.11.2026
 tags:
   - OWASP
   - API Security
