@@ -5,13 +5,23 @@ import { loadEnvConfig } from "@next/env";
 const projectDir = process.cwd();
 loadEnvConfig(projectDir);
 
+const isDevelopment = process.env.NODE_ENV !== "production";
+
+const connectSrc = [
+  "'self'",
+  ...(isDevelopment ? ["http://localhost:3000"] : ["https://api.oocak.com"]),
+  "https://accounts.google.com",
+  "https://oauth2.googleapis.com",
+  "https://www.googleapis.com",
+];
+
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://apis.google.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://lh3.googleusercontent.com https://github.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://api.oocak.com https://accounts.google.com https://oauth2.googleapis.com https://www.googleapis.com",
+  `connect-src   ${connectSrc.join(" ")}`,
   "frame-src https://accounts.google.com",
   "object-src 'none'",
   "base-uri 'self'",
@@ -43,7 +53,7 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: [
           {
-            key: "Content-Security-Policy-Report-Only",
+            key: "Content-Security-Policy",
             value: csp,
           },
         ],

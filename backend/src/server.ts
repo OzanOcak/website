@@ -53,7 +53,7 @@ const startServer = async () => {
         if (!origin || allowedOrigins.includes(origin)) {
           callback(null, true); // Allow the request
         } else {
-          callback(new Error("Not allowed by CORS")); // Block the request
+          callback(null, false);
         }
       },
       credentials: true, // Allow credentials (cookies, authorization headers, etc.)
@@ -63,7 +63,17 @@ const startServer = async () => {
 
     app.use(cors(corsOptions));
     //app.use(cors());
-    app.use(helmet());
+    app.use(
+      helmet({
+        contentSecurityPolicy: {
+          directives: {
+            defaultSrc: ["'none'"],
+            frameAncestors: ["'none'"],
+            formAction: ["'none'"],
+          },
+        },
+      }),
+    );
 
     // app.use(trackVisit);
 
@@ -77,6 +87,11 @@ const startServer = async () => {
 
     app.get("/api/hello", (req, res) => {
       res.json({ message: "Hello, World!" });
+    });
+
+    app.use((req, res) => {
+      console.log("Final 404 handler:", req.originalUrl);
+      res.status(404).json({ message: "Not Found" });
     });
 
     app.listen(PORT, "0.0.0.0", () => {
