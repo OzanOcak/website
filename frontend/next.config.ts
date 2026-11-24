@@ -9,15 +9,25 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 
 const connectSrc = [
   "'self'",
-  ...(isDevelopment ? ["http://localhost:3000"] : ["https://api.oocak.com"]),
+  "http://localhost:3000",
+  "https://api.oocak.com",
   "https://accounts.google.com",
   "https://oauth2.googleapis.com",
   "https://www.googleapis.com",
 ];
 
+const scriptSrc = [
+  "'self'",
+  ...(isDevelopment
+    ? ["'unsafe-eval'", "'unsafe-inline'"]
+    : ["'unsafe-inline'"]),
+  "https://accounts.google.com",
+  "https://apis.google.com",
+];
+
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://apis.google.com",
+  `script-src  ${scriptSrc.join(" ")}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://lh3.googleusercontent.com https://github.com",
   "font-src 'self' data:",

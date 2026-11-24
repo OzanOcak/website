@@ -12,6 +12,8 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: SiteConfig.title,
   description: SiteConfig.description,
