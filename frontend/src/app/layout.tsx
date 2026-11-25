@@ -6,6 +6,7 @@ import NavBar from "@/components/custom/navigation/NavBar";
 import SiteConfig from "@/config/site";
 import { QueryClient } from "@tanstack/react-query";
 import { Providers } from "../components/custom/providers";
+import { connection } from "next/server";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -29,13 +30,21 @@ export const queryClient = new QueryClient({
   },
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Force request-time rendering so Next.js can access the per-request CSP
+  // nonce forwarded by middleware and apply it to generated inline scripts
+  // and styles. This ensures the nonce matches the response's CSP header.
+  await connection();
   return (
-    <html lang="en" className="scroll-p-20 scroll-smooth">
+    <html
+      lang="en"
+      className="scroll-p-20 scroll-smooth"
+      data-scroll-behavior="smooth"
+    >
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
