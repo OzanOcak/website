@@ -34,8 +34,8 @@ export const useSignup = () => {
   return useMutation({
     mutationFn: signupUser, // The function to call for the mutation
     onSuccess: (data) => {
-      console.log("data", data);
-      console.log("User registered successfully!");
+      // console.log("data", data);
+      // console.log("User registered successfully!");
       localStorage.setItem("xg8a", data.token);
       router.push("/verify-otp-registration");
     },

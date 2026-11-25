@@ -4,7 +4,6 @@ Disallow: /verify-otp-registration/
 Disallow: /otp-password/
 Disallow: /update-password/
 Disallow: /admin/
-Disallow: /article/
 Disallow: /user/
 Disallow: /profile/
 Disallow: /login/

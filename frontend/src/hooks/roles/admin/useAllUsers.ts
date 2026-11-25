@@ -15,7 +15,7 @@ const fetchAllUsers = async () => {
       Authorization: `Bearer ${accessToken}`, // Include the token
     },
   });
-  console.log("All Users:", response.data.users);
+  //console.log("All Users:", response.data.users);
   return response.data;
 };
 

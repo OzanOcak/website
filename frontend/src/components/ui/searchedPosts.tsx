@@ -117,6 +117,7 @@ const SearchedPosts: React.FC<SearchProps> = ({ blogs }) => {
                 alt={blog.title}
                 width={180}
                 height={180}
+                loading="eager"
               />
               <div className="p-4">
                 <h2 className="text-xl font-semibold mb-2">{blog.title}</h2>
