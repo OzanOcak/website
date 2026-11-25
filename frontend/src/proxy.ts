@@ -6,7 +6,7 @@ export function proxy(request: NextRequest) {
   const csp = [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' https://accounts.google.com https://apis.google.com`,
-    `style-src 'self' 'nonce-${nonce}'`,
+    `style-src 'self' 'unsafe-inline'`,
     "img-src 'self' data: blob: https://lh3.googleusercontent.com https://github.com",
     "font-src 'self' data:",
     "connect-src 'self' http://localhost:3000 https://api.oocak.com https://accounts.google.com https://oauth2.googleapis.com https://www.googleapis.com",
