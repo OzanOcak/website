@@ -13,7 +13,6 @@ import LikeDislikeButtons from "@/components/custom/blogpost/likepost";
 import { ContentTable } from "@/components/custom/blogpost/ContentTable";
 import ScrollToTopButton from "@/components/custom/blogpost/ScrollToTopButton";
 import CloseButton from "@/components/custom/blogpost/CloseButton";
-import DOMPurify from "isomorphic-dompurify";
 
 async function fetchBlogPost(slug: string) {
   const filePath = path.join(process.cwd(), "src/content", `${slug}.md`);
@@ -46,21 +45,15 @@ async function fetchBlogPost(slug: string) {
 
       // Return the modified <h2> element with the new id
       return `<h2 id="${id}">${text}</h2>`;
-    },
+    }
   );
 
   //console.log("generatedLinks: ", generatedLinks);
   //console.log("Modified HTML: ", modifiedContentHtml);
 
-  const safeHtml = DOMPurify.sanitize(modifiedContentHtml, {
-    USE_PROFILES: { html: true },
-    // keep the ids we just added
-    ADD_ATTR: ["id"],
-  });
-
   return {
     title: data.title || "",
-    content: safeHtml,
+    content: modifiedContentHtml,
     imageUrl: data.imageUrl || "",
     links: generatedLinks, // Include the links
     author: data.author || "",

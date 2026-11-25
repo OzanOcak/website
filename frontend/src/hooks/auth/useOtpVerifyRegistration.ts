@@ -11,7 +11,7 @@ interface VerifyOtpResponse {
 export const verifyOtpRegistration = async (
   otp: string,
 ): Promise<VerifyOtpResponse> => {
-  //console.log("Verifying OTP:", otp);
+  console.log("Verifying OTP:", otp);
 
   // Retrieve the access token from local storage
   const accessToken = localStorage.getItem("xg8a");
@@ -52,7 +52,7 @@ export const useOtpVerifyRegistration = () => {
   return useMutation<VerifyOtpResponse, Error, string>({
     mutationFn: verifyOtpRegistration,
     onSuccess: (data) => {
-      //console.log("success");
+      console.log("success");
       localStorage.setItem("userId", data.userId);
       localStorage.removeItem("xg8a");
       localStorage.removeItem("userId");

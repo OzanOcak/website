@@ -24,7 +24,7 @@ export const verifyOtp = async (otp: string): Promise<VerifyOtpResponse> => {
         headers: {
           Authorization: `Bearer ${accessToken}`, // Include the access token in headers
         },
-      },
+      }
     );
     // console.log("Received response from verify OTP request:", response);
 
@@ -33,7 +33,7 @@ export const verifyOtp = async (otp: string): Promise<VerifyOtpResponse> => {
       throw new Error(response.data.message || "OTP verification failed");
     }
 
-    //console.log("OTP verification successful:", response.data);
+    console.log("OTP verification successful:", response.data);
     return response.data as VerifyOtpResponse;
   } catch (error: unknown) {
     console.error("Error verifying OTP:", error);
@@ -50,7 +50,7 @@ export const useOtpVerify = () => {
   return useMutation<VerifyOtpResponse, Error, string>({
     mutationFn: verifyOtp,
     onSuccess: (data) => {
-      //console.log("success");
+      console.log("success");
       localStorage.setItem("userId", data.userId);
       localStorage.removeItem("timeLeft");
       router.push("/update-password?otps=true"); // sending within req body isn't possible ***

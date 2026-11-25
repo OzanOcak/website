@@ -15,7 +15,7 @@ const fetchUserById = async (userId: string) => {
     },
   });
 
-  //console.log("Fetched User:", response.data.user);
+  console.log("Fetched User:", response.data.user);
   return response.data.user; // Return the user data
 };
 export const useAdminUserEdit = (userId: string) => {

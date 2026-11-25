@@ -33,7 +33,6 @@
     "dotenv": "^16.4.7",
     "gray-matter": "^4.0.3",
     "immer": "^10.1.1",
-    "isomorphic-dompurify": "^3.19.0",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.475.0",

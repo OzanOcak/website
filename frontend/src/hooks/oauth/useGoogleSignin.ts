@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 export const useGoogleSignInUrl = (enabled: boolean) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [codeVerifier, setCodeVerifier] = useState<string | null>(null);
 
   return useQuery({
