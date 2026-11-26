@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
   },
 });
 console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("API Base URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
+//console.log("API Base URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
 
 // Add a request interceptor to add the access token to all requests
 axiosInstance.interceptors.request.use(
@@ -25,7 +25,7 @@ axiosInstance.interceptors.request.use(
   (error) => {
     console.error("Request Error:", error);
     return Promise.reject(error);
-  }
+  },
 );
 
 // Add a response interceptor to handle token refresh
@@ -59,7 +59,7 @@ axiosInstance.interceptors.response.use(
             headers: {
               "refresh-token-id": refreshTokenId, // Add refresh token ID to headers
             },
-          }
+          },
         );
 
         // If successful, extract new access token from the response header
@@ -93,7 +93,7 @@ axiosInstance.interceptors.response.use(
 
     // If we reach here, either the error was not a 401, or refresh failed
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axiosInstance;

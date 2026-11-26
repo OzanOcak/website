@@ -24,6 +24,25 @@ const nextConfig: NextConfig = {
       dynamic: 6000,
     },
   },
+
+  async headers() {
+    return [
+      {
+        // Apply these headers to all routes, including static files (_next/static/...)
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

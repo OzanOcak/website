@@ -29,8 +29,15 @@ export function proxy(request: NextRequest) {
     },
   });
 
+  // 1. Send CSP to the browser
   response.headers.set("Content-Security-Policy", csp);
 
+  // 2. Send nosniff to the browser
+  response.headers.set("X-Content-Type-Options", "nosniff"); // in fact next.config overwrite this so not usefull
+
+  // 3.  Force a Content-Type on the response
+  // This will apply to the page, but might also help if the proxy catches the redirection of authentication/authorizations.
+  response.headers.set("Content-Type", "text/html; charset=utf-8");
   return response;
 }
 
