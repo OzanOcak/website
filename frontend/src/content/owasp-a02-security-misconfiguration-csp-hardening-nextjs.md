@@ -20,7 +20,7 @@ published: true
 
 **A practical security walkthrough based on hardening `oocak.com`**
 
-## 1. Understanding the Security Problem
+## Understanding the Security Problem
 
 A web application can have authentication, authorization, input validation, and secure API endpoints and still expose users to browser-side attacks.
 
@@ -74,7 +74,7 @@ document.querySelector("#comment").textContent = comment;
 
 CSP adds another layer of protection, but the safer rendering approach remains necessary.
 
-## 2. Why This Belongs to OWASP A02
+## Why This Belongs to OWASP A02
 
 OWASP Top 10:2025 classifies Security Misconfiguration as **A02**.
 
@@ -91,7 +91,7 @@ Examples include:
 
 Our CSP work primarily addresses the browser security policy configuration.
 
-## 3. Understanding the CSP Directives
+## Understanding the CSP Directives
 
 Before changing the policy, it is important to understand what each directive controls.
 
@@ -123,7 +123,7 @@ This means:
 
 A critical distinction: `default-src` is a fallback, not a universal override. If you specify `script-src`, that directive controls scripts instead of inheriting `default-src`.
 
-## 4. The Original CSP and Its Weaknesses
+## The Original CSP and Its Weaknesses
 
 Our original production policy included permissive script and style directives:
 
@@ -201,7 +201,7 @@ Without it, a restrictive script policy blocks these operations.
 
 This does not mean that every use of `eval()` is an exploitable vulnerability. The risk depends on whether an attacker can influence the evaluated string. But permitting it unnecessarily expands the execution surface.
 
-## 5. Removing `unsafe-eval` and `unsafe-inline`
+## Removing `unsafe-eval` and `unsafe-inline`
 
 We first removed `unsafe-eval` from the production script policy.
 
@@ -227,7 +227,7 @@ The lesson:
 
 For our application, that mechanism was a per-request nonce.
 
-## 6. Implementing Nonce-Based CSP in Next.js
+## Implementing Nonce-Based CSP in Next.js
 
 A nonce is a randomly generated value associated with a particular HTTP response.
 
@@ -377,7 +377,7 @@ Production and development policies should be separated.
 
 For example, build the allowed connection origins from validated environment-specific configuration rather than shipping development origins in the production policy.
 
-## 7. Why We Enabled Dynamic Rendering
+## Why We Enabled Dynamic Rendering
 
 We added this to the root layout:
 
@@ -400,7 +400,7 @@ The trade-off is significant:
 
 This is an architectural decision, not simply a security header change.
 
-## 8. Why Nonce-Based `style-src` Caused New Errors
+## Why Nonce-Based `style-src` Caused New Errors
 
 After removing `unsafe-inline` from `style-src`, Chrome Headless began reporting violations.
 
@@ -505,7 +505,7 @@ This allows the browser to load the styles through the permitted same-origin sty
 
 **Important:** This is a proposed correction based on the component code we identified. The complete component still needs to be reviewed and tested before declaring the violation resolved.
 
-## 9. Understanding the Security Impact: Controlled Exploit Demonstrations
+## Understanding the Security Impact: Controlled Exploit Demonstrations
 
 The following examples are for a local test page or a system you own. They demonstrate why CSP matters without attempting to steal credentials or access another person's data.
 
@@ -689,7 +689,7 @@ And a nonce-authorized style element is permitted:
 
 This experiment reproduces the distinction we encountered with `neural-canvas`.
 
-## 10. How We Tested the Implementation
+## How We Tested the Implementation
 
 We used three different approaches: HTTP inspection, browser inspection, and ZAP.
 
@@ -774,7 +774,7 @@ This is why we also inspected the Chrome Headless console.
 
 **A security scanner checks configuration and behavior within its testing coverage. It cannot establish that the application is free of XSS or all other vulnerabilities.**
 
-## 11. Further CSP Improvements to Consider
+## Further CSP Improvements to Consider
 
 The following are possible future improvements, not changes we have already completed.
 
@@ -823,7 +823,7 @@ This is useful when introducing CSP into a complex application because it allows
 
 Be aware that a report-only policy does not replace the enforced CSP.
 
-## 12. Current Project Status
+## Current Project Status
 
 This is the actual status of our work, not a list of tasks assumed to be finished.
 
@@ -866,7 +866,7 @@ git commit -m "security: harden CSP with nonce-based policies"
 git push -u origin security/csp-hardening
 ```
 
-## 13. What to Remember
+## What to Remember
 
 The most important lessons from this exercise:
 

@@ -28,7 +28,7 @@ In this investigation, I reviewed the authentication system of my own applicatio
 
 The objective was not simply to identify whether encryption was present, but to examine whether cryptographic mechanisms were being used correctly.
 
-## 1. What is OWASP A02:2021?
+## What is OWASP A02:2021?
 
 OWASP A02:2021 — Cryptographic Failures — covers weaknesses that expose sensitive information because cryptography is missing, insufficient, or incorrectly implemented.
 
@@ -43,7 +43,7 @@ Common examples include:
 
 The important distinction is that cryptography must protect data throughout its lifecycle: when it is transmitted, stored, and processed.
 
-## 2. Password Storage — bcrypt
+## Password Storage — bcrypt
 
 The first area I examined was password registration and authentication.
 
@@ -75,7 +75,7 @@ Argon2id is another suitable option for modern password storage.
 
 **Assessment:** The application uses an appropriate password-hashing algorithm. The cost factor should be reviewed and benchmarked rather than automatically classified as a vulnerability.
 
-## 3. OTP Generation and Expiration
+## OTP Generation and Expiration
 
 The application uses a six-digit email verification code during registration.
 
@@ -125,7 +125,7 @@ The current in-memory design also means registration state disappears when the p
 
 **Assessment:** Secure OTP generation is implemented. Storage, attempt limiting, and verification behavior require additional review.
 
-## 4. JWT Signing and Validation
+## JWT Signing and Validation
 
 The application uses separate environment secrets for access and refresh JWTs:
 
@@ -218,7 +218,7 @@ For example:
 
 The signing algorithm must match the application's actual configuration. The example above assumes HS256.
 
-## 5. Refresh-Token Rotation
+## Refresh-Token Rotation
 
 The application uses a refresh-token ID stored in the database alongside a refresh JWT held in an HttpOnly cookie.
 
@@ -276,7 +276,7 @@ The cookie should not outlive the token it contains. These values should be alig
 
 **Assessment:** The application has a useful refresh-token rotation design, but ownership validation and atomic consumption need to be enforced.
 
-## 6. Secret Management
+## Secret Management
 
 Cryptographic security depends heavily on protecting signing keys and application secrets.
 
@@ -315,7 +315,7 @@ Secrets should never be committed to source control. If a real secret has been e
 
 For production systems, a dedicated secrets manager is preferable to relying exclusively on local environment files.
 
-## 7. HTTPS and Sensitive Data in Transit
+## HTTPS and Sensitive Data in Transit
 
 Passwords and authentication tokens must be protected while travelling between the client and server.
 
@@ -361,7 +361,7 @@ These settings provide useful protection:
 
 These attributes do not replace server-side authorization or CSRF analysis, but they are important parts of session security.
 
-## 8. Google OAuth and Token Security
+## Google OAuth and Token Security
 
 The application supports Google authentication.
 
@@ -384,7 +384,7 @@ The OAuth callback also uses the access-token signing secret for its temporary c
 
 **Assessment:** The first-login registration behavior is expected. The upstream Google identity verification and callback-token implementation require further review before a security conclusion can be made.
 
-## 9. Findings and Recommendations
+## Findings and Recommendations
 
 The investigation identified several areas that deserve attention.
 
@@ -403,7 +403,7 @@ The investigation identified several areas that deserve attention.
 
 Not every observation is a confirmed vulnerability. Some are implementation improvements, while others require additional testing or inspection.
 
-## 10. Conclusion
+## Conclusion
 
 This investigation demonstrated that cryptographic security is not simply a matter of selecting a strong hashing algorithm or generating a long random secret.
 

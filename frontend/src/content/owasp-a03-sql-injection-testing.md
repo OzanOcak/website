@@ -29,7 +29,7 @@ For this review, I examined my own Node.js, Express, PostgreSQL, and Drizzle ORM
 
 The objective was to determine whether user-controlled input could alter SQL queries and whether the application consistently used parameterized database operations.
 
-## 1. Testing the Login Endpoint
+## Testing the Login Endpoint
 
 The login endpoint was one of the first places I examined because authentication queries commonly use user-provided email addresses.
 
@@ -85,7 +85,7 @@ This was also rejected by validation.
 
 **Important finding:** These production requests did not establish that the database was protected by themselves. The malformed inputs were rejected before reaching the database query. To assess SQL injection protection, I also inspected the actual database query implementation.
 
-## 2. Drizzle ORM and Parameterized Queries
+## Drizzle ORM and Parameterized Queries
 
 The login controller uses Drizzle ORM:
 
@@ -114,7 +114,7 @@ Using Drizzle's query builder keeps the user-provided value separate from the SQ
 
 This is the primary SQL injection protection in the reviewed login query.
 
-## 3. Zod Input Validation
+## Zod Input Validation
 
 I also use Zod with React Hook Form to validate signup data before submitting it to the API.
 
@@ -179,7 +179,7 @@ It is also important to distinguish input validation from SQL injection preventi
 
 Even valid-looking input must be treated as untrusted when it reaches the database.
 
-## 4. Testing Search Queries
+## Testing Search Queries
 
 I also reviewed the user search and count services.
 
@@ -217,7 +217,7 @@ Second, `searchCriteria` is handled through a fixed switch statement. The applic
 
 The `%` and `_` characters can influence SQL `LIKE` matching behavior, but that is different from SQL injection. If literal substring matching is required, those wildcard characters should be escaped separately.
 
-## 5. Reviewing SQL Template Literals
+## Reviewing SQL Template Literals
 
 I searched the backend for potentially sensitive SQL construction patterns, including:
 
@@ -264,7 +264,7 @@ I found similar fixed arithmetic operations in the comment likes and visitor-cou
 
 The important distinction is that SQL template literals are not automatically unsafe. Their safety depends on how they are constructed. Drizzle's parameterized interpolation is different from concatenating untrusted strings into raw SQL.
 
-## 6. Reviewing Comment and User Operations
+## Reviewing Comment and User Operations
 
 I also examined comment likes and unlikes:
 
@@ -295,7 +295,7 @@ These operations use Drizzle query operators rather than building SQL strings fr
 
 Converting an input to a number is useful for type handling, but it is not a replacement for validation. IDs should also be checked to ensure they are valid positive integers.
 
-## 7. Reviewing Password Reset Queries
+## Reviewing Password Reset Queries
 
 I examined the forgot-password and update-password controllers as well.
 
@@ -319,7 +319,7 @@ In both cases, the email is passed through Drizzle's query builder.
 
 This means the reviewed database operations do not construct SQL by concatenating the email value into a query string.
 
-## 8. Review Results
+## Review Results
 
 | Area reviewed         | Protection observed                              |
 | --------------------- | ------------------------------------------------ |
@@ -334,7 +334,7 @@ This means the reviewed database operations do not construct SQL by concatenatin
 | Password reset lookup | Drizzle `eq()`                                   |
 | Password update       | Drizzle `eq()`                                   |
 
-## 9. Conclusion
+## Conclusion
 
 During this review, I did not identify SQL injection vulnerabilities in the database operations examined.
 

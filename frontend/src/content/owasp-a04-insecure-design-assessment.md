@@ -27,7 +27,7 @@ An application can correctly authenticate users and still allow them to perform 
 
 In this article, I'll explore OWASP Top 10 A04:2021 — Insecure Design through a practical example from a comment system in a web application.
 
-## 1. What Is Insecure Design?
+## What Is Insecure Design?
 
 Insecure Design refers to security weaknesses introduced by the design and architecture of an application.
 
@@ -46,7 +46,7 @@ These requirements sound straightforward. However, if the application design onl
 
 That missing security requirement can become an authorization vulnerability.
 
-## 2. A Real-World Example: Designing a Comment API
+## A Real-World Example: Designing a Comment API
 
 Imagine an application with a comment endpoint:
 
@@ -81,7 +81,7 @@ The query identifies the comment, but it does not establish whether the authenti
 
 The database operation needs to enforce the ownership condition as well.
 
-## 3. Why This Is a Design Problem
+## Why This Is a Design Problem
 
 The underlying issue is not simply that a database query is missing a condition.
 
@@ -101,7 +101,7 @@ For a comment system, the ownership invariant could be:
 
 This rule should not depend on information supplied by the client.
 
-## 4. Security Requirements Must Be Designed, Not Assumed
+## Security Requirements Must Be Designed, Not Assumed
 
 A useful way to prevent this class of problem is to define security requirements alongside functional requirements.
 
@@ -115,7 +115,7 @@ A useful way to prevent this class of problem is to define security requirements
 
 This makes authorization part of the application design rather than something added after the endpoints are implemented.
 
-## 5. A04 and A01: Understanding the Difference
+## A04 and A01: Understanding the Difference
 
 This example also demonstrates an important distinction in the OWASP Top 10.
 
@@ -125,7 +125,7 @@ This example also demonstrates an important distinction in the OWASP Top 10.
 
 The same application can have a design weakness that leads to an access-control vulnerability. Correctly identifying both the underlying design problem and the observable security failure makes the assessment more useful.
 
-## 6. Lessons Learned
+## Lessons Learned
 
 Secure application design requires more than adding authentication middleware or defining user roles.
 
